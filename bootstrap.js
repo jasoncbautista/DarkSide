@@ -33,7 +33,42 @@ var Sqor = initialize();
 
 // HTML.js
 (function(Sqor, undefined){
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var HTML = {};
+    // getCompiledTemplate
+    HTML.get = function(templateName,  options, callback){
+        $.get("html/" +  templateName + ".html", function(htmlString) {
+            var compiledTemplate = _.template(htmlString)(options);
+            var domElement =  $(compiledTemplate);
+
+            callback(domElement);
+        });
+    };
+
+    // HTML.getTempalte=
+    Sqor.Services.HTML = HTML;
 })(Sqor);
+
+
+
+
+// .js
+(function(Sqor, undefined){
+    debugger;
+
+    // defaults
+    // create
+    //
+
+})(Sqor);
+
+
+
+
+
 
 
 
