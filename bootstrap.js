@@ -22,15 +22,6 @@ var initialize = function(){
 
 var Sqor = initialize();
 
-// Now we can have services such as:
-/*
-    Sqor.Service.HTML
-*/
-
-// Example initialize an empty namespace
-(function(Sqor, undefined) {
-})(Sqor);
-
 // HTML.js
 (function(Sqor, undefined) {
     // Dependencies:
@@ -45,6 +36,10 @@ var Sqor = initialize();
             var domElement =  $(compiledTemplate);
             callback(domElement);
         });
+    };
+
+    HTML.createSpinnerHolder = function(){
+        return $("<span> Spinner... </span>");
     };
 
     // HTML.getTempalte=
@@ -80,13 +75,27 @@ var Sqor = initialize();
     };
 
     _.extend(DisplayCard.prototype, {
+        /**
+         * Creates the basic DOM element representing our Display Card.
+         * @param {Object} options,
+         * @return {Null}
+         */
         create: function(options){
             var self = this;
             // Create the DOM element
-            self._el = $("<div></div>");
+            self._el = HTML.createSpinnerHolder();
+            HTML.get("displayCard", {}, function(domElement){
+                self._el.empty();
+                self._el.append(domElement);
+            });
         },
 
-        _generate = function(){
+        getDomElement: function(){
+            var self = this;
+            return self._el;
+        },
+
+        _generate: function(){
         },
 
         update: function(){
