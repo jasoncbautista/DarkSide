@@ -27,12 +27,11 @@ var Sqor = initialize();
 */
 
 // Example initialize an empty namespace
-(function(Sqor, undefined){
+(function(Sqor, undefined) {
 })(Sqor);
 
-
 // HTML.js
-(function(Sqor, undefined){
+(function(Sqor, undefined) {
     // Dependencies:
     var $ = Sqor.$;
     var _ = Sqor._;
@@ -43,7 +42,6 @@ var Sqor = initialize();
         $.get("html/" +  templateName + ".html", function(htmlString) {
             var compiledTemplate = _.template(htmlString)(options);
             var domElement =  $(compiledTemplate);
-
             callback(domElement);
         });
     };
@@ -52,23 +50,38 @@ var Sqor = initialize();
     Sqor.Services.HTML = HTML;
 })(Sqor);
 
+// Now we have an example widget:
+// DisplayCard.js
+(function(Sqor, undefined) {
+    var DisplayCard = function(options) {
+        var defaults = {
+            name: "Sample name"
+        };
 
+        var newOptions = _.extend({}, defaults, options);
+        this.create(newOptions);
 
+        return this;
+    };
 
-// .js
-(function(Sqor, undefined){
-    debugger;
+    _.extend(DisplayCard.prototype, {
+        create: function(options){
+            var self = this;
+            // Create the DOM element
+            self._el = $("<div></div>");
+        },
 
+        _generate = function(){
+        },
+
+        update: function(){
+        },
+
+        sdfsd3423452349249239493234: null
+    });
     // defaults
     // create
     //
 
+    Sqor.Widgets.DisplayCard = DisplayCard;
 })(Sqor);
-
-
-
-
-
-
-
-
