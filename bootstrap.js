@@ -1,4 +1,5 @@
 // bootstrap.js
+// This is a very simple
 
 /**
  * Simply initializes a few key holder objects.
@@ -53,14 +54,28 @@ var Sqor = initialize();
 // Now we have an example widget:
 // DisplayCard.js
 (function(Sqor, undefined) {
-    var DisplayCard = function(options) {
-        var defaults = {
-            name: "Sample name"
-        };
+    // Need to get our dependencies
+    var HTML = Sqor.Services.HTML,
+        $ = Sqor.$;
 
+    /**
+     * This is a very simple widget that takes in an image, a title,
+     * a subtitle, and a set of links associated with each element in the form
+     * of callbacks.
+     *
+     * @constructor
+     * @param {type} options,
+     * @return {Null}
+     */
+    var DisplayCard = function(options) {
+        // The default values this widget can take:
+        var defaults = {
+                tltle: "Sample name"
+            ,   subtitle: null
+            ,   image: null
+        };
         var newOptions = _.extend({}, defaults, options);
         this.create(newOptions);
-
         return this;
     };
 
@@ -81,7 +96,5 @@ var Sqor = initialize();
     });
     // defaults
     // create
-    //
-
     Sqor.Widgets.DisplayCard = DisplayCard;
 })(Sqor);
