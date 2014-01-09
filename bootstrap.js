@@ -81,9 +81,12 @@ var Sqor = initialize();
     var DisplayCard = function(options) {
         // The default values this widget can take:
         var defaults = {
-                tltle: "Sample name"
-            ,   subtitle: null
-            ,   image: null
+                data: {
+                        tltle: "Sample name"
+                    ,   subtitle: null
+                    ,   image: null
+                },
+                styleClas: "none"
         };
         var newOptions = _.extend({}, defaults, options);
         this.create(newOptions);
@@ -99,9 +102,11 @@ var Sqor = initialize();
          */
         create: function(options){
             var self = this;
+            self._options = options;
+            self._data = options.data;
             // Create the DOM element
             self._el = HTML.createSpinnerHolder();
-            HTML.get("displayCard", {}, function(domElement){
+            HTML.get("displayCard", self._data, function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
             });
@@ -121,7 +126,17 @@ var Sqor = initialize();
          * @param {type} options,
          * @return {Null}
          */
-        reloadData: function(options){
+        reloadData: function(data){
+            var self = this;
+            self._data = data;
+            // First we must indicate new data is being loaded:
+            self._el.empty();
+            self._el.append(HTML.getSpinner());
+            // Actually load the new data:
+            HTML.get("displayCard", self._data, function(domElement){
+                self._el.empty();
+                self._el.append(domElement);
+            });
         },
 
         sdfsd3423452349249239493234: null
