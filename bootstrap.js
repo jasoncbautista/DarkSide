@@ -38,9 +38,25 @@ var Sqor = initialize();
         });
     };
 
+    /**
+     * Returns a holder object with a spinner inside.
+     * @return {Object}, DOM holder
+     */
     HTML.createSpinnerHolder = function(){
-        return $("<span> Spinner... </span>");
+        var self = this;
+        var domElement = $("<span></span>");
+        domElement.append(self.getSpinner());
+        return domElement;
     };
+
+    /**
+     * A very simple spinner to indicate there is loading goign on .
+     * @return {Object} DOM element
+     */
+    HTML.getSpinner = function() {
+        var domElement  = $("<span> Spinner... </span>");
+        return domElement;
+    },
 
     // HTML.getTempalte=
     Sqor.Services.HTML = HTML;
@@ -74,6 +90,7 @@ var Sqor = initialize();
         return this;
     };
 
+    // Extending our widgets prototype to add basic functionality:
     _.extend(DisplayCard.prototype, {
         /**
          * Creates the basic DOM element representing our Display Card.
@@ -90,15 +107,21 @@ var Sqor = initialize();
             });
         },
 
+        /**
+         * Returns the dom element associated with this widget
+         * @return {Object}, DOM representation of widget.
+         */
         getDomElement: function(){
             var self = this;
             return self._el;
         },
 
-        _generate: function(){
-        },
-
-        update: function(){
+        /**
+         *  A quick and dirty way to reload data.
+         * @param {type} options,
+         * @return {Null}
+         */
+        reloadData: function(options){
         },
 
         sdfsd3423452349249239493234: null
@@ -107,3 +130,4 @@ var Sqor = initialize();
     // create
     Sqor.Widgets.DisplayCard = DisplayCard;
 })(Sqor);
+
