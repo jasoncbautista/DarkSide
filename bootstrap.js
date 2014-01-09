@@ -19,13 +19,10 @@ var initialize = function(){
 var Sqor = initialize();
 
 // Now we can have services such as:
-
 /*
     Sqor.Service.HTML
-
 */
 
 // Example initialize an empty namespace
 (function(Sqor, undefined){
-
 })(Sqor);
