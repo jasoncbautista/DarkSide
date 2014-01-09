@@ -13,6 +13,9 @@ var initialize = function(){
     Sqor.Services = {};
     Sqor.TP = {};
 
+    // TODO FIX THIS:
+    Sqor.$ = $;
+    Sqor._ = _;
     return Sqor;
 };
 
@@ -26,3 +29,11 @@ var Sqor = initialize();
 // Example initialize an empty namespace
 (function(Sqor, undefined){
 })(Sqor);
+
+
+// HTML.js
+(function(Sqor, undefined){
+})(Sqor);
+
+
+
