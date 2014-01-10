@@ -19,7 +19,6 @@ var initialize = function(){
     Sqor._ = _;
     return Sqor;
 };
-
 var Sqor = initialize();
 
 // HTML.js
@@ -141,8 +140,6 @@ var Sqor = initialize();
 
         sdfsd3423452349249239493234: null
     });
-    // defaults
-    // create
     Sqor.Widgets.DisplayCard = DisplayCard;
 })(Sqor);
 
