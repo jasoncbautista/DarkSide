@@ -200,8 +200,8 @@ var Sqor = initialize();
      * of callbacks.
      *
      * @constructor
-     * @param {type} options,
-     * @return {Null}
+     * @param {object} options, simple ways to configure our DisplayCard
+     * @return {object}, the display card itself
      */
     var DisplayCard = function(options) {
         // The default values this widget can take:
@@ -251,7 +251,7 @@ var Sqor = initialize();
 
         /**
          *  A quick and dirty way to reload data.
-         * @param {type} options,
+         * @param {object} data, data pertaining to how to render
          * @return {Null}
          */
         reloadData: function(data){
