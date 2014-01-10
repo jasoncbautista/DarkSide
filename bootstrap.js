@@ -152,7 +152,21 @@ var Sqor = initialize();
     var $ = Sqor.$;
     var _ = Sqor._;
 
-    // Creating our little HTML Service
+    // Creating our HTML Service to process tempaltes
+    /**
+     * A static object that holds a few key functions to fetch our templates.
+     * Internally using underscore templating engine. This service takes
+     * care of fetching everything from the server and provides a simple
+     * interface.
+     *
+     *  Usage:
+     *   var onRender = function(domElement) {
+     *      // NOTE: domElement is actually a jquery object
+     *      domElement.find(".someClass");
+     *   }
+     *   HTML.get('exampleTempalte', {'fieldOne': 'fieldValue'}, onRender);
+     *
+     */
     var HTML = {};
     // getCompiledTemplate
     HTML.get = function(templateName,  options, callback){
@@ -168,9 +182,8 @@ var Sqor = initialize();
      * @return {Object}, DOM holder
      */
     HTML.createSpinnerHolder = function(){
-        var self = this;
         var domElement = $("<span></span>");
-        domElement.append(self.getSpinner());
+        domElement.append(HTML.getSpinner());
         return domElement;
     };
 
