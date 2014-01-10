@@ -88,6 +88,7 @@ var Sqor = initialize();
         },
 
         _removeSubscription: function(eventName, id) {
+            // TODO: implement
         },
 
         /**********************************************************************
@@ -122,6 +123,7 @@ var Sqor = initialize();
          * @return {Null}
          */
         trigger: function(eventName) {
+            // TODO: IMPLEMENT
         },
 
         // Workaround for annoying last comma rule.
@@ -293,7 +295,7 @@ var Sqor = initialize();
                     self._el.empty();
                     self._el.append(domElement);
                 });
-            }, 100); // TODO: REMOVE, this is for demo porpuposes.
+            }, 100); // TODO: REMOVE. This is for demo porpuposes.
         },
 
         // Workaround for annoying last comma rule.
@@ -301,5 +303,20 @@ var Sqor = initialize();
     });
     Sqor.Widgets.DisplayCard = DisplayCard;
 })(Sqor);
+
+// SimpleTable.js
+(function(Sqor){
+    var SimpleTable = function(options){
+    };
+
+    _.extend(SimpleTable.prototype, {
+        create: function(options) {
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
+})(Sqor);
+
 
 
