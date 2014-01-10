@@ -13,7 +13,6 @@ var initialize = function(){
     Sqor.Modules = {};
     Sqor.Services = {};
     Sqor.TP = {};
-
     // TODO FIX THIS:
     Sqor.$ = $;
     Sqor._ = _;
@@ -21,12 +20,29 @@ var initialize = function(){
 };
 var Sqor = initialize();
 
-// HTML.js
-(function(Sqor, undefined) {
+// Data.js
+(function(Sqor) {
     // Dependencies:
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    var Data = {};
+
+    Data.getAllPlayers = function() {
+    };
+
+    Data.getFeedForCurrentUser = function() {
+    };
+
+})(Sqor);
+
+// HTML.js
+(function(Sqor) {
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    // Creating our little HTML Service
     var HTML = {};
     // getCompiledTemplate
     HTML.get = function(templateName,  options, callback){
@@ -63,7 +79,7 @@ var Sqor = initialize();
 
 // Now we have an example widget:
 // DisplayCard.js
-(function(Sqor, undefined) {
+(function(Sqor) {
     // Need to get our dependencies
     var HTML = Sqor.Services.HTML,
         $ = Sqor.$;
@@ -82,13 +98,16 @@ var Sqor = initialize();
         var defaults = {
                 data: {
                         tltle: "Sample name"
-                    ,   subtitle: null
-                    ,   image: null
+                    ,   titleLabel: "Title: "
+                    ,   subtitle: "Subtitle Example"
+                    ,   subtitleLabel: "Subtitle Label: "
+                    ,   imageURI: null
                 },
                 styleClas: "none"
         };
         var newOptions = _.extend({}, defaults, options);
         this.create(newOptions);
+        // TODO: we need to return a promise... somehow too..
         return this;
     };
 
@@ -137,7 +156,7 @@ var Sqor = initialize();
                     self._el.empty();
                     self._el.append(domElement);
                 });
-            }, 100); // TODO: remove, this is for demo porpuposes
+            }, 100); // TODO: REMOVE, this is for demo porpuposes.
         },
 
         sdfsd3423452349249239493234: null
@@ -145,3 +164,5 @@ var Sqor = initialize();
     Sqor.Widgets.DisplayCard = DisplayCard;
 })(Sqor);
 
+
+// Let's make a list widget / module:
