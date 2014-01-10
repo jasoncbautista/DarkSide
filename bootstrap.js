@@ -53,7 +53,7 @@ var Sqor = initialize();
      * @return {Object} DOM element
      */
     HTML.getSpinner = function() {
-        var domElement  = $("<span> Spinner... </span>");
+        var domElement  = $("<span> <img src='images/spinner.gif'/></span>");
         return domElement;
     },
 
@@ -132,10 +132,12 @@ var Sqor = initialize();
             self._el.empty();
             self._el.append(HTML.getSpinner());
             // Actually load the new data:
-            HTML.get("displayCard", self._data, function(domElement){
-                self._el.empty();
-                self._el.append(domElement);
-            });
+            setTimeout(function(){
+                HTML.get("displayCard", self._data, function(domElement){
+                    self._el.empty();
+                    self._el.append(domElement);
+                });
+            }, 500); // TODO: remove, this is for demo porpuposes
         },
 
         sdfsd3423452349249239493234: null
