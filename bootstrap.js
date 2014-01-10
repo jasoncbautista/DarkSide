@@ -168,7 +168,16 @@ var Sqor = initialize();
      *
      */
     var HTML = {};
-    // getCompiledTemplate
+
+    /**
+     * Returns a jQuery dom element for the template with options applied
+     * to the corresponding fields in the template.
+     *
+     * @param {string} templateName, name of template to fetch
+     * @param {object} options, fields to substitute inside template
+     * @param {function} callback, handler for when DOM element is ready
+     * @return {Null}
+     */
     HTML.get = function(templateName,  options, callback){
         $.get("html/" +  templateName + ".html", function(htmlString) {
             var compiledTemplate = _.template(htmlString)(options);
@@ -178,7 +187,7 @@ var Sqor = initialize();
     };
 
     /**
-     * Returns a holder object with a spinner inside.
+     * Returns a holder object with a spinner inside
      * @return {Object}, DOM holder
      */
     HTML.createSpinnerHolder = function(){
@@ -188,7 +197,7 @@ var Sqor = initialize();
     };
 
     /**
-     * A very simple spinner to indicate there is loading goign on .
+     * A very simple spinner to indicate there is loading goign on.
      * @return {Object} DOM element
      */
     HTML.getSpinner = function() {
@@ -211,6 +220,11 @@ var Sqor = initialize();
      * This is a very simple widget that takes in an image, a title,
      * a subtitle, and a set of links associated with each element in the form
      * of callbacks.
+     *
+     * Usage:
+     *      var c = new Sqor.Widgets.DisplayCard({name: "Simple Name"});
+     *      $('body').append(c.getDomElement());
+     *      c.reloadData({"name": "NewName"});
      *
      * @constructor
      * @param {object} options, simple ways to configure our DisplayCard
