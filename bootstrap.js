@@ -312,8 +312,11 @@ var Sqor = initialize();
         var self = this;
 
         var defaults = {
-                parentElement: $("<span></span>")
+                parentElement: null
             ,   elementRendered: $.noop
+            , templateValues: {
+                    "className": null
+                }
         };
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
@@ -322,10 +325,25 @@ var Sqor = initialize();
 
     _.extend(SimpleTable.prototype, {
         create: function(options) {
+            var self = this;
+            // Setup our  holder element:
+            self._el = HTML.createSpinnerHolder();
+            self._el.empty();
+            self._el.append(HTML.getSpinner());
+            HTML.get("simpleTable", self._options.templateValues,
+             function(domElement){
+                self._el.empty();
+                self._el.append(domElement);
+            });
         },
 
         _render: function(){
         },
+
+        getDomElement: function(){
+            var self = this;
+            return self._el;
+        };
 
         addDelegate: function(){
         },
