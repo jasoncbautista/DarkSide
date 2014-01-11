@@ -309,9 +309,13 @@ var Sqor = initialize();
 
 // SimpleTable.js
 (function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
     var SimpleTable = function(options){
         var self = this;
-
         var defaults = {
                 parentElement: null
             ,   renderedCallback: $.noop
@@ -411,5 +415,3 @@ var Sqor = initialize();
     var _ = Sqor._;
 
 })(Sqor);
-
-
