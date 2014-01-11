@@ -419,6 +419,19 @@ var Sqor = initialize();
     };
 
     _.extend(AthleteListViewController.prototype, {
+
+        getCellAt: function(index) {
+            return $("<div>" + index + "</div>");
+        },
+
+        getNumberOfCells: function(){
+            var self = this;
+            return self._model.size();
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+
     });
 
     Sqor.Modules.AthleteListViewController = AthleteListViewController;
