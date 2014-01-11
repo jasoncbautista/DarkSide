@@ -312,8 +312,8 @@ var Sqor = initialize();
         var self = this;
 
         var defaults = {
-            parentElement: $("<span></span>")
-            elementRendered: $.noop
+                parentElement: $("<span></span>")
+            ,   elementRendered: $.noop
         };
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
