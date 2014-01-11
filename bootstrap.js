@@ -320,7 +320,7 @@ var Sqor = initialize();
             , dataDelegate: {
                 "getCellCount": function(){
                     return 0;
-                }
+                },
                 "getCellAtIndex": function(index){
                     return $("");
                 }
@@ -354,8 +354,8 @@ var Sqor = initialize();
             var cellCount = self._dataDelegate.getCellCount();
 
             // Render each cell by calling into our delegate
-            for(var ii 0; ii < cellCount; ii++){
-                var currentCellDOM = self.-dataDelegate.getCellAtIndex(ii);
+            for(var ii = 0; ii < cellCount; ii++){
+                var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
                 cellsContainer.append(currentCellDOM);
             };
         },
@@ -363,12 +363,12 @@ var Sqor = initialize();
         setDataDelegate: function(delegate){
             var self = this;
             self._dataDelegate = delegate;
-        };
+        },
 
         getDomElement: function(){
             var self = this;
             return self._el;
-        };
+        },
 
         addDelegate: function(){
         },
