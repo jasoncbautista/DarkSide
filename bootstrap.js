@@ -214,9 +214,10 @@ var Sqor = initialize();
 // Now we have an example widget:
 // DisplayCard.js
 (function(Sqor) {
-    // Need to get our dependencies
-    var HTML = Sqor.Services.HTML,
-        $ = Sqor.$;
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
 
     /**
      * This is a very simple widget that takes in an image, a title,
@@ -399,3 +400,16 @@ var Sqor = initialize();
     // Export our widget
     Sqor.Widgets.SimpleTable = SimpleTable;
 })(Sqor);
+
+// AthleteList
+
+// AthleteListController.js
+(function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+})(Sqor);
+
+
