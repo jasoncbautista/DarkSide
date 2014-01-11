@@ -383,7 +383,6 @@ var Sqor = initialize();
             var self = this;
             var cellsContainer = self._el.find("SQOR_cellsContainer");
             self._render();
-
         },
 
         getDelegateMethodsExpected: function(){
