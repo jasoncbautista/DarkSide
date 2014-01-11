@@ -70,7 +70,7 @@ var Sqor = initialize();
             // First we get our subscriptions by eventName
             var subscriptionsForEvent = self._subscrptions[eventName];
             // We create a new entry if we don't have any subscriptions
-            if (! _.isReal(subscriptionsForEvent) {
+            if (! _.isReal(subscriptionsForEvent)) {
                 self._subscrptions[eventName] = {};
                 subscriptionsForEvent = self._subscrptions[eventName];
             }
@@ -310,11 +310,21 @@ var Sqor = initialize();
 (function(Sqor){
     var SimpleTable = function(options){
         var self = this;
+
+        var defaults = {
+            parentElement: $("<span></span>")
+            elementRendered: $.noop
+        };
         self._delegates = [];
+        self._options = _.extend({}, defaults, options);
+        self.create(self._options);
     };
 
     _.extend(SimpleTable.prototype, {
         create: function(options) {
+        },
+
+        _render: function(){
         },
 
         addDelegate: function(){
