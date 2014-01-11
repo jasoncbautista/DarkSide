@@ -345,7 +345,7 @@ var Sqor = initialize();
             self._el.empty();
             self._el.append(HTML.getSpinner());
             HTML.get("simpleTable", self._options.templateValues,
-             function(domElement){
+            function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
                 self._render();
@@ -406,11 +406,38 @@ var Sqor = initialize();
 
 // AthleteList
 
-// AthleteListController.js
+// AthleteListViewController.js
 (function(Sqor){
     // Dependencies
     var HTML = Sqor.Services.HTML;
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    var AthleteListViewController = function(options){
+        var defaults = {};
+        var self = this;
+    };
+
+    _.extend(AthleteListViewController.prototype, {
+    });
+
+    Sqor.Modules.AthleteListViewController = AthleteListViewController;
+})(Sqor);
+
+
+
+// AthleteListViewModel.js
+(function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var  AthleteListViewModel = function(){
+    };
+
+    _.extend(AthleteListViewModel.prototype, {
+    });
+
+    Sqor.Modules.AthleteListViewModel = AthleteListViewModel;
 })(Sqor);
