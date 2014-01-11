@@ -349,7 +349,7 @@ var Sqor = initialize();
                 self._el.empty();
                 self._el.append(domElement);
                 self._render();
-                self.renderedCallback(self._el, domElement);
+                self._options.renderedCallback(self._el, domElement);
             });
         },
 
