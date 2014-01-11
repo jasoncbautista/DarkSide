@@ -313,13 +313,22 @@ var Sqor = initialize();
 
         var defaults = {
                 parentElement: null
-            ,   elementRendered: $.noop
+            ,   renderedCallback: $.noop
             , templateValues: {
                     "className": null
                 }
+            , dataDelegate: {
+                "getCellCount": function(){
+                    return 0;
+                }
+                "getCellAtIndex": function(index){
+                    return $("");
+                }
+            }
         };
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
+        self._dataDelegate = self._options.dataDelegate;
         self.create(self._options);
     };
 
@@ -334,11 +343,27 @@ var Sqor = initialize();
              function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
+                self._render();
+                self.renderedCallback(self._el, domElement);
             });
         },
 
         _render: function(){
+            var self = this;
+            var cellsContainer = self._el.find("SQOR_cellsContainer");
+            var cellCount = self._dataDelegate.getCellCount();
+
+            // Render each cell by calling into our delegate
+            for(var ii 0; ii < cellCount; ii++){
+                var currentCellDOM = self.-dataDelegate.getCellAtIndex(ii);
+                cellsContainer.append(currentCellDOM);
+            };
         },
+
+        setDataDelegate: function(delegate){
+            var self = this;
+            self._dataDelegate = delegate;
+        };
 
         getDomElement: function(){
             var self = this;
@@ -348,7 +373,10 @@ var Sqor = initialize();
         addDelegate: function(){
         },
 
-        getDelegateForMethod: function(methodName){
+        _callDelegateForMethod: function(methodName, _arguments) {
+        },
+
+        _getDelegateForMethod: function(methodName){
         },
 
         rerender: function(){
