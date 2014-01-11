@@ -111,8 +111,8 @@ var Sqor = initialize();
             // Delegate the addition of the actual subscription to a helper
             var unsubscribeCallback = _addEvent(eventName, id, handler);
             return {
-                unsubscribe: unsubscribeCallback
-                id: id
+                    unsubscribe: unsubscribeCallback
+                ,   id: id
             };
         },
 
