@@ -301,22 +301,42 @@ var Sqor = initialize();
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
+
+    // Export our widget
     Sqor.Widgets.DisplayCard = DisplayCard;
 })(Sqor);
 
 // SimpleTable.js
 (function(Sqor){
     var SimpleTable = function(options){
+        var self = this;
+        self._delegates = [];
     };
 
     _.extend(SimpleTable.prototype, {
         create: function(options) {
         },
 
+        addDelegate: function(){
+        },
+
+        getDelegateForMethod: function(methodName){
+        },
+
+        rerender: function(){
+        },
+
+        getDelegateMethodsExpected: function(){
+            return {
+                    'getCellAt': ['index']
+                ,   'getNumberOfCells': []
+            };
+        },
+
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
+
+    // Export our widget
+    Sqor.Widgets.SimpleTable = SimpleTable;
 })(Sqor);
-
-
-
