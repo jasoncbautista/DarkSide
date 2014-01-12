@@ -230,7 +230,7 @@ var Sqor = initialize();
      * of callbacks.
      *
      * Usage:
-     *      var c = new Sqor.Widgets.DisplayCard({name: "Simple Name"});
+     *      var c = new Sqor.Widgets.DisplayCard({title: "Simple Name"});
      *      $('body').append(c.getDomElement());
      *      c.reloadData({"name": "NewName"});
      *
@@ -519,7 +519,11 @@ var Sqor = initialize();
          * @return {Object} jquery Object
          */
         getCellAtIndex: function(index) {
-            return $("<div>" + index + "</div>");
+            var options = {data:
+                {title: "Simple Name"}
+            };
+            var displayCard  = new Sqor.Widgets.DisplayCard();
+            return displayCard.getDomElement();
         },
 
         /**
@@ -537,8 +541,6 @@ var Sqor = initialize();
 
     Sqor.Modules.AthleteListViewController = AthleteListViewController;
 })(Sqor);
-
-
 
 // AthleteListViewModel.js
 (function(Sqor){
@@ -563,7 +565,6 @@ var Sqor = initialize();
         _callDelegates: function(){
             var self = this;
             _.each(self._delegates, function(delegate) {
-                // TODO: if has
                 if (_.isReal(delegate.dataChanged)) {
                     delegate.dataChanged();
                 }
