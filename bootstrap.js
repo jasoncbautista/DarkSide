@@ -414,7 +414,7 @@ var Sqor = initialize();
         dataDelegate: function(){
             var self = this;
             self.rerender();
-        };
+        },
 
         rerender: function(){
             var self = this;
@@ -520,7 +520,7 @@ var Sqor = initialize();
             var self = this;
             self._size = size;
             self._callDelegates();
-        };
+        },
 
         size: function() {
             var self = this;
