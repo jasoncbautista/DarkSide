@@ -517,8 +517,8 @@ var Sqor = initialize();
          */
         getCellAtIndex: function(index) {
             var options = {
-                        title: "Simple Name"
-                    ,   subtitle: "Simple Name"
+                        title: "First Name"
+                    ,   subtitle: "Last Simple "
                     ,   imageURI: "images/person_placeholder.jpg"
                 };
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
