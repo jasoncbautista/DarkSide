@@ -323,7 +323,7 @@ var Sqor = initialize();
                     "className": null
                 }
             , dataDelegate: {
-                "getCellCount": function(){
+                "getNumberOfCells": function(){
                     return 0;
                 },
                 "getCellAtIndex": function(index){
@@ -356,7 +356,7 @@ var Sqor = initialize();
         _render: function(){
             var self = this;
             var cellsContainer = self._el.find("SQOR_cellsContainer");
-            var cellCount = self._dataDelegate.getCellCount();
+            var cellCount = self._dataDelegate.getNumberOfCells();
             // Render each cell by calling into our delegate
             for(var ii = 0; ii < cellCount; ii++){
                 var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
@@ -423,11 +423,11 @@ var Sqor = initialize();
 
         create: function(){
             var self = this;
-            self._model = new Sqor.Widgets.AthleteListViewModel();
+            self._model = new Sqor.Modules.AthleteListViewModel();
             var viewOptions = {
                 dataDelegate: self
             };
-            self._view = new Sqor.Widgets.SimpleTable();
+            self._view = new Sqor.Widgets.SimpleTable(viewOptions);
         },
 
         getDomElement: function(){
