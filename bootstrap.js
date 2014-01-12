@@ -435,7 +435,7 @@ var Sqor = initialize();
             return self._view.getDomElement();
         },
 
-        getCellAt: function(index) {
+        getCellAtIndex: function(index) {
             return $("<div>" + index + "</div>");
         },
 
