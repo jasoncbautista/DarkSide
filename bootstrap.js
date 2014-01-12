@@ -355,7 +355,7 @@ var Sqor = initialize();
 
         _render: function(){
             var self = this;
-            var cellsContainer = self._el.find("SQOR_cellsContainer");
+            var cellsContainer = self._el.find(".SQOR_cellsContainer");
             var cellCount = self._dataDelegate.getNumberOfCells();
             // Render each cell by calling into our delegate
             for(var ii = 0; ii < cellCount; ii++){
