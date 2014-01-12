@@ -411,7 +411,7 @@ var Sqor = initialize();
         _getDelegateForMethod: function(methodName){
         },
 
-        dataDelegate: function(){
+        dataChanged: function(){
             var self = this;
             self.rerender();
         },
@@ -511,7 +511,7 @@ var Sqor = initialize();
             var self = this;
             _.each(self._delegates, function(delegate) {
                 // TODO: if has
-                if (_.isReal(delegate.dataDelegate)) {
+                if (_.isReal(delegate.dataChanged)) {
                     delegate.dataChanged();
                 }
             });
