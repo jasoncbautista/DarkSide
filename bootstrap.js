@@ -466,6 +466,18 @@ var Sqor = initialize();
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    /**
+     * A simple module to render a list of cells.
+     *
+     * Usage:
+     *
+     *  var c = new Sqor.Modules.AthleteListViewController();
+     *  $("body").append(c.getDomElement());
+     *  c._model.setSize(100);
+     *
+     * @param {object} options,
+     * @return {Null}
+     */
     var AthleteListViewController = function(options){
         var defaults = {};
         var self = this;
