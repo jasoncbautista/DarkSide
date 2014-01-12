@@ -314,6 +314,24 @@ var Sqor = initialize();
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    /**
+     * A simple table that renders cells in a list form.
+     *
+     * Usage:
+     *
+     * var someObject = {
+     *
+     * };
+     * var options = {
+     *  dataDelegate: someObject
+     * };
+     *
+     * var table = new SimpleTable(options);
+     *
+     * @consructor
+     * @param {type} options,
+     * @return {Null}
+     */
     var SimpleTable = function(options){
         var self = this;
         var defaults = {
