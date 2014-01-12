@@ -503,6 +503,7 @@ var Sqor = initialize();
     _.extend(AthleteListViewModel.prototype, {
 
         addDelegate: function(delegate){
+            var self = this;
             self._delegates.push(delegate);
         },
 
