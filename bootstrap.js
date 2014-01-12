@@ -411,6 +411,11 @@ var Sqor = initialize();
         _getDelegateForMethod: function(methodName){
         },
 
+        dataDelegate: function(){
+            var self = this;
+            self.rerender();
+        };
+
         rerender: function(){
             var self = this;
             var cellsContainer = self._el.find("SQOR_cellsContainer");
@@ -456,6 +461,7 @@ var Sqor = initialize();
                 dataDelegate: self
             };
             self._view = new Sqor.Widgets.SimpleTable(viewOptions);
+            self._model.addDelegate(self._view);
         },
 
         getDomElement: function(){
@@ -489,12 +495,36 @@ var Sqor = initialize();
     var _ = Sqor._;
 
     var  AthleteListViewModel = function(){
+        var self = this;
+        self._delegates = [];
+        self._size  = 2;
     };
 
     _.extend(AthleteListViewModel.prototype, {
 
+        addDelegate: function(delegate){
+            self._delegates.push(delegate);
+        },
+
+        _callDelegates: function(){
+            var self = this;
+            _.each(self._delegates, function(delegate) {
+                // TODO: if has
+                if (_.isReal(delegate.dataDelegate)) {
+                    delegate.dataChanged();
+                }
+            });
+        },
+
+        setSize: function(size){
+            var self = this;
+            self._size = size;
+            self._callDelegates();
+        };
+
         size: function() {
-            return 10;
+            var self = this;
+            return self._size;
         },
 
         // Workaround for annoying last comma rule.
