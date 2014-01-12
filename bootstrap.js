@@ -241,14 +241,12 @@ var Sqor = initialize();
     var DisplayCard = function(options) {
         // The default values this widget can take:
         var defaults = {
-                data: {
-                        tltle: "Sample name"
-                    ,   titleLabel: "Title: "
-                    ,   subtitle: "Subtitle Example"
-                    ,   subtitleLabel: "Subtitle Label: "
-                    ,   imageURI: null
-                },
-                styleClas: "none"
+                    tltle: ""
+                ,   titleLabel: ""
+                ,   subtitle: ""
+                ,   subtitleLabel: ""
+                ,   imageURI: ""
+                ,   styleClas: "none"
         };
         var newOptions = _.extend({}, defaults, options);
         this.create(newOptions);
@@ -266,10 +264,9 @@ var Sqor = initialize();
         create: function(options){
             var self = this;
             self._options = options;
-            self._data = options.data;
             // Create the DOM element
             self._el = HTML.createSpinnerHolder();
-            HTML.get("displayCard", self._data, function(domElement){
+            HTML.get("displayCard", self._options, function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
             });
@@ -519,13 +516,11 @@ var Sqor = initialize();
          * @return {Object} jquery Object
          */
         getCellAtIndex: function(index) {
-            var options = {data:
-                {
+            var options = {
                         title: "Simple Name"
                     ,   subtitle: "Simple Name"
                     ,   imageURI: "images/person_placeholder.jpg"
-                }
-            };
+                };
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
             return displayCard.getDomElement();
         },
