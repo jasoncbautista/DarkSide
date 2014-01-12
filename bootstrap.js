@@ -470,6 +470,10 @@ var Sqor = initialize();
          *  Delegate API Methods Implemented
          *********************************************************************/
 
+        /**
+         * A simple way to return the DOM element representing this controller
+         * @return {object} jquery DOM element
+         */
         getDomElement: function(){
             var self = this;
             return self._view.getDomElement();
