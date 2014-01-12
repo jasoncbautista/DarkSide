@@ -74,21 +74,26 @@ var Sqor = initialize();
                 self._subscrptions[eventName] = {};
                 subscriptionsForEvent = self._subscrptions[eventName];
             }
-
             // Finally, we add our subscription
             //
             // WARNING: a very rare problem would be to add two subscriptions
             // with the same id, potential solution is to loop on
             // self.subscribe untill a unique is found.
-
             subscriptionsForEvent[id] = handler;
             return function(){
                 self._removeSubscription(eventName, id);
             };
         },
 
+        /**
+         * Removes a handler associated with a given eventName
+         * @param {string} eventName, name to unbind from
+         * @param {string} id, the unique id of the handler
+         * @return {Null}
+         */
         _removeSubscription: function(eventName, id) {
-            // TODO: implement
+            var self = this;
+            delete self._subscrptions[eventName][id];
         },
 
         /**********************************************************************
