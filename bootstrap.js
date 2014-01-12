@@ -475,6 +475,11 @@ var Sqor = initialize();
             return self._view.getDomElement();
         },
 
+        /**
+         * Simple function to return a DOM element for a given cell position.
+         * @param {number} index,
+         * @return {Object} jquery Object
+         */
         getCellAtIndex: function(index) {
             return $("<div>" + index + "</div>");
         },
