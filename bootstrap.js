@@ -466,6 +466,10 @@ var Sqor = initialize();
             self._model.addDelegate(self._view);
         },
 
+        /**********************************************************************
+         *  Delegate API Methods Implemented
+         *********************************************************************/
+
         getDomElement: function(){
             var self = this;
             return self._view.getDomElement();
