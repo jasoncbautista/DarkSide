@@ -456,6 +456,10 @@ var Sqor = initialize();
 
     _.extend(AthleteListViewController.prototype, {
 
+        /**
+         * Siple create function to setup model and view along with delegates.
+         * @return {Null}
+         */
         create: function(){
             var self = this;
             self._model = new Sqor.Modules.AthleteListViewModel();
