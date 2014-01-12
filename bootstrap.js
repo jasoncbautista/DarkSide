@@ -320,6 +320,16 @@ var Sqor = initialize();
      * Usage:
      *
      * var someObject = {
+     *  getNumberOfCells: function(){ return 2; },
+     *
+     *  getCellAtIndex: function(index) {
+     *      var cells = [
+     *           $("<div> Cell One </div>"),
+     *           $("<div> Cell Two </div>"),
+     *      ];
+     *
+     *      return cells[index];
+     *  };
      *
      * };
      * var options = {
