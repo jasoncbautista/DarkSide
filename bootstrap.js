@@ -418,7 +418,9 @@ var Sqor = initialize();
 
         rerender: function(){
             var self = this;
-            var cellsContainer = self._el.find("SQOR_cellsContainer");
+            var cellsContainer = self._el.find(".SQOR_cellsContainer");
+            cellsContainer.empty();
+
             self._render();
         },
 
