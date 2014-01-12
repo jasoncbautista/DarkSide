@@ -520,9 +520,13 @@ var Sqor = initialize();
          */
         getCellAtIndex: function(index) {
             var options = {data:
-                {title: "Simple Name"}
+                {
+                        title: "Simple Name"
+                    ,   subtitle: "Simple Name"
+                    ,   imageURI: "images/person_placeholder.jpg"
+                }
             };
-            var displayCard  = new Sqor.Widgets.DisplayCard();
+            var displayCard  = new Sqor.Widgets.DisplayCard(options);
             return displayCard.getDomElement();
         },
 
