@@ -416,9 +416,15 @@ var Sqor = initialize();
     var AthleteListViewController = function(options){
         var defaults = {};
         var self = this;
+
+        self._model = new Sqor.Widgets.AthleteListViewModel();
+        self._view = new Sqor.Widgets.SimpleTable();
     };
 
     _.extend(AthleteListViewController.prototype, {
+
+        create: function(){
+        },
 
         getCellAt: function(index) {
             return $("<div>" + index + "</div>");
