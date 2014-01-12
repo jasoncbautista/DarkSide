@@ -484,6 +484,10 @@ var Sqor = initialize();
             return $("<div>" + index + "</div>");
         },
 
+        /**
+         * Returns number of cells by calling on model:
+         * @return {number} size of table
+         */
         getNumberOfCells: function(){
             var self = this;
             return self._model.size();
