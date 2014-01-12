@@ -371,6 +371,11 @@ var Sqor = initialize();
     };
 
     _.extend(SimpleTable.prototype, {
+        /**
+         * Creates a simple table by loading the HTML template
+         * @param {object} options, used to configure the widget
+         * @return {Null}
+         */
         create: function(options) {
             var self = this;
             // Setup our  holder element:
@@ -386,6 +391,10 @@ var Sqor = initialize();
             });
         },
 
+        /**
+         * Renders the table by loading each cell from the dataDelegate.
+         * @return {Null}
+         */
         _render: function(){
             var self = this;
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
@@ -397,43 +406,47 @@ var Sqor = initialize();
             };
         },
 
+        /**
+         * Set's the current dataDelegate to specifcy cells, and count.
+         * @param {object} delegate, dataDelegate containing key methods
+         * @return {Null}
+         */
         setDataDelegate: function(delegate){
             var self = this;
             self._dataDelegate = delegate;
         },
 
+        /**
+         * Returns the jQuery dom element representing the SimpleTable
+         * @return {object}, jQuery object
+         */
         getDomElement: function(){
             var self = this;
             return self._el;
         },
 
-        addDelegate: function(){
-        },
-
-        _callDelegateForMethod: function(methodName, _arguments) {
-        },
-
-        _getDelegateForMethod: function(methodName){
-        },
-
-        dataChanged: function(){
+       /**
+        * A delegate method we expose as a way to be notified when we should
+        * rerender.
+        *
+        * @return {Null}
+        */
+       dataChanged: function(){
             var self = this;
             self.rerender();
         },
 
+        /**
+         * Helper function to rerender (after everything has already been
+         * rendered).
+         * @return {Null}
+         */
         rerender: function(){
             var self = this;
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
             cellsContainer.empty();
 
             self._render();
-        },
-
-        getDelegateMethodsExpected: function(){
-            return {
-                    'getCellAt': ['index']
-                ,   'getNumberOfCells': []
-            };
         },
 
         // Workaround for annoying last comma rule.
