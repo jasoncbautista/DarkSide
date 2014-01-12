@@ -416,14 +416,23 @@ var Sqor = initialize();
     var AthleteListViewController = function(options){
         var defaults = {};
         var self = this;
-
-        self._model = new Sqor.Widgets.AthleteListViewModel();
-        self._view = new Sqor.Widgets.SimpleTable();
+        self.create();
     };
 
     _.extend(AthleteListViewController.prototype, {
 
         create: function(){
+            var self = this;
+            self._model = new Sqor.Widgets.AthleteListViewModel();
+            var viewOptions = {
+                dataDelegate: self
+            };
+            self._view = new Sqor.Widgets.SimpleTable();
+        },
+
+        getDomElement: function(){
+            var self = this;
+            return self._view.getDomElement();
         },
 
         getCellAt: function(index) {
@@ -437,7 +446,6 @@ var Sqor = initialize();
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
-
     });
 
     Sqor.Modules.AthleteListViewController = AthleteListViewController;
@@ -456,6 +464,14 @@ var Sqor = initialize();
     };
 
     _.extend(AthleteListViewModel.prototype, {
+
+        size: function() {
+            return 10;
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+
     });
 
     Sqor.Modules.AthleteListViewModel = AthleteListViewModel;
