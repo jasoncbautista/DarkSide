@@ -548,6 +548,10 @@ var Sqor = initialize();
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    /**
+     * Initializes a simple model to represetn the state of the list module.
+     * @return {Null}
+     */
     var  AthleteListViewModel = function(){
         var self = this;
         self._delegates = [];
@@ -556,11 +560,20 @@ var Sqor = initialize();
 
     _.extend(AthleteListViewModel.prototype, {
 
+        /**
+         * Adds a delegate to our list of delegates
+         * @param {object} delegate,
+         * @return {Null}
+         */
         addDelegate: function(delegate){
             var self = this;
             self._delegates.push(delegate);
         },
 
+        /**
+         * Calls all delegates listening for dataChanges
+         * @return {Null}
+         */
         _callDelegates: function(){
             var self = this;
             _.each(self._delegates, function(delegate) {
@@ -570,12 +583,21 @@ var Sqor = initialize();
             });
         },
 
+        /**
+         * Sets the size of the table
+         * @param {number} size, new size
+         * @return {Null}
+         */
         setSize: function(size){
             var self = this;
             self._size = size;
             self._callDelegates();
         },
 
+        /**
+         * Returns the size of the list / table
+         * @return {number} size of list
+         */
         size: function() {
             var self = this;
             return self._size;
@@ -583,7 +605,6 @@ var Sqor = initialize();
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
-
     });
 
     Sqor.Modules.AthleteListViewModel = AthleteListViewModel;
