@@ -1,5 +1,7 @@
-[ ] add simpleCard view
-[ ] Linter
+[ ] implement Messenger class
+[x] add simpleCard view
+[ ] Investigate Linters
+[ ] test google closure linter
 [ ] Auto documenting our classes
 [ ] Google Closure compiler or Require
 [ ] look up socket.io
