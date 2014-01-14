@@ -137,6 +137,14 @@ var Sqor = initialize();
 
     Sqor.Core.Eventer
 })(Sqor);
+
+(function(Sqor){
+    var Messenger = fuction(){
+    };
+
+    var Sqor.Core.Messenger = Messenger;
+})(Sqor);
+
 // Data.js
 (function(Sqor) {
     // Dependencies:
