@@ -9,6 +9,8 @@ var initialize = function(){
     var Sqor = {};
     // We define aa few primary holders
     Sqor.Core = {};
+    Sqor.Models= {};
+    Sqor.Streams= {};
     Sqor.Widgets = {};
     Sqor.Modules = {};
     Sqor.Services = {};
@@ -135,7 +137,7 @@ var Sqor = initialize();
         sdfsd3423452349249239493234: null
     });
 
-    Sqor.Core.Eventer
+    Sqor.Core.Eventer = Eventer;
 })(Sqor);
 // Data.js
 (function(Sqor) {
@@ -625,6 +627,7 @@ var Sqor = initialize();
     _.extend(UserFeeder.prototype, {
     });
 
+    Sqor.Streams.UserFeeder = UserFeeder;
 })(Sqor);
 // UserFeedViewController.js
 (function(Sqor){
