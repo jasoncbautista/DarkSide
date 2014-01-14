@@ -609,3 +609,30 @@ var Sqor = initialize();
 
     Sqor.Modules.AthleteListViewModel = AthleteListViewModel;
 })(Sqor);
+
+
+// UserFeeder.js
+(function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+
+    var UserFeeder = function(){
+    };
+    UserFeeder.prototype = new  Sqor.Core.Eventer();
+    _.extend(UserFeeder.prototype, {
+    });
+
+})(Sqor);
+// UserFeedViewController.js
+(function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var UserFeedViewController = function(){
+    };
+})(Sqor);
