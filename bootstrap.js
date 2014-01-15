@@ -617,3 +617,19 @@ var Sqor = initialize();
 
     Sqor.Modules.AthleteListViewModel = AthleteListViewModel;
 })(Sqor);
+
+// SmartTable.js
+(function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var SmartTable = function(){
+    };
+
+    _.extend(SmartTable.prototype, {
+    });
+})(Sqor);
+
+
