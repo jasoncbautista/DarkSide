@@ -643,6 +643,10 @@ var Sqor = initialize();
             var newEl = $("<div class='fixed'>" + ii + "</div>");
             parentEl.append(newEl);
             domElements.push(newEl);
+
+            var height = newEl.height();
+
+            newEl.css("top", height * ii + "px");
         }
     };
 
@@ -653,5 +657,9 @@ var Sqor = initialize();
 
     Sqor.Widgets.SmartTable = SmartTable;
 })(Sqor);
+
+$(document).ready(function(){
+    Sqor.Widgets.SmartTable.test(10);
+});
 
 
