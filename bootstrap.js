@@ -139,10 +139,10 @@ var Sqor = initialize();
 })(Sqor);
 
 (function(Sqor){
-    var Messenger = fuction(){
+    var Messenger = function(){
     };
 
-    var Sqor.Core.Messenger = Messenger;
+    Sqor.Core.Messenger = Messenger;
 })(Sqor);
 
 // Data.js
@@ -629,6 +629,14 @@ var Sqor = initialize();
     };
 
     _.extend(SmartTable.prototype, {
+        test: function(count){
+            var self = this;
+            // Create a bunch of DOM
+            var parentEl = $("body");
+            for(var ii = 0; ii < count; ii++) {
+                var newEl = $("<div>" + count + "</div>");
+            }
+        }
     });
 })(Sqor);
 
