@@ -629,7 +629,19 @@ var Sqor = initialize();
     };
 
     SmartTable.test = function(count) {
-        var addListener = function(el) {
+        var addListener = function(domElement) {
+            var lastScroll = $(document).scrollTop();
+            $(document).scroll(function() {
+                _.each(domElements, function(domElement){
+                    var top = domElement.offset().top;
+                    var scrollFromTop = $(document).scrollTop();
+                    var diffScrolled = lastScroll - scrollFromTop;
+                    var newTop = -scrollFromTop;
+                    domElement.css("top", newTop + "px");
+                    console.log(newTop);
+                    lastScroll = scrollFromTop;
+                });
+            });
         };
         var self = this;
         var parentEl = $("body");
@@ -648,6 +660,8 @@ var Sqor = initialize();
 
             newEl.css("top", height * ii + "px");
         }
+
+        addListener(domElements);
     };
 
     _.extend(SmartTable.prototype, {
