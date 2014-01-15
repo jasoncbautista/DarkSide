@@ -8,3 +8,11 @@ Investigate Limitations of Ininite Scroll
 - jqueryObj.scrollTop() gives us the amount the user has scrolled:
    $("body").scrollTop()
   - this is relative to the total height of the DOM object
+
+
+Benchmarking 
+-- moving elements each.
+-- moving many elements all at once
+
+
+ 

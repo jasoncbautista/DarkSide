@@ -634,15 +634,16 @@ var Sqor = initialize();
         var self = this;
         var parentEl = $("body");
         // First we add a fake super large element:
-
-
+        var hugeEl = $("<div></div>");
+        parentEl.append(hugeEl);
+        hugeEl.css("height", "900px");
         // Create a bunch of DOM
+        var domElements = [];
         for(var ii = 0; ii < count; ii++) {
-            var newEl = $("<div>" + count + "</div>");
+            var newEl = $("<div class='fixed'>" + ii + "</div>");
             parentEl.append(newEl);
+            domElements.push(newEl);
         }
-
-
     };
 
     _.extend(SmartTable.prototype, {
