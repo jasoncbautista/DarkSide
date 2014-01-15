@@ -628,16 +628,29 @@ var Sqor = initialize();
     var SmartTable = function(){
     };
 
+    SmartTable.test = function(count) {
+        var addListener = function(el) {
+        };
+        var self = this;
+        var parentEl = $("body");
+        // First we add a fake super large element:
+
+
+        // Create a bunch of DOM
+        for(var ii = 0; ii < count; ii++) {
+            var newEl = $("<div>" + count + "</div>");
+            parentEl.append(newEl);
+        }
+
+
+    };
+
     _.extend(SmartTable.prototype, {
         test: function(count){
-            var self = this;
-            // Create a bunch of DOM
-            var parentEl = $("body");
-            for(var ii = 0; ii < count; ii++) {
-                var newEl = $("<div>" + count + "</div>");
-            }
         }
     });
+
+    Sqor.Widgets.SmartTable = SmartTable;
 })(Sqor);
 
 
