@@ -632,14 +632,17 @@ var Sqor = initialize();
         var addListener = function(domElement) {
             var lastScroll = $(document).scrollTop();
             $(document).scroll(function() {
+                var ii = 0;
                 _.each(domElements, function(domElement){
                     var top = domElement.offset().top;
                     var scrollFromTop = $(document).scrollTop();
                     var diffScrolled = lastScroll - scrollFromTop;
-                    var newTop = -scrollFromTop;
+                    var elementHeight = domElement.height();
+                    var newTop = ii*elementHeight - scrollFromTop;
                     domElement.css("top", newTop + "px");
                     console.log(newTop);
                     lastScroll = scrollFromTop;
+                    ii++;
                 });
             });
         };
