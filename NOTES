@@ -1,0 +1,10 @@
+
+Investigate Limitations of Ininite Scroll
+
+- window.scrollTo(x,y) will let us scroll the user to a specific
+  part of our document
+  --- BUT if the user is scrolling on their own.. it wont' work
+
+- jqueryObj.scrollTop() gives us the amount the user has scrolled:
+   $("body").scrollTop()
+  - this is relative to the total height of the DOM object
