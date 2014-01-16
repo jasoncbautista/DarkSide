@@ -492,6 +492,7 @@ var Sqor = initialize();
             if(! _.isReal(type)) {
                 Sqor.Widgets.SimpleTable.prototype.dataChanged.apply(this);
             } else if( type === "prepend"){
+                console.log('prepend', count);
                 // We need to add a few rorrws
             } else if (type === "append"){
                 console.log('append', count);
@@ -625,11 +626,11 @@ var Sqor = initialize();
          * Calls all delegates listening for dataChanges
          * @return {Null}
          */
-        _callDelegates: function(){
+        _callDelegates: function(type, count){
             var self = this;
             _.each(self._delegates, function(delegate) {
                 if (_.isReal(delegate.dataChanged)) {
-                    delegate.dataChanged(arguments);
+                    delegate.dataChanged(type, count);
                 }
             });
         },
@@ -807,12 +808,13 @@ $(document).ready(function(){
     */
     var c = new Sqor.Modules.AthleteListViewController();
     $("body").append(c.getDomElement());
-    c._model.setSize(100);
+    c._model.setSize(5);
 
     //append to Model
     // c._model.appendItems(10);
     // c._model.prepend(10);
 
+    window._c = c;
 });
 
 
