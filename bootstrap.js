@@ -690,7 +690,7 @@ var Sqor = initialize();
         // Create a bunch of DOM
         var domElements = [];
         for(var ii = 0; ii < count; ii++) {
-            var newEl = $("<div class='fixed'>" + ii + "</div>");
+            var newEl = $("<div class='fixed'>" + ii + "<span class='container'></span></div>");
             parentEl.append(newEl);
             domElements.push(newEl);
             var height = newEl.height();
