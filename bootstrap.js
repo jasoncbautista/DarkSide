@@ -569,8 +569,8 @@ var Sqor = initialize();
          */
         getCellAtIndex: function(index) {
             var options = {
-                        title: "First Name"
-                    ,   subtitle: "Last Simple "
+                        title: "Some"
+                    ,   subtitle: "Dude " + index
                     ,   imageURI: "images/person_placeholder.jpg"
                 };
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
