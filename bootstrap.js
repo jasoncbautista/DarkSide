@@ -512,7 +512,7 @@ var Sqor = initialize();
             var self = this;
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
             // Render each new cell by calling into our delegate
-            for(var ii =  0 ; ii < count; ii++){
+            for(var ii =  count - 1  ; ii  >=  0 ; ii--){
                 var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
                 cellsContainer.prepend(currentCellDOM);
             }
