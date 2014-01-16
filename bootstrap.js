@@ -809,7 +809,7 @@ $(document).ready(function(){
     */
     var c = new Sqor.Modules.AthleteListViewController();
     $("body").append(c.getDomElement());
-    c._model.setSize(5);
+    c._model.setSize(2);
 
     //append to Model
     // c._model.appendItems(10);
