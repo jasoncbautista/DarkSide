@@ -494,6 +494,7 @@ var Sqor = initialize();
             } else if( type === "prepend"){
                 // We need to add a few rorrws
             } else if (type === "append"){
+                console.log('append', count);
             }
         }
     });
@@ -628,9 +629,15 @@ var Sqor = initialize();
             var self = this;
             _.each(self._delegates, function(delegate) {
                 if (_.isReal(delegate.dataChanged)) {
-                    delegate.dataChanged();
+                    delegate.dataChanged(arguments);
                 }
             });
+        },
+
+        appendItems: function(count) {
+            var self = this;
+            self._size+=count;
+            self._callDelegates("append", count);
         },
 
         /**
