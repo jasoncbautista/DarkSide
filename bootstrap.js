@@ -634,9 +634,9 @@ var Sqor = initialize();
             var rearrangeElements = function(elementsArray){
                 var displayAreaHeight = window.innerHeight;
                 elementsUp++;
-                var middleElement = Math.floor(elementsArray.length *  1/2);
+                var middleElement = elements[Math.floor(elementsArray.length *  1/2)];
 
-                middleElementTop = middleElementTop.offset().top -
+                middleElementTop = middleElement.offset().top -
                     $(window).scrollTop();
 
                 if ( (middleElementTop + middleElementTop.height() ) <= displayAreaHeight) {
@@ -701,7 +701,7 @@ var Sqor = initialize();
 })(Sqor);
 
 $(document).ready(function(){
-    Sqor.Widgets.SmartTable.test(5);
+    Sqor.Widgets.SmartTable.test(10);
 });
 
 
