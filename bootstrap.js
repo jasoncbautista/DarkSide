@@ -631,28 +631,34 @@ var Sqor = initialize();
     SmartTable.test = function(count) {
         var addListener = function(elements) {
             var elementsUp = 0;
-            var rearrangeElements = function(elementsArray){
-                var displayAreaHeight = window.innerHeight;
-                elementsUp++;
-                var middleElement = elements[Math.floor(elementsArray.length *  1/2)];
-
-                middleElementTop = middleElement.offset().top -
-                    $(window).scrollTop();
-
-                if ( (middleElementTop + middleElement.height() ) <= displayAreaHeight) {
-                    // Now we move one of our elements from the head to the
-                    // tail
-                    var head = elements[0];
-                    elements = elements.splice(1, elements.length-1);
-                    elements.push(head);
+            var rearrangeElements= function(elementsArray, elementsUp) {
+                    var displayAreaHeight = window.innerHeight;
                     elementsUp++;
-                    console.log('shift..');
-                }
+                    var middleElement = elements[Math.floor(elementsArray.length *  1/2)];
 
-                return elements;
+                    middleElementTop = middleElement.offset().top -
+                        $(window).scrollTop();
+
+                    var middleElementRealTop = (middleElementTop + middleElement.height() );
+                    console.log('middleElementRealTop', middleElementRealTop);
+                    console.log('displayAreaHeight/2', displayAreaHeight/2);
+
+                    if ( middleElementRealTop  <= displayAreaHeight/2) {
+                        // Now we move one of our elements from the head to the
+                        // tail
+                        var head = elements[0];
+                        elements = elements.splice(1, elements.length-1);
+                        elements.push(head);
+                        elementsUp++;
+                        console.log('shift..');
+                    }
+
+
+                return [elements, elementsUp];
             };
 
-            var domElement = elements;
+
+            var domElements = elements;
             var lastScroll = $(document).scrollTop();
             $(document).scroll(function() {
                 var ii = 0;
@@ -666,9 +672,11 @@ var Sqor = initialize();
                     lastScroll = scrollFromTop;
                     ii++;
                 });
-            });
 
-            domElement = rearrangeElements(domElement);
+            });
+            var results = rearrangeElements(domElements);
+            domElements = results[0];
+            elementsUp = results[1];
         };
         var self = this;
         var parentEl = $("body");
