@@ -628,9 +628,10 @@ var Sqor = initialize();
          */
         _callDelegates: function(type, count){
             var self = this;
+            var args = arguments;
             _.each(self._delegates, function(delegate) {
                 if (_.isReal(delegate.dataChanged)) {
-                    delegate.dataChanged(type, count);
+                    delegate.dataChanged.apply(delegate, args);
                 }
             });
         },
