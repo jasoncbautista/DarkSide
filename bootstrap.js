@@ -503,6 +503,11 @@ var Sqor = initialize();
             }
         },
 
+        /**
+         * Does old school infinite scroll rendering
+         * @param {type} count,
+         * @return {Null}
+         */
         renderMoreTopRows: function(count){
             var self = this;
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
@@ -682,7 +687,6 @@ var Sqor = initialize();
             self._size+=count;
             self._callDelegates("prepend", count);
         },
-
 
         /**
          * Old rows /items were loaded into memory:
