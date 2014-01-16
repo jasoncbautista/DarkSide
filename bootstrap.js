@@ -410,7 +410,7 @@ var Sqor = initialize();
             for(var ii = 0; ii < cellCount; ii++){
                 var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
                 cellsContainer.append(currentCellDOM);
-            };
+            }
         },
 
         /**
@@ -488,6 +488,7 @@ var Sqor = initialize();
          * @return {Null}
          */
         dataChanged: function(type, count){
+            var self = this;
             // if we don't have a real type
             if(! _.isReal(type)) {
                 Sqor.Widgets.SimpleTable.prototype.dataChanged.apply(this);
@@ -496,8 +497,35 @@ var Sqor = initialize();
                 // We need to add a few rorrws
             } else if (type === "append"){
                 console.log('append', count);
+                // TODO: if count > 0
+                self.renderMoreBottomRows(count);
             }
-        }
+        },
+
+        renderMoreTopRows: function(count){
+        },
+
+        /**
+         * Takes our dom structure and adds rows to the bottom
+         * @param {type} count, number of rows to add
+         * @return {Null}
+         */
+        renderMoreBottomRows: function(count){
+            var self = this;
+            var cellsContainer = self._el.find(".SQOR_cellsContainer");
+            var cellCount = self._dataDelegate.getNumberOfCells();
+            // Render each new cell by calling into our delegate
+            for(var ii =  cellCount - count; ii < cellCount; ii++){
+                var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
+                cellsContainer.append(currentCellDOM);
+            }
+        },
+
+
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+
     });
 
 
