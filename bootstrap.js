@@ -464,6 +464,38 @@ var Sqor = initialize();
     Sqor.Widgets.SimpleTable = SimpleTable;
 })(Sqor);
 
+// DynamicTable.js
+(function(Sqor) {
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var DynamicTable = function(options){
+        // Subclass off super
+        Sqor.Widgets.SimpleTable.apply(this, options);
+
+    };
+    DynamicTable.prototype = new  Sqor.Widgets.SimpleTable();
+
+    _.extend(DynamicTable.prototype, {
+        dataChanged: function(type, count){
+            // if we don't have a real type
+            if(! _.isReal(type)) {
+                Sqor.Widgets.SimpleTable.dataChanged.apply(this);
+            } else if( type === "prepend"){
+                // We need to add a few rorrws
+            } else if (type === "append"){
+            }
+        }
+    });
+
+
+    Sqor.Widgets.DynamicTable = DynamicTable;
+})(Sqor);
+
+
+
 // AthleteList
 
 // AthleteListViewController.js
@@ -649,6 +681,9 @@ var Sqor = initialize();
 })(Sqor);
 
 
+// experiMENTAL
+//           experiMENTAL
+//                  experiMENTAL
 (function(Sqor){
     var SmartTable = function(){
     };
@@ -734,6 +769,7 @@ var Sqor = initialize();
 })(Sqor);
 
 $(document).ready(function(){
+    /*
     var dataDelegate = function(count) {
         var self = this;
         this._count = count;
@@ -749,6 +785,7 @@ $(document).ready(function(){
     };
 
     Sqor.Widgets.SmartTable.test(100);
+    */
 });
 
 
