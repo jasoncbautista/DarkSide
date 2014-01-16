@@ -862,15 +862,20 @@ $(document).ready(function(){
 
     Sqor.Widgets.SmartTable.test(100);
     */
-    var c = new Sqor.Modules.AthleteListViewController();
-    $("body").append(c.getDomElement());
-    c._model.setSize(2);
 
-    //append to Model
-    // c._model.appendItems(10);
-    // c._model.prepend(10);
 
-    window._c = c;
+    var runSimpleDynamicTableModule =  function() {
+        var c = new Sqor.Modules.AthleteListViewController();
+        $("body").append(c.getDomElement());
+        c._model.setSize(2);
+        //append to Model
+        // c._model.appendItems(10);
+        // c._model.prepend(10);
+        window._c = c;
+    };
+
+    runSimpleDynamicTableModule();
+
 });
 
 
