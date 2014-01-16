@@ -633,8 +633,7 @@ var Sqor = initialize();
             var elementsUp = 0;
             var rearrangeElements= function(elementsArray, elementsUp) {
                     var displayAreaHeight = window.innerHeight;
-                    elementsUp++;
-                    var middleElement = elements[Math.floor(elementsArray.length *  1/2)];
+                    var middleElement = elementsArray[Math.floor(elementsArray.length *  1/2)];
 
                     middleElementTop = middleElement.offset().top -
                         $(window).scrollTop();
@@ -646,15 +645,15 @@ var Sqor = initialize();
                     if ( middleElementRealTop  <= displayAreaHeight/2) {
                         // Now we move one of our elements from the head to the
                         // tail
-                        var head = elements[0];
-                        elements = elements.splice(1, elements.length-1);
-                        elements.push(head);
+                        var head = elementsArray[0];
+                        elementsArray = elementsArray.splice(1, elementsArray.length-1);
+                        elementsArray.push(head);
                         elementsUp++;
                         console.log('shift..');
                     }
 
 
-                return [elements, elementsUp];
+                return [elementsArray, elementsUp];
             };
 
 
@@ -673,10 +672,13 @@ var Sqor = initialize();
                     ii++;
                 });
 
+                var results = rearrangeElements(domElements, elementsUp);
+                console.log('results', results[0]);
+                console.log('eleementsUp', results[1]);
+                domElements = results[0];
+                elementsUp = results[1];
+
             });
-            var results = rearrangeElements(domElements);
-            domElements = results[0];
-            elementsUp = results[1];
         };
         var self = this;
         var parentEl = $("body");
