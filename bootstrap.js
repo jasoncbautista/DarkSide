@@ -479,6 +479,14 @@ var Sqor = initialize();
     DynamicTable.prototype = new  Sqor.Widgets.SimpleTable();
 
     _.extend(DynamicTable.prototype, {
+        /**
+         * We are overwriting the original dataChanged method to
+         * handle diffs in data changes.
+         *
+         * @param {string} type,
+         * @param {number} count,
+         * @return {Null}
+         */
         dataChanged: function(type, count){
             // if we don't have a real type
             if(! _.isReal(type)) {
@@ -788,8 +796,11 @@ $(document).ready(function(){
     */
     var c = new Sqor.Modules.AthleteListViewController();
     $("body").append(c.getDomElement());
-    //c._model.setSize(100);
+    c._model.setSize(100);
 
+    //append to Model
+    // c._model.appendItems(10);
+    // c._model.prepend(10);
 
 });
 
