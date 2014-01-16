@@ -629,7 +629,30 @@ var Sqor = initialize();
     };
 
     SmartTable.test = function(count) {
-        var addListener = function(domElement) {
+        var addListener = function(elements) {
+            var elementsUp = 0;
+            var rearrangeElements = function(elementsArray){
+                var displayAreaHeight = window.innerHeight;
+                elementsUp++;
+                var middleElement = Math.floor(elementsArray.length *  1/2);
+
+                middleElementTop = middleElementTop.offset().top -
+                    $(window).scrollTop();
+
+                if ( (middleElementTop + middleElementTop.height() ) <= displayAreaHeight) {
+                    // Now we move one of our elements from the head to the
+                    // tail
+                    var head = elements[0];
+                    elements = elements.splice(1, elements.length-1);
+                    elements.push(head);
+                    elementsUp++;
+                    console.log('shift..');
+                }
+
+                return elements;
+            };
+
+            var domElement = elements;
             var lastScroll = $(document).scrollTop();
             $(document).scroll(function() {
                 var ii = 0;
@@ -638,20 +661,21 @@ var Sqor = initialize();
                     var scrollFromTop = $(document).scrollTop();
                     var diffScrolled = lastScroll - scrollFromTop;
                     var elementHeight = domElement.height();
-                    var newTop = ii*elementHeight - scrollFromTop;
+                    var newTop = (ii+elementsUp)*elementHeight - scrollFromTop;
                     domElement.css("top", newTop + "px");
-                    console.log(newTop);
                     lastScroll = scrollFromTop;
                     ii++;
                 });
             });
+
+            domElement = rearrangeElements(domElement);
         };
         var self = this;
         var parentEl = $("body");
         // First we add a fake super large element:
         var hugeEl = $("<div></div>");
         parentEl.append(hugeEl);
-        hugeEl.css("height", "900px");
+        hugeEl.css("height", "1900px");
         // Create a bunch of DOM
         var domElements = [];
         for(var ii = 0; ii < count; ii++) {
@@ -661,6 +685,7 @@ var Sqor = initialize();
 
             var height = newEl.height();
 
+            // TODO: start this at - 1/3 hidden away
             newEl.css("top", height * ii + "px");
         }
 
@@ -676,7 +701,7 @@ var Sqor = initialize();
 })(Sqor);
 
 $(document).ready(function(){
-    Sqor.Widgets.SmartTable.test(10);
+    Sqor.Widgets.SmartTable.test(5);
 });
 
 
