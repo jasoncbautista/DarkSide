@@ -473,7 +473,7 @@ var Sqor = initialize();
 
     var DynamicTable = function(options){
         // Subclass off super
-        Sqor.Widgets.SimpleTable.apply(this, options);
+        Sqor.Widgets.SimpleTable.call(this, options);
     };
 
     DynamicTable.prototype = new  Sqor.Widgets.SimpleTable();
@@ -482,7 +482,7 @@ var Sqor = initialize();
         dataChanged: function(type, count){
             // if we don't have a real type
             if(! _.isReal(type)) {
-                Sqor.Widgets.SimpleTable.dataChanged.apply(this);
+                Sqor.Widgets.SimpleTable.prototype.dataChanged.apply(this);
             } else if( type === "prepend"){
                 // We need to add a few rorrws
             } else if (type === "append"){
@@ -535,7 +535,7 @@ var Sqor = initialize();
             var viewOptions = {
                 dataDelegate: self
             };
-            self._view = new Sqor.Widgets.SimpleTable(viewOptions);
+            self._view = new Sqor.Widgets.DynamicTable(viewOptions);
             self._model.addDelegate(self._view);
         },
 
@@ -788,7 +788,7 @@ $(document).ready(function(){
     */
     var c = new Sqor.Modules.AthleteListViewController();
     $("body").append(c.getDomElement());
-    c._model.setSize(100);
+    //c._model.setSize(100);
 
 
 });
