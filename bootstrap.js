@@ -474,8 +474,8 @@ var Sqor = initialize();
     var DynamicTable = function(options){
         // Subclass off super
         Sqor.Widgets.SimpleTable.apply(this, options);
-
     };
+
     DynamicTable.prototype = new  Sqor.Widgets.SimpleTable();
 
     _.extend(DynamicTable.prototype, {
@@ -786,6 +786,11 @@ $(document).ready(function(){
 
     Sqor.Widgets.SmartTable.test(100);
     */
+    var c = new Sqor.Modules.AthleteListViewController();
+    $("body").append(c.getDomElement());
+    c._model.setSize(100);
+
+
 });
 
 
