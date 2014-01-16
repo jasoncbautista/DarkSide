@@ -495,6 +495,7 @@ var Sqor = initialize();
             } else if( type === "prepend"){
                 console.log('prepend', count);
                 // We need to add a few rorrws
+                self.renderMoreTopRows(count);
             } else if (type === "append"){
                 console.log('append', count);
                 // TODO: if count > 0
@@ -503,6 +504,13 @@ var Sqor = initialize();
         },
 
         renderMoreTopRows: function(count){
+            var self = this;
+            var cellsContainer = self._el.find(".SQOR_cellsContainer");
+            // Render each new cell by calling into our delegate
+            for(var ii =  0 ; ii < count; ii++){
+                var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
+                cellsContainer.prepend(currentCellDOM);
+            }
         },
 
         /**
@@ -664,6 +672,23 @@ var Sqor = initialize();
             });
         },
 
+        /**
+         * New rows / items were added to the beginning
+         * @param {type} count,
+         * @return {Null}
+         */
+        prependItems: function(count) {
+            var self = this;
+            self._size+=count;
+            self._callDelegates("prepend", count);
+        },
+
+
+        /**
+         * Old rows /items were loaded into memory:
+         * @param {type} count,
+         * @return {Null}
+         */
         appendItems: function(count) {
             var self = this;
             self._size+=count;
