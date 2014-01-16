@@ -714,6 +714,10 @@ var Sqor = initialize();
                     var middleElementRealTop = (middleElementTop + middleElement.height() );
                     console.log('middleElementRealTop', middleElementRealTop);
                     console.log('displayAreaHeight/2', displayAreaHeight/2);
+                    // TODO: This needs to be based on diff of scroll
+                    // from last scroll ... and not on position of elements..
+                    //  so if you scroll up a little.. you move some elements
+                    //  if you scroll up a ton.. you rredraw
                     if ( middleElementRealTop  <= displayAreaHeight * 1/8) {
                         // Now we move one of our elements from the head to the
                         // tail
