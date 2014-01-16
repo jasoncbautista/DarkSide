@@ -650,6 +650,13 @@ var Sqor = initialize();
                         elementsArray.push(head);
                         elementsUp++;
                         console.log('shift..');
+                    } else {
+                        var tail = elementsArray[elementsArray.length -1];
+                        elementsArray = elementsArray.splice(0, elementsArray.length-1);
+                        elementsArray.unshift(tail);
+                        elementsUp--;
+                        console.log('shift down..');
+
                     }
 
 
@@ -711,7 +718,7 @@ var Sqor = initialize();
 })(Sqor);
 
 $(document).ready(function(){
-    Sqor.Widgets.SmartTable.test(10);
+    Sqor.Widgets.SmartTable.test(15);
 });
 
 
