@@ -845,23 +845,24 @@ var Sqor = initialize();
 })(Sqor);
 
 $(document).ready(function(){
-    /*
-    var dataDelegate = function(count) {
-        var self = this;
-        this._count = count;
-    };
 
-    dataDelegate.prototype.cellCount = function() {
-        var self = this;
-        return self._count;
-    };
+    var runComplexTable  = function() {
+        var dataDelegate = function(count) {
+            var self = this;
+            this._count = count;
+        };
 
-    dataDelegate.prototype.cellAtIndex = function(index){
-        return $("<div><h2>" + index + "</h2></div>");
-    };
+        dataDelegate.prototype.cellCount = function() {
+            var self = this;
+            return self._count;
+        };
 
-    Sqor.Widgets.SmartTable.test(100);
-    */
+        dataDelegate.prototype.cellAtIndex = function(index){
+            return $("<div><h2>" + index + "</h2></div>");
+        };
+
+        Sqor.Widgets.SmartTable.test(100);
+    };
 
 
     var runSimpleDynamicTableModule =  function() {
