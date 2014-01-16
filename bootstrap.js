@@ -493,11 +493,9 @@ var Sqor = initialize();
             if(! _.isReal(type)) {
                 Sqor.Widgets.SimpleTable.prototype.dataChanged.apply(this);
             } else if( type === "prepend"){
-                console.log('prepend', count);
                 // We need to add a few rorrws
                 self.renderMoreTopRows(count);
             } else if (type === "append"){
-                console.log('append', count);
                 // TODO: if count > 0
                 self.renderMoreBottomRows(count);
             }
