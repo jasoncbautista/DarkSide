@@ -639,7 +639,7 @@ var Sqor = initialize();
                 middleElementTop = middleElement.offset().top -
                     $(window).scrollTop();
 
-                if ( (middleElementTop + middleElementTop.height() ) <= displayAreaHeight) {
+                if ( (middleElementTop + middleElement.height() ) <= displayAreaHeight) {
                     // Now we move one of our elements from the head to the
                     // tail
                     var head = elements[0];
