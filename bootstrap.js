@@ -633,7 +633,7 @@ var Sqor = initialize();
             var elementsUp = 0;
             var rearrangeElements= function(elementsArray, elementsUp) {
                     var displayAreaHeight = window.innerHeight;
-                    var middleElement = elementsArray[Math.floor(elementsArray.length *  1/2)];
+                    var middleElement = elementsArray[Math.floor(elementsArray.length *  1/3)];
 
                     middleElementTop = middleElement.offset().top -
                         $(window).scrollTop();
@@ -692,7 +692,7 @@ var Sqor = initialize();
         // First we add a fake super large element:
         var hugeEl = $("<div></div>");
         parentEl.append(hugeEl);
-        hugeEl.css("height", "1900px");
+        hugeEl.css("height", "5900px");
         // Create a bunch of DOM
         var domElements = [];
         for(var ii = 0; ii < count; ii++) {
