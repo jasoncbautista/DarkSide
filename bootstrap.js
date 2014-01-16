@@ -653,7 +653,6 @@ var Sqor = initialize();
     var SmartTable = function(){
     };
 
-
     SmartTable.test = function(count, dataDelegate) {
         var addListener = function(elements) {
             var elementsUp = 0;
@@ -665,7 +664,7 @@ var Sqor = initialize();
                     var middleElementRealTop = (middleElementTop + middleElement.height() );
                     console.log('middleElementRealTop', middleElementRealTop);
                     console.log('displayAreaHeight/2', displayAreaHeight/2);
-                    if ( middleElementRealTop  <= displayAreaHeight/2) {
+                    if ( middleElementRealTop  <= displayAreaHeight * 1/8) {
                         // Now we move one of our elements from the head to the
                         // tail
                         var head = elementsArray[0];
@@ -673,7 +672,8 @@ var Sqor = initialize();
                         elementsArray.push(head);
                         elementsUp++;
                         console.log('shift..');
-                    } else {
+                    }
+                    if (middleElementRealTop >= displayAreaHeight  * 7/8) {
                         var tail = elementsArray[elementsArray.length -1];
                         elementsArray = elementsArray.splice(0, elementsArray.length-1);
                         elementsArray.unshift(tail);
@@ -682,7 +682,6 @@ var Sqor = initialize();
                     }
                 return [elementsArray, elementsUp];
             };
-
 
             var domElements = elements;
             var lastScroll = $(document).scrollTop();
@@ -711,7 +710,7 @@ var Sqor = initialize();
         // First we add a fake super large element:
         var hugeEl = $("<div></div>");
         parentEl.append(hugeEl);
-        hugeEl.css("height", "5900px");
+        hugeEl.css("height", 150 * 600 + "px");
         // Create a bunch of DOM
         var domElements = [];
         for(var ii = 0; ii < count; ii++) {
@@ -749,7 +748,7 @@ $(document).ready(function(){
         return $("<div><h2>" + index + "</h2></div>");
     };
 
-    Sqor.Widgets.SmartTable.test(25);
+    Sqor.Widgets.SmartTable.test(100);
 });
 
 
