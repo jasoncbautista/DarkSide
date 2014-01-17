@@ -22,7 +22,6 @@ var initialize = function(){
 };
 var Sqor = initialize();
 
-
 // Eventer.js
 (function(Sqor) {
     // Dependencies:
@@ -627,6 +626,7 @@ var Sqor = initialize();
          */
         _bindScroll: function(){
             var self = this;
+            self._modelCount = self._model.size();
             $(document).scroll(function(){
                 var documentHeight = $(document).height();
                 var scrollTop = $(document).scrollTop();
@@ -635,11 +635,13 @@ var Sqor = initialize();
                 // if we are over half way through.. load more items
                 var scrollLimit =  documentHeight * 1/3;
                 if ( scrollTop >=  scrollLimit ) {
-                    self._tryToLoadMore();
+                    if (self._modelCount <= self._model.size() ) {
+                        self._tryToLoadMore();
+                        self._modelCount = self._model.size();
+                    }
                 }
                 console.log("scrollTop", scrollTop);
                 console.log("scrollLimit", scrollLimit);
-
                 // TODO:
                 // Actually... this should throttle the loading of more stuff
                 //  store the last time we asked for more...
@@ -658,7 +660,9 @@ var Sqor = initialize();
         _tryToLoadMore: function(){
             var self = this;
             // TODO: set on timer to emulate delay in ajax...
-            self._model.appendItems(20);
+            setTimeout( function(){
+                self._model.appendItems(20);
+            }, 2000);
         },
 
         /**********************************************************************

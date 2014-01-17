@@ -1,3 +1,11 @@
+Today:
+
+Friday  1 / 17 /2014
+[ ] add delay to model and don't load if not yet loaded last
+[ ] keep actual array of  fake models and not just numbers
+[ ] add other type of cards accordign to model data (randomized)
+
+----
 [ ] implement Messenger class
 [x] add simpleCard view
 [ ] Investigate Linters
