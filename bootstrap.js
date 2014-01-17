@@ -596,9 +596,14 @@ var Sqor = initialize();
                 var scrollTop = $(document).scrollTop();
 
                 // if we are over half way through.. load more items
-                if ( scrollTop >= documentHeight * 1/2) {
+                var scrollLimit =  documentHeight * 1/3;
+                if ( scrollTop >=  scrollLimit ) {
                     self._tryToLoadMore();
                 }
+
+                console.log("scrollTop", scrollTop);
+                console.log("scrollLimit", scrollLimit);
+
             });
         },
 
