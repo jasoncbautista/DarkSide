@@ -623,6 +623,7 @@ var Sqor = initialize();
          */
         _tryToLoadMore: function(){
             var self = this;
+            // TODO: set on timer to emulate delay in ajax...
             self._model.appendItems(20);
         },
 
