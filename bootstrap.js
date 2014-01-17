@@ -611,8 +611,19 @@ var Sqor = initialize();
             });
         },
 
-        render: function(){
+        _render: function(){
         },
+
+
+        /**
+         * Returns the jQuery dom element representing our widget
+         * @return {object}, jQuery object
+         */
+        getDomElement: function(){
+            var self = this;
+            return self._el;
+        },
+
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
