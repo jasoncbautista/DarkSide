@@ -572,6 +572,24 @@ var Sqor = initialize();
     Sqor.Widgets.DynamicTable = DynamicTable;
 })(Sqor);
 
+
+(function(Sqor) {
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    /**
+     * This widget will reflect the state of the feed list. Similar to how
+     *
+     * @param {type} options,
+     * @return {Null}
+     */
+    var FeedFooterCard = function(options){
+    };
+
+    Sqor.Widgets.FeedFooterCard = FeedFooterCard;
+})(Sqor);
 // AthleteList
 // AthleteListViewController.js
 (function(Sqor){
