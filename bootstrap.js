@@ -471,6 +471,40 @@ var Sqor = initialize();
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    /**
+     *  Our dynamic table subclasses our SimpleTable. It works
+     *  in a pretty similar manner with the difference that it supports
+     *  appending and prepending of new items without refreshing everything
+     *
+     *
+     *  Usage:
+     *
+     ** var someObject = {
+     *  getNumberOfCells: function(){ return 2; },
+     *
+     *  getCellAtIndex: function(index) {
+     *      var cells = [
+     *           $("<div> Cell One </div>"),
+     *           $("<div> Cell Two </div>"),
+     *      ];
+     *
+     *      return cells[index];
+     *  };
+     *
+     * };
+     * var options = {
+     *  dataDelegate: someObject
+     * };
+     *
+     * var table = new DynamicTable(options);
+     *
+     *  // TODO demonstrate example of appending
+     *
+     *
+     * @constructor
+     * @param {type} options,
+     * @return {Null}
+     */
     var DynamicTable = function(options){
         // Subclass off super
         Sqor.Widgets.SimpleTable.call(this, options);
