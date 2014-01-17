@@ -585,16 +585,17 @@ var Sqor = initialize();
      * @param {type} options,
      * @return {Null}
      */
-    var FeedFooterCard = function(options){
+    var FeedFooter = function(options){
         var self = this;
         var defaults = {
+            templateValues: {}
         };
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
         self.create(self._options);
     };
 
-    _.extend(FeedFooterCard.prototype, {
+    _.extend(FeedFooter.prototype, {
         // TODO: MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
         // code????
         create: function(){
@@ -614,7 +615,6 @@ var Sqor = initialize();
         _render: function(){
         },
 
-
         /**
          * Returns the jQuery dom element representing our widget
          * @return {object}, jQuery object
@@ -629,7 +629,7 @@ var Sqor = initialize();
         sdfsd3423452349249239493234: null
     });
 
-    Sqor.Widgets.FeedFooterCard = FeedFooterCard;
+    Sqor.Widgets.FeedFooter = FeedFooter;
 })(Sqor);
 // AthleteList
 // AthleteListViewController.js
@@ -666,11 +666,18 @@ var Sqor = initialize();
         create: function(){
             var self = this;
             self._model = new Sqor.Modules.AthleteListViewModel();
-            var viewOptions = {
+            var tableViewOptions = {
                 dataDelegate: self
             };
-            self._tableView = new Sqor.Widgets.DynamicTable(viewOptions);
+            self._tableView = new Sqor.Widgets.DynamicTable(tableViewOptions);
+            self._footerView = new Sqor.Widgets.FeedFooter();
             self._model.addDelegate(self._tableView);
+
+            // TODO: fix this, use actual template:
+            self._el = $("<div></div");
+            self.el.append(self._tableView.getDomElement());
+            self.el.append(self._footerView.getDomElement());
+
             self._bindScroll();
         },
 
@@ -740,7 +747,7 @@ var Sqor = initialize();
          */
         getDomElement: function(){
             var self = this;
-            return self._tableView.getDomElement();
+            return self._el;
         },
 
         /**********************************************************************
