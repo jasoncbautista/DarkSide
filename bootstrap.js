@@ -586,6 +586,25 @@ var Sqor = initialize();
             };
             self._view = new Sqor.Widgets.DynamicTable(viewOptions);
             self._model.addDelegate(self._view);
+            self._bindScroll();
+        },
+
+        _bindScroll: function(){
+            var self = this;
+            $(document).scroll(function(){
+                var documentHeight = $(document).height();
+                var scrollTop = $(document).scrollTop();
+
+                // if we are over half way through.. load more items
+                if ( scrollTop >= documentHeight * 1/2) {
+                    self._tryToLoadMore();
+                }
+            });
+        },
+
+        _tryToLoadMore: function(){
+            var self = this;
+            self._model.appendItems(20);
         },
 
         /**********************************************************************
@@ -646,7 +665,7 @@ var Sqor = initialize();
     var  AthleteListViewModel = function(){
         var self = this;
         self._delegates = [];
-        self._size  = 2;
+        self._size  = 10;
     };
 
     _.extend(AthleteListViewModel.prototype, {
@@ -731,7 +750,6 @@ var Sqor = initialize();
     var HTML = Sqor.Services.HTML;
     var $ = Sqor.$;
     var _ = Sqor._;
-
 
     var UserFeeder = function(){
     };
@@ -864,11 +882,10 @@ $(document).ready(function(){
         Sqor.Widgets.SmartTable.test(100);
     };
 
-
     var runSimpleDynamicTableModule =  function() {
         var c = new Sqor.Modules.AthleteListViewController();
         $("body").append(c.getDomElement());
-        c._model.setSize(2);
+        // c._model.setSize(2);
         //append to Model
         // c._model.appendItems(10);
         // c._model.prepend(10);
