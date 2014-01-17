@@ -572,10 +572,7 @@ var Sqor = initialize();
     Sqor.Widgets.DynamicTable = DynamicTable;
 })(Sqor);
 
-
-
 // AthleteList
-
 // AthleteListViewController.js
 (function(Sqor){
     // Dependencies
@@ -613,8 +610,8 @@ var Sqor = initialize();
             var viewOptions = {
                 dataDelegate: self
             };
-            self._view = new Sqor.Widgets.DynamicTable(viewOptions);
-            self._model.addDelegate(self._view);
+            self._tableView = new Sqor.Widgets.DynamicTable(viewOptions);
+            self._model.addDelegate(self._tableView);
             self._bindScroll();
         },
 
@@ -668,9 +665,7 @@ var Sqor = initialize();
             }, 1500);
         },
 
-        /**********************************************************************
-         *  Delegate API Methods Implemented
-         *********************************************************************/
+
 
         /**
          * A simple way to return the DOM element representing this controller
@@ -678,8 +673,12 @@ var Sqor = initialize();
          */
         getDomElement: function(){
             var self = this;
-            return self._view.getDomElement();
+            return self._tableView.getDomElement();
         },
+
+        /**********************************************************************
+         *  Delegate API Methods Implemented
+         *********************************************************************/
 
         /**
          * Simple function to return a DOM element for a given cell position.
@@ -911,7 +910,6 @@ var Sqor = initialize();
             // TODO: start this at - 1/3 hidden away
             newEl.css("top", height * ii + "px");
         }
-
         addListener(domElements);
     };
 
@@ -934,10 +932,12 @@ $(document).ready(function(){
             var self = this;
             this._count = count;
         };
+
         dataDelegate.prototype.cellCount = function() {
             var self = this;
             return self._count;
         };
+
         dataDelegate.prototype.cellAtIndex = function(index){
             return $("<div><h2>" + index + "</h2></div>");
         };
