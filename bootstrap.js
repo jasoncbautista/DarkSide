@@ -658,12 +658,6 @@ var Sqor = initialize();
                         self._modelCount = self._model.size();
                     }
                 }
-                // TODO:
-                // Actually... this should throttle the loading of more stuff
-                //  store the last time we asked for more...
-                //  ie: modelCountLastAsked = blah
-                //  check if modelCountLastAsked == model.currentCount
-                //  if they are the same.. we wait...
             });
         },
 
@@ -682,8 +676,6 @@ var Sqor = initialize();
                 self._lastLoadedReturned = true;
             }, 1500);
         },
-
-
 
         /**
          * A simple way to return the DOM element representing this controller
@@ -977,8 +969,8 @@ $(document).ready(function(){
         window._c = c;
     };
 
-    // runSimpleDynamicTableModule();
-    runComplexTable();
+    runSimpleDynamicTableModule();
+    // runComplexTable();
 
 });
 
