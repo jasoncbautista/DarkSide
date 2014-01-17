@@ -627,6 +627,7 @@ var Sqor = initialize();
         _bindScroll: function(){
             var self = this;
             self._modelCount = self._model.size();
+            self._lastLoadedReturned = true ;
             $(document).scroll(function(){
                 var documentHeight = $(document).height();
                 var scrollTop = $(document).scrollTop();
@@ -635,13 +636,13 @@ var Sqor = initialize();
                 // if we are over half way through.. load more items
                 var scrollLimit =  documentHeight * 1/3;
                 if ( scrollTop >=  scrollLimit ) {
-                    if (self._modelCount <= self._model.size() ) {
+                    if (self._modelCount <= self._model.size()  &&
+                        self._lastLoadedReturned) {
+                        self._lastLoadedReturned = false;
                         self._tryToLoadMore();
                         self._modelCount = self._model.size();
                     }
                 }
-                console.log("scrollTop", scrollTop);
-                console.log("scrollLimit", scrollLimit);
                 // TODO:
                 // Actually... this should throttle the loading of more stuff
                 //  store the last time we asked for more...
@@ -662,7 +663,9 @@ var Sqor = initialize();
             // TODO: set on timer to emulate delay in ajax...
             setTimeout( function(){
                 self._model.appendItems(20);
-            }, 2000);
+                console.log("loading more...");
+                self._lastLoadedReturned = true;
+            }, 1500);
         },
 
         /**********************************************************************
