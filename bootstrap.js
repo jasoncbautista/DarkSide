@@ -917,7 +917,7 @@ var Sqor = initialize();
         // First we add a fake super large element:
         var hugeEl = $("<div></div>");
         parentEl.append(hugeEl);
-        hugeEl.css("height", 150 * 600 + "px");
+        hugeEl.css("height", 100 * 600 + "px");
         // Create a bunch of DOM
         var domElements = [];
         for(var ii = 0; ii < count; ii++) {
@@ -959,7 +959,7 @@ $(document).ready(function(){
         dataDelegate.prototype.cellAtIndex = function(index){
             return $("<div><h2>" + index + "</h2></div>");
         };
-        Sqor.Widgets.SmartTable.test(100);
+        Sqor.Widgets.SmartTable.test(50);
     };
 
     /**
@@ -977,7 +977,8 @@ $(document).ready(function(){
         window._c = c;
     };
 
-    runSimpleDynamicTableModule();
+    // runSimpleDynamicTableModule();
+    runComplexTable();
 
 });
 
