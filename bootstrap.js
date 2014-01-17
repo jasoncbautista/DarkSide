@@ -676,8 +676,8 @@ var Sqor = initialize();
 
             // TODO: fix this, use actual template:
             self._el = $("<div></div");
-            self.el.append(self._tableView.getDomElement());
-            self.el.append(self._footerView.getDomElement());
+            self._el.append(self._tableView.getDomElement());
+            self._el.append(self._footerView.getDomElement());
 
             self._bindScroll();
         },
