@@ -600,13 +600,19 @@ var Sqor = initialize();
                 if ( scrollTop >=  scrollLimit ) {
                     self._tryToLoadMore();
                 }
-
                 console.log("scrollTop", scrollTop);
                 console.log("scrollLimit", scrollLimit);
 
             });
         },
 
+        /**
+         * We go to the server / model  and try to load more  items
+         * The model should throttle itself, this function should not
+         * worry about that.
+         *
+         * @return {Null}
+         */
         _tryToLoadMore: function(){
             var self = this;
             self._model.appendItems(20);
