@@ -599,6 +599,7 @@ var Sqor = initialize();
         // TODO: MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
         // code????
         create: function(){
+            var self = this;
             // Setup our  holder element:
             self._el = HTML.createSpinnerHolder();
             self._el.empty();
