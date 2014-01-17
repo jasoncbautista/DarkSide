@@ -613,6 +613,10 @@ var Sqor = initialize();
             });
         },
 
+        /**
+         * Renders our widget for the first time.
+         * @return {Null}
+         */
         _render: function(){
         },
 
@@ -624,7 +628,6 @@ var Sqor = initialize();
             var self = this;
             return self._el;
         },
-
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
