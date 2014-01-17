@@ -572,7 +572,6 @@ var Sqor = initialize();
     Sqor.Widgets.DynamicTable = DynamicTable;
 })(Sqor);
 
-
 (function(Sqor) {
     // Dependencies
     var HTML = Sqor.Services.HTML;
@@ -581,12 +580,45 @@ var Sqor = initialize();
 
     /**
      * This widget will reflect the state of the feed list. Similar to how
+     * Facebook and a few big sites do it.
      *
      * @param {type} options,
      * @return {Null}
      */
     var FeedFooterCard = function(options){
+        var self = this;
+        var defaults = {
+        };
+
+        self._delegates = [];
+        self._options = _.extend({}, defaults, options);
+        self.create(self._options);
     };
+
+
+    _.extend(FeedFooterCard.prototype, {
+        // TODO: MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
+        // code????
+        create: function(){
+            // Setup our  holder element:
+            self._el = HTML.createSpinnerHolder();
+            self._el.empty();
+            self._el.append(HTML.getSpinner());
+            HTML.get("feedFooter", self._options.templateValues,
+            function(domElement){
+                self._el.empty();
+                self._el.append(domElement);
+                self._render();
+                self._options.renderedCallback(self._el, domElement);
+            });
+        },
+
+        render: function(){
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
 
     Sqor.Widgets.FeedFooterCard = FeedFooterCard;
 })(Sqor);
@@ -634,6 +666,21 @@ var Sqor = initialize();
         },
 
         /**
+         * Helper function to return if a certain element is in the "viewport"
+         * of the browser at this time
+         * @param {type} elem,
+         * @return {Null}
+         */
+        isScrolledIntoView: function(elem){
+            var docViewTop = $(window).scrollTop();
+            var docViewBottom = docViewTop + $(window).height();
+            var elemTop = $(elem).offset().top;
+            var elemBottom = elemTop + $(elem).height();
+
+            return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+        },
+
+        /**
          * We create a binding to scroll event so that we can load more
          * items when we reach a certain point
          *
@@ -669,7 +716,8 @@ var Sqor = initialize();
          */
         _tryToLoadMore: function(){
             var self = this;
-            // TODO: set on timer to emulate delay in ajax...
+            // TODO:  remove this timeout:
+            // set on timer to emulate delay in ajax...
             setTimeout( function(){
                 self._model.appendItems(20);
                 console.log("loading more...");
