@@ -532,13 +532,9 @@ var Sqor = initialize();
             }
         },
 
-
-
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
-
     });
-
 
     Sqor.Widgets.DynamicTable = DynamicTable;
 })(Sqor);
@@ -602,13 +598,11 @@ var Sqor = initialize();
                 var scrollTop = $(document).scrollTop();
                 // TODO:  this is kidna buggy... some disconnect...
                 // need a way to find maxScroll
-
                 // if we are over half way through.. load more items
                 var scrollLimit =  documentHeight * 1/3;
                 if ( scrollTop >=  scrollLimit ) {
                     self._tryToLoadMore();
                 }
-
                 console.log("scrollTop", scrollTop);
                 console.log("scrollLimit", scrollLimit);
 
