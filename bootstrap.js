@@ -589,17 +589,26 @@ var Sqor = initialize();
             self._bindScroll();
         },
 
+        /**
+         * We create a binding to scroll event so that we can load more
+         * items when we reach a certain point
+         *
+         * @return {Null}
+         */
         _bindScroll: function(){
             var self = this;
             $(document).scroll(function(){
                 var documentHeight = $(document).height();
                 var scrollTop = $(document).scrollTop();
+                // TODO:  this is kidna buggy... some disconnect...
+                // need a way to find maxScroll
 
                 // if we are over half way through.. load more items
                 var scrollLimit =  documentHeight * 1/3;
                 if ( scrollTop >=  scrollLimit ) {
                     self._tryToLoadMore();
                 }
+
                 console.log("scrollTop", scrollTop);
                 console.log("scrollLimit", scrollLimit);
 
