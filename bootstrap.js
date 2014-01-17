@@ -589,12 +589,10 @@ var Sqor = initialize();
         var self = this;
         var defaults = {
         };
-
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
         self.create(self._options);
     };
-
 
     _.extend(FeedFooterCard.prototype, {
         // TODO: MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
