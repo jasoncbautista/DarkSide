@@ -597,7 +597,7 @@ var Sqor = initialize();
                 var documentHeight = $(document).height();
                 var scrollTop = $(document).scrollTop();
                 // TODO:  this is kidna buggy... some disconnect...
-                // need a way to find maxScroll
+                // need a way to find maxScroll Max
                 // if we are over half way through.. load more items
                 var scrollLimit =  documentHeight * 1/3;
                 if ( scrollTop >=  scrollLimit ) {
@@ -606,12 +606,17 @@ var Sqor = initialize();
                 console.log("scrollTop", scrollTop);
                 console.log("scrollLimit", scrollLimit);
 
+                // TODO:
+                // Actually... this should throttle the loading of more stuff
+                //  store the last time we asked for more...
+                //  ie: modelCountLastAsked = blah
+                //  check if modelCountLastAsked == model.currentCount
+                //  if they are the same.. we wait...
             });
         },
 
         /**
          * We go to the server / model  and try to load more  items
-         * The model should throttle itself, this function should not
          * worry about that.
          *
          * @return {Null}
