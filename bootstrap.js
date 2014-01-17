@@ -883,24 +883,30 @@ var Sqor = initialize();
 
 $(document).ready(function(){
 
+    /**
+     * Quickwa to call our experimental smart dynamic table
+     * @return {Null}
+     */
     var runComplexTable  = function() {
         var dataDelegate = function(count) {
             var self = this;
             this._count = count;
         };
-
         dataDelegate.prototype.cellCount = function() {
             var self = this;
             return self._count;
         };
-
         dataDelegate.prototype.cellAtIndex = function(index){
             return $("<div><h2>" + index + "</h2></div>");
         };
-
         Sqor.Widgets.SmartTable.test(100);
     };
 
+    /**
+     * Helper function to load our dynamic table module.
+     * It basically auto loads more  models to do infinite scroll
+     * @return {Null}
+     */
     var runSimpleDynamicTableModule =  function() {
         var c = new Sqor.Modules.AthleteListViewController();
         $("body").append(c.getDomElement());
