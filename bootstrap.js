@@ -691,13 +691,19 @@ var Sqor = initialize();
          * @param {type} elem,
          * @return {Null}
          */
-        isScrolledIntoView: function(elem){
-            var docViewTop = $(window).scrollTop();
-            var docViewBottom = docViewTop + $(window).height();
-            var elemTop = $(elem).offset().top;
-            var elemBottom = elemTop + $(elem).height();
+        _isScrolledIntoView: function(elem){
+            var offscreenTop =  $(document.body).scrollTop()
+            var displayAreaSize = window.innerHeight;
 
-            return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+            var elemTop = $(elem).offset().top;
+
+            var totalScrolled = offscreenTop + displayAreaSize;
+            var isVisible =  elemTop <= totalScrolled;
+            // return isVisible; /
+            return isVisible;
+
+            // window.innerHeight = displayArea / viewport
+
         },
 
         /**
@@ -717,7 +723,8 @@ var Sqor = initialize();
                 // need a way to find maxScroll Max
                 // if we are over half way through.. load more items
                 var scrollLimit =  documentHeight * 1/3;
-                if ( scrollTop >=  scrollLimit ) {
+                if (self._isScrolledIntoView(self._footerView.getDomElement())){
+                // if ( scrollTop >=  scrollLimit ) {
                     if (self._modelCount <= self._model.size()  &&
                         self._lastLoadedReturned) {
                         self._lastLoadedReturned = false;
