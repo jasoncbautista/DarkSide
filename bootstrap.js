@@ -128,11 +128,11 @@ var Sqor = initialize();
          * @param {string} eventName, the name of the event to trigger
          * @return {Null}
          */
-        trigger: function(eventName) {
+        trigger: function(eventName, args) {
             var self = this;
             var functionsToInvoke = self._subscrptions[eventName];
             _.each(functionsToInvoke, function(functionPointer){
-                functionPointer();
+                functionPointer(args);
             });
         },
 
