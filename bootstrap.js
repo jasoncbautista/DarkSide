@@ -129,7 +129,11 @@ var Sqor = initialize();
          * @return {Null}
          */
         trigger: function(eventName) {
-            // TODO: IMPLEMENT
+            var self = this;
+            var functionsToInvoke = self._subscrptions[eventName];
+            _.each(functionsToInvoke, function(functionPointer){
+                functionPointer();
+            });
         },
 
         // Workaround for annoying last comma rule.
