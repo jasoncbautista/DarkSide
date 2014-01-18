@@ -749,7 +749,7 @@ var Sqor = initialize();
                 self._model.appendItems(20);
                 console.log("loading more...");
                 self._lastLoadedReturned = true;
-            }, 1500);
+            }, 500);
         },
 
         /**
