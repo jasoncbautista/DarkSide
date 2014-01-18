@@ -126,6 +126,7 @@ var Sqor = initialize();
          * Get all the functions subscribed to this event and call them.
          *
          * @param {string} eventName, the name of the event to trigger
+         * @param {array} args, arguments to pass when triggering
          * @return {Null}
          */
         trigger: function(eventName, args) {
