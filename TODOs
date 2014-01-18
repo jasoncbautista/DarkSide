@@ -1,13 +1,18 @@
 Today:
 
 Friday  1 / 17 /2014
-[ ] 1hr of erlang: try out james stuff from email
-[ ] add delay to model and don't load if not yet loaded last
+[/] 1hr of erlang: try out james stuff from email
+[x] add delay to model and don't load if not yet loaded last
+[x] add bottom spinner to load more 
 [ ] keep actual array of  fake models and not just numbers
 [ ] add other type of cards accordign to model data (randomized)
 
 [ ] rename AthleteListViewController to FeedListViewController
 ----
+[ ] memory monitoring
+[ ] performance
+[ ] logging / logger
+[ ] locale / language?
 [ ] implement Messenger class
 [x] add simpleCard view
 [ ] Investigate Linters
