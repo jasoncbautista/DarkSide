@@ -1,6 +1,7 @@
 Today:
 
 Friday  1 / 17 /2014
+[ ] 1hr of erlang: try out james stuff from email
 [ ] add delay to model and don't load if not yet loaded last
 [ ] keep actual array of  fake models and not just numbers
 [ ] add other type of cards accordign to model data (randomized)
@@ -15,6 +16,12 @@ Friday  1 / 17 /2014
 [ ] Google Closure compiler or Require
 [ ] look up socket.io
 [ ] hook up socket.io
-
-
 [ ] look up chrome optimizations
+[ ] tool to analyze javascript (lines of code total, per fxn, Usage)
+
+
+[ ] naming convention tools to help write vim / sublime plugin
+[ ] auto create modules / widgets with python 
+
+[ ] if we structure Usage examples correctly we can even run it automatically/
+    programatically =-)
