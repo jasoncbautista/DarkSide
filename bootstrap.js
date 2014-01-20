@@ -993,7 +993,8 @@ var Sqor = initialize();
         // Create a bunch of DOM
         var domElements = [];
         for(var ii = 0; ii < count; ii++) {
-            var newEl = $("<div class='fixed'>" + ii + "<span class='container'></span></div>");
+            var newEl = $("<div class='fixed'>" +
+                          ii + "<span class='container'></span></div>");
             parentEl.append(newEl);
             domElements.push(newEl);
             var height = newEl.height();
@@ -1028,6 +1029,11 @@ $(document).ready(function(){
             return self._count;
         };
 
+        /**
+         * A simple dummy delegate method used to test our table.
+         * @param {type} index,
+         * @return {Null}
+         */
         dataDelegate.prototype.cellAtIndex = function(index){
             return $("<div><h2>" + index + "</h2></div>");
         };
