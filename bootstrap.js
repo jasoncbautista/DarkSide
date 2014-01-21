@@ -184,21 +184,20 @@ setup(Sqor);
             return encodeURI(string);
         },
 
+        /**
+         * A wrapper around get / post /put /delete ajaxy calls.
+         * @param {type} type,.
+         * @param {type} path,
+         * @param {type} data,
+         * @return {Null}
+         */
         request: function(type, path, data){
-            /*
-            $.ajax({
-                type: "POST",
-                url: "some.php",
-                data: { name: "John", location: "Boston" }
-            })
-            .done(function( msg ) {
-                alert( "Data Saved: " + msg );
-            });
-            */
+            var self = this;
            var url = Sqor.Settings.Server + path;
            var handle = {};
            if (type === "GET") {
-               //
+                var getParams = self._serializeGetParams(data);
+                handle = $.get(url +  "/" + getParams);
            } else {
                handle = $.ajax({
                    type: type,
@@ -206,10 +205,9 @@ setup(Sqor);
                 ,   data: data
                });
            }
-
-
            return handle;
         },
+
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
