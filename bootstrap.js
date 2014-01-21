@@ -166,8 +166,8 @@ setup(Sqor);
 
         var defaults = {
                 server: Sqor.Settings.Server
-                restAPI: Sqor.Settings.RestAPI // "/rest/api"
-                feedAPI: Sqor.Settings.FeedAPI
+            ,   restAPI: Sqor.Settings.RestAPI // "/rest/api"
+            ,   feedAPI: Sqor.Settings.FeedAPI
         };
 
         self._options = _.extend({}, defaults, options);
@@ -182,15 +182,21 @@ setup(Sqor);
          * @param {object} data,
          * @return {string}
          */
-        _serializeGetParams = function(data){
+        _serializeGetParams: function(data){
             var string = "";
             // Make into simple string
-            _.each(data, value, key){
+            _.each(data, function(value, key){
                 string+= key + "=" + value + "&";
-            });,
+            });
             // Remove extra &, just to be clean
             string = string.substr(0, string.length-1);
             return encodeURI(string);
+        },
+
+        requestRestAPI: function(type, path, data){
+            var self = this;
+            path = Sqor.Settings.RestAPI + path;
+            self.request(type, path, data);
         },
 
         // restAPIGet
@@ -201,7 +207,7 @@ setup(Sqor);
          * @param {object} data, map of params
          * @return {object}, jquery promise
          */
-        _request: function(type, path, data){
+        request: function(type, path, data){
             var self = this;
            var url = self._options.server + path;
            var handle = {};
@@ -210,7 +216,7 @@ setup(Sqor);
                 handle = $.get(url + getParams);
            } else {
                handle = $.ajax({
-                   type: type,
+                   type: type
                 ,    url: url
                 ,   data: data
                });
