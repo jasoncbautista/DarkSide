@@ -1,5 +1,4 @@
 // bootstrap.js
-// This is a very simple
 
 /**
  * Simply initializes a few key holder objects.
@@ -7,6 +6,7 @@
  */
 var initialize = function(){
     var Sqor = {};
+
     // We define aa few primary holders
     Sqor.Core = {};
     Sqor.Models= {};
@@ -14,13 +14,22 @@ var initialize = function(){
     Sqor.Widgets = {};
     Sqor.Modules = {};
     Sqor.Services = {};
+
+    Sqor.Settings = {};
     Sqor.TP = {};
     // TODO FIX THIS:
     Sqor.$ = $;
     Sqor._ = _;
     return Sqor;
 };
+
+var setup = function(Sqor){
+    Sqor.Settings.Server = "http://sqor.com";
+};
+
+
 var Sqor = initialize();
+setup();
 
 // Eventer.js
 (function(Sqor) {
@@ -145,10 +154,132 @@ var Sqor = initialize();
 })(Sqor);
 
 (function(Sqor){
-    var Messenger = function(){
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var Messenger = function(options){
+
+        var defaults = {
+                server: Sqor.Settings.Server
+        };
     };
 
-    Sqor.Core.Messenger = Messenger;
+    _.extend(Messenger.prototype, {
+        request: function(type, data){
+        },
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
+    Sqor.Services.Messenger = new Messenger();
+})(Sqor);
+
+
+(function(Sqor){
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+
+    var Logger = function(options){
+        var defaults = {
+            loggingEndpoint:  "/rest/log/"
+        };
+    };
+
+    _.extend(Logger.prototype, {
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+
+    });
+
+
+
+    Sqor.Services.Logger = new Logger();
+})(Sqor);
+
+
+
+// Model.js
+(function(Sqor) {
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+    var Messenger = Sqor.Services.Messenger;
+
+    /**
+     * @constructor
+     * @param {type} options,
+     * @return {Null}
+     */
+    var Model = function(options){
+    };
+
+    Model.prototype = new Sqor.Core.Eventer();
+
+    _.extend(Model.prototype, {
+
+    });
+
+})(Sqor);
+
+
+// Collection.js
+(function(Sqor) {
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+
+    /*
+     * create -> POST
+     * read -> GET
+     * update -> PUT
+     * delete -> DELETE
+     */
+
+
+    /**
+     *
+     * @constructor
+     * @param {type} options,
+     * @return {Null}
+     */
+    var Collection = function(options){
+        var self = this;
+        var defaults = {
+                model: null
+            ,   mode: "probe"
+            ,   appendHandler: $,.noop
+            ,   prependHandler: $.noop
+            ,   insertHandler: $.noop
+            ,   allChanges: $.noop
+            ,   firstLoad: $.noop
+            ,   iterSize: 25
+        };
+        newOptions = _.extend({}, defaults, options);
+        self._options = newOptions;
+
+        self.create();
+    };
+
+    Collection.prototype = new Sqor.Core.Eventer();
+    _.extend(Collection.prototype, {
+        create: function(){
+            self._models = [];
+            self._rawList = null;
+            self._atIterLimit = false;
+        },
+
+        // TODO: implement iterator
+        next: function(){
+
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
+
 })(Sqor);
 
 // Data.js
