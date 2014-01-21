@@ -23,10 +23,11 @@ var initialize = function(){
     return Sqor;
 };
 
+
+// settings.js
 var setup = function(Sqor){
     Sqor.Settings.Server = "http://sqor.com";
 };
-
 
 var Sqor = initialize();
 setup(Sqor);
@@ -166,7 +167,48 @@ setup(Sqor);
     };
 
     _.extend(Messenger.prototype, {
-        request: function(type, data){
+        /**
+         * Converts a data object into a string of the following form:
+         *
+         *      key=Value&key2=Value2
+         *
+         * @param {object} data,
+         * @return {string}
+         */
+        _serializeGetParams = function(data){
+            var string = "";
+            _.each(data, value, key){
+                string+= key + "=" + value + "&";
+            });
+            string = string.substr(0, string.length-1);
+            return encodeURI(string);
+        },
+
+        request: function(type, path, data){
+            /*
+            $.ajax({
+                type: "POST",
+                url: "some.php",
+                data: { name: "John", location: "Boston" }
+            })
+            .done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            });
+            */
+           var url = Sqor.Settings.Server + path;
+           var handle = {};
+           if (type === "GET") {
+               //
+           } else {
+               handle = $.ajax({
+                   type: type,
+                ,    url: url
+                ,   data: data
+               });
+           }
+
+
+           return handle;
         },
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
