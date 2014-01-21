@@ -1,5 +1,11 @@
 Today:
 
+[ ] Hook up to real data
+[ ] Fix bug with loader not loading more if already 
+[ ] When model has loaded all, then change footer
+
+
+
 Friday  1 / 17 /2014
 [/] 1hr of erlang: try out james stuff from email
 [x] add delay to model and don't load if not yet loaded last
