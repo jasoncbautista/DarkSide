@@ -29,7 +29,7 @@ var setup = function(Sqor){
 
 
 var Sqor = initialize();
-setup();
+setup(Sqor);
 
 // Eventer.js
 (function(Sqor) {
@@ -250,7 +250,7 @@ setup();
         var defaults = {
                 model: null
             ,   mode: "probe"
-            ,   appendHandler: $,.noop
+            ,   appendHandler: $.noop
             ,   prependHandler: $.noop
             ,   insertHandler: $.noop
             ,   allChanges: $.noop
