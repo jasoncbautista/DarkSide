@@ -27,6 +27,8 @@ var initialize = function(){
 // settings.js
 var setup = function(Sqor){
     Sqor.Settings.Server = "http://sqor.com";
+    Sqor.Settings.RestAPI = "/rest/api";
+    Sqor.Settings.FeedAPI = "/rest/feed/api";
 };
 
 var Sqor = initialize();
@@ -160,10 +162,15 @@ setup(Sqor);
     var _ = Sqor._;
 
     var Messenger = function(options){
+        var self = this;
 
         var defaults = {
                 server: Sqor.Settings.Server
+                restAPI: Sqor.Settings.RestAPI // "/rest/api"
+                feedAPI: Sqor.Settings.FeedAPI
         };
+
+        self._options = _.extend({}, defaults, options);
     };
 
     _.extend(Messenger.prototype, {
@@ -177,27 +184,30 @@ setup(Sqor);
          */
         _serializeGetParams = function(data){
             var string = "";
+            // Make into simple string
             _.each(data, value, key){
                 string+= key + "=" + value + "&";
-            });
+            });,
+            // Remove extra &, just to be clean
             string = string.substr(0, string.length-1);
             return encodeURI(string);
         },
 
+        // restAPIGet
         /**
          * A wrapper around get / post /put /delete ajaxy calls.
          * @param {type} type,.
-         * @param {type} path,
-         * @param {type} data,
-         * @return {Null}
+         * @param {string} path, api path
+         * @param {object} data, map of params
+         * @return {object}, jquery promise
          */
-        request: function(type, path, data){
+        _request: function(type, path, data){
             var self = this;
-           var url = Sqor.Settings.Server + path;
+           var url = self._options.server + path;
            var handle = {};
            if (type === "GET") {
                 var getParams = self._serializeGetParams(data);
-                handle = $.get(url +  "/" + getParams);
+                handle = $.get(url + getParams);
            } else {
                handle = $.ajax({
                    type: type,
