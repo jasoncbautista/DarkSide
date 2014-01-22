@@ -163,7 +163,6 @@ setup(Sqor);
 
     var Messenger = function(options){
         var self = this;
-
         var defaults = {
                 server: Sqor.Settings.Server
             ,   restAPI: Sqor.Settings.RestAPI // "/rest/api"
@@ -199,7 +198,6 @@ setup(Sqor);
             self.request(type, path, data);
         },
 
-        // restAPIGet
         /**
          * A wrapper around get / post /put /delete ajaxy calls.
          * @param {type} type,.
@@ -246,10 +244,7 @@ setup(Sqor);
     _.extend(Logger.prototype, {
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
-
     });
-
-
 
     Sqor.Services.Logger = new Logger();
 })(Sqor);
@@ -323,13 +318,23 @@ setup(Sqor);
     _.extend(Collection.prototype, {
         create: function(){
             self._models = [];
-            self._rawList = null;
-            self._atIterLimit = false;
+            self._rawList = [];
+            self._originalCount= false;
+            self._tailFetches= 0;
+            self._noneTailFetches= 0;
+            self._headFetches= 0;
+            self._iterPosition = 0;
         },
 
         // TODO: implement iterator
         next: function(){
+            var self = this;
+            if ( self._models.length > self._originalCount ) {
+            }
 
+            return [];
+
+            return false;
         },
 
         // Workaround for annoying last comma rule.
