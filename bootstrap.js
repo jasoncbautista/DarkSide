@@ -247,12 +247,10 @@ setupSettings(Sqor);
     Sqor.Services.Messenger = new Messenger();
 })(Sqor);
 
-
 (function(Sqor){
     // Dependencies:
     var $ = Sqor.$;
     var _ = Sqor._;
-
 
     var Logger = function(options){
         var defaults = {
@@ -267,8 +265,6 @@ setupSettings(Sqor);
 
     Sqor.Services.Logger = new Logger();
 })(Sqor);
-
-
 
 // Model.js
 (function(Sqor) {
