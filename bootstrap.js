@@ -796,7 +796,8 @@ setupSettings(Sqor);
     var FeedFooter = function(options){
         var self = this;
         var defaults = {
-            templateValues: {}
+                templateValues: {}
+            ,   renderedCallback: $.noop
         };
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
