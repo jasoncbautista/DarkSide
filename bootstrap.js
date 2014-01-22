@@ -23,16 +23,17 @@ var initialize = function(){
     return Sqor;
 };
 
-
 // settings.js
-var setup = function(Sqor){
-    Sqor.Settings.Server = "http://sqor.com";
-    Sqor.Settings.RestAPI = "/rest/api";
+var setupSettings = function(Sqor){
+    //Sqor.Settings.Server = "http://sqor.com";
+    Sqor.Settings.Server = "";
+    //Sqor.Settings.RestAPI = "/rest/api";
+    Sqor.Settings.RestAPI = "/fakeRestAPI";
     Sqor.Settings.FeedAPI = "/rest/feed/api";
 };
 
 var Sqor = initialize();
-setup(Sqor);
+setupSettings(Sqor);
 
 // Eventer.js
 (function(Sqor) {
@@ -161,6 +162,16 @@ setup(Sqor);
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    /**
+     * Messenger class is a simple wrapper around simple networking calls.
+     *
+     * Usage:
+     *  var data = {"id": "383"};
+     *  var p = Sqor.Services.Messenger.request("get", "feeds",  data);
+     *
+     * @param {type} options,
+     * @return {Null}
+     */
     var Messenger = function(options){
         var self = this;
         var defaults = {
@@ -192,6 +203,13 @@ setup(Sqor);
             return encodeURI(string);
         },
 
+        /**
+         * Send request to REST API.
+         * @param {type} type,
+         * @param {type} path,
+         * @param {type} data,
+         * @return {Null}
+         */
         requestRestAPI: function(type, path, data){
             var self = this;
             path = Sqor.Settings.RestAPI + path;
@@ -200,7 +218,8 @@ setup(Sqor);
 
         /**
          * A wrapper around get / post /put /delete ajaxy calls.
-         * @param {type} type,.
+         *
+         * @param {string} type,
          * @param {string} path, api path
          * @param {object} data, map of params
          * @return {object}, jquery promise
