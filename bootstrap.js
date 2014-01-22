@@ -289,13 +289,11 @@ setupSettings(Sqor);
 
 })(Sqor);
 
-
 // Collection.js
 (function(Sqor) {
     // Dependencies:
     var $ = Sqor.$;
     var _ = Sqor._;
-
 
     /*
      * create -> POST
@@ -303,7 +301,6 @@ setupSettings(Sqor);
      * update -> PUT
      * delete -> DELETE
      */
-
 
     /**
      *
@@ -348,7 +345,6 @@ setupSettings(Sqor);
             }
 
             return [];
-
             return false;
         },
 
@@ -913,9 +909,6 @@ setupSettings(Sqor);
             var isVisible =  elemTop <= totalScrolled;
             // return isVisible; /
             return isVisible;
-
-            // window.innerHeight = displayArea / viewport
-
         },
 
         /**
