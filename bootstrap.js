@@ -890,6 +890,8 @@ setupSettings(Sqor);
             self._el.append(self._tableView.getDomElement());
             self._el.append(self._footerView.getDomElement());
             self._bindScroll();
+            self._lastLoadedReturned = true;
+            self._loadMoreDataIfNeeded();
         },
 
         /**
@@ -918,8 +920,8 @@ setupSettings(Sqor);
         dataChanged: function(data){
             var self = this;
             // Make sure we are up to date in terms of data:
-            self._loadMoreDataIfNeeded();
             self._lastLoadedReturned = true;
+            self._loadMoreDataIfNeeded();
         },
 
 
@@ -936,9 +938,9 @@ setupSettings(Sqor);
             if (self._isScrolledIntoView(self._footerView.getDomElement())){
                 if (self._modelCount <= self._model.size()  &&
                     self._lastLoadedReturned) {
-                    self._lastLoadedReturned = false;
-                self._tryToLoadMore();
-                self._modelCount = self._model.size();
+                        self._lastLoadedReturned = false;
+                        self._tryToLoadMore();
+                        self._modelCount = self._model.size();
                 }
             }
         },
@@ -1039,12 +1041,15 @@ setupSettings(Sqor);
         self._step = 10;
         self._items = [];
         // q=*
+
+        /*
         var promise =  $.get(
             "http://feedtools-dev.sqor.com/content?offset=0&limit=" +
             self._step);
         promise.done(function(data){
             self._loadItems(data);
         });
+        */
     };
 
     _.extend(AthleteListViewModel.prototype, {
