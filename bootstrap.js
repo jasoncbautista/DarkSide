@@ -880,6 +880,7 @@ setupSettings(Sqor);
             var tableViewOptions = {
                 dataDelegate: self
             };
+            self._model.addDelegate(self);
             self._tableView = new Sqor.Widgets.DynamicTable(tableViewOptions);
             self._footerView = new Sqor.Widgets.FeedFooter();
             self._model.addDelegate(self._tableView);
@@ -909,6 +910,29 @@ setupSettings(Sqor);
             return isVisible;
         },
 
+        dataChanged: function(data){
+            var self = this;
+            // Make sure we are up to date in terms of data:
+            self._loadMoreDataIfNeeded();
+        },
+
+
+        _loadMoreDataIfNeeded: function(){
+            // TODO: set our view to reflect state of data!
+            // ---> or set it's little model... DATA DRIVEN
+            var self = this;
+            var documentHeight = $(document).height();
+            var scrollTop = $(document).scrollTop();
+            if (self._isScrolledIntoView(self._footerView.getDomElement())){
+                if (self._modelCount <= self._model.size()  &&
+                    self._lastLoadedReturned) {
+                    self._lastLoadedReturned = false;
+                self._tryToLoadMore();
+                self._modelCount = self._model.size();
+                }
+            }
+        },
+
         /**
          * We create a binding to scroll event so that we can load more
          * items when we reach a certain point
@@ -920,20 +944,7 @@ setupSettings(Sqor);
             self._modelCount = self._model.size();
             self._lastLoadedReturned = true ;
             $(document).scroll(function(){
-                var documentHeight = $(document).height();
-                var scrollTop = $(document).scrollTop();
-                // TODO:  this is kidna buggy... some disconnect...
-                // need a way to find maxScroll Max
-                // if we are over half way through.. load more items
-                var scrollLimit =  documentHeight * 1/3;
-                if (self._isScrolledIntoView(self._footerView.getDomElement())){
-                    if (self._modelCount <= self._model.size()  &&
-                        self._lastLoadedReturned) {
-                        self._lastLoadedReturned = false;
-                        self._tryToLoadMore();
-                        self._modelCount = self._model.size();
-                    }
-                }
+                self._loadMoreDataIfNeeded();
             });
         },
 
@@ -1018,9 +1029,12 @@ setupSettings(Sqor);
         var self = this;
         self._delegates = [];
         self._offset= 0;
-        self._sep = 25;
+        self._step = 5;
         self._items = [];
-        var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=0&limit=25&q=type:instagram");
+        // q=*
+        var promise =  $.get(
+            "http://feedtools-dev.sqor.com/content?offset=0&limit=" +
+            self._step);
         promise.done(function(data){
             self._loadItems(data);
         });
@@ -1060,12 +1074,14 @@ setupSettings(Sqor);
             });
 
             self.appendItems(results.length);
-            self._offset += self._sep;
+            self._offset += self._step;
         },
 
         loadBottomItems: function(successHandler){
             var self = this;
-            var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=" + self._offset + "&limit=25");
+            var promise =  $.get(
+                "http://feedtools-dev.sqor.com/content?offset=" +
+                self._offset + "&limit=25");
             promise.done(function(data){
                 self._loadItems(data);
                 successHandler();
