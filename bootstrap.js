@@ -973,7 +973,11 @@ setupSettings(Sqor);
          */
         getCellAtIndex: function(index) {
             var self = this;
-            var imageURI = self._model._items[index].doc.media_ig[0].url;
+            var imageURI = "";
+            try{
+            imageURI = self._model._items[index].doc.media_ig[0].url;
+            } catch(e){
+            }
             var options = {
                         title:  "" + index + ")."
                     ,   subtitle:  self._model._items[index].doc.content
@@ -1061,7 +1065,7 @@ setupSettings(Sqor);
 
         loadBottomItems: function(successHandler){
             var self = this;
-            var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=" + self._offset + "&limit=25&q=type:instagram");
+            var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=" + self._offset + "&limit=25");
             promise.done(function(data){
                 self._loadItems(data);
                 successHandler();
