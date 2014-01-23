@@ -810,7 +810,7 @@ setupSettings(Sqor);
             self._el = HTML.createSpinnerHolder();
             self._el.empty();
             self._el.append(HTML.getSpinner());
-            HTML.get("feedFooter", self._options.templateValues,
+            HTML.get("feedFooterxx", self._options.templateValues,
             function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
@@ -1049,6 +1049,7 @@ setupSettings(Sqor);
             } else {
                 console.log(model.type);
                 debugger;
+                // TODO: implement generic widget
             }
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
             return displayCard;
@@ -1085,7 +1086,7 @@ setupSettings(Sqor);
         var self = this;
         self._delegates = [];
         self._offset= 0;
-        self._step = 10;
+        self._step = 100;
         self._items = [];
     };
 
