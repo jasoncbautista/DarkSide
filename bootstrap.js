@@ -973,9 +973,10 @@ setupSettings(Sqor);
          * @return {Object} jquery Object
          */
         getCellAtIndex: function(index) {
+            var self = this;
             var options = {
-                        title: "Some"
-                    ,   subtitle: "Dude " + index
+                        title:  "" + index + ")."
+                    ,   subtitle:  self._model._items[index].doc.content
                     ,   imageURI: "images/person_placeholder.jpg"
                 };
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
@@ -1015,6 +1016,7 @@ setupSettings(Sqor);
         self._size  = 0;
         self._offset= 0;
         self._sep = 25;
+        self._items = [];
         var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=0&limit=25&q=type:instagram");
         promise.done(function(data){
             self._loadItems(data);
@@ -1050,7 +1052,10 @@ setupSettings(Sqor);
         _loadItems: function(data){
             var self = this;
             var results = data.results;
-            self._size = results.length;
+            _.each(results, function(result){
+                self._items.push(result);
+            });
+
             self.appendItems(results.length);
             self._offset += self._sep;
         },
