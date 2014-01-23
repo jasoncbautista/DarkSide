@@ -935,7 +935,6 @@ setupSettings(Sqor);
             // load
         },
 
-
         /**
          * A hacky way to do infinite scroll by loading more data
          * @return {Null}
