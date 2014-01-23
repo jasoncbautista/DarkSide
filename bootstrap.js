@@ -14,7 +14,6 @@ var initialize = function(){
     Sqor.Widgets = {};
     Sqor.Modules = {};
     Sqor.Services = {};
-
     Sqor.Settings = {};
     Sqor.TP = {};
     // TODO FIX THIS:
@@ -1018,7 +1017,6 @@ setupSettings(Sqor);
         self._delegates = [];
         self._size  = 10;
 
-
         // $.get("http://feedtools-dev.sqor.com/content?offset=0&limit=25&q=type:instagram");
     };
 
@@ -1123,7 +1121,6 @@ setupSettings(Sqor);
     var UserFeedViewController = function(){
     };
 })(Sqor);
-
 
 // experiMENTAL
 //           experiMENTAL
@@ -1261,8 +1258,5 @@ $(document).ready(function(){
 
     runSimpleDynamicTableModule();
     // runComplexTable();
-
 });
-
-
 
