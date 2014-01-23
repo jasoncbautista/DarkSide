@@ -1016,28 +1016,31 @@ setupSettings(Sqor);
             var self = this;
             var options = {
                 title:""
-                , subtitle: "NONE"
+                , subtitle: ""
                 , imageURI: ""
             };
-
+            var imageURI = "";
+            try{
+                imageURI = model.media_ig[0].url;
+            } catch(e){
+            }
+            options.imageURI = imageURI;
             if (model.type === "twitter"){
-                var imageURI = "";
-                try{
-                    imageURI = model.media_ig[0].url;
-                } catch(e){
-                }
-                options.imageURI = imageURI;
                 options.title = model.author;
                 options.subtitle = model.summary;
             } else if (model.type === "instagram") {
-                var imageURI = "";
-                try{
-                    imageURI = model.media_ig[0].url;
-                } catch(e){
-                }
-                options.imageURI = imageURI;
-                debugger;
+                options.subtitle = model.content;
+            } else if (model.type === "rss") {
+                options.title = model.title;
+                options.summary= model.summary;
+            } else if (model.type === "getty_images") {
+                options.title = model.title;
+            } else if (model.type === "espn_api") {
+                options.title = model.title;
+                options.summary= model.summary;
             } else {
+                console.log(model.type);
+                debugger;
             }
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
             return displayCard;
