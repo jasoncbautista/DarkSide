@@ -509,12 +509,10 @@ setupSettings(Sqor);
             self._el.empty();
             self._el.append(HTML.getSpinner());
             // Actually load the new data:
-            setTimeout(function(){
-                HTML.get("displayCard", self._data, function(domElement){
-                    self._el.empty();
-                    self._el.append(domElement);
-                });
-            }, 100); // TODO: REMOVE. This is for demo porpuposes.
+            HTML.get("displayCard", self._data, function(domElement){
+                self._el.empty();
+                self._el.append(domElement);
+            });
         },
 
         // Workaround for annoying last comma rule.
@@ -844,7 +842,7 @@ setupSettings(Sqor);
     Sqor.Widgets.FeedFooter = FeedFooter;
 })(Sqor);
 // AthleteList
-// AthleteListViewController.js
+// FeedListController.js
 (function(Sqor){
     // Dependencies
     var HTML = Sqor.Services.HTML;
@@ -856,19 +854,19 @@ setupSettings(Sqor);
      *
      * Usage:
      *
-     *  var c = new Sqor.Modules.AthleteListViewController();
+     *  var c = new Sqor.Modules.FeedListController();
      *  $("body").append(c.getDomElement());
      *
      * @param {object} options,
      * @return {Null}
      */
-    var AthleteListViewController = function(options){
+    var FeedListController = function(options){
         var defaults = {};
         var self = this;
         self.create();
     };
 
-    _.extend(AthleteListViewController.prototype, {
+    _.extend(FeedListController.prototype, {
 
         /**
          * Siple create function to setup model and view along with delegates.
@@ -876,7 +874,7 @@ setupSettings(Sqor);
          */
         create: function(){
             var self = this;
-            self._model = new Sqor.Modules.AthleteListViewModel();
+            self._model = new Sqor.Modules.FeedListModel();
             var tableViewOptions = {
                 dataDelegate: self
             };
@@ -1030,10 +1028,10 @@ setupSettings(Sqor);
         sdfsd3423452349249239493234: null
     });
 
-    Sqor.Modules.AthleteListViewController = AthleteListViewController;
+    Sqor.Modules.FeedListController = FeedListController;
 })(Sqor);
 
-// AthleteListViewModel.js
+// FeedListModel.js
 (function(Sqor){
     // Dependencies
     var HTML = Sqor.Services.HTML;
@@ -1044,25 +1042,15 @@ setupSettings(Sqor);
      * Initializes a simple model to represetn the state of the list module.
      * @return {Null}
      */
-    var  AthleteListViewModel = function(){
+    var  FeedListModel = function(){
         var self = this;
         self._delegates = [];
         self._offset= 0;
         self._step = 10;
         self._items = [];
-        // q=*
-
-        /*
-        var promise =  $.get(
-            "http://feedtools-dev.sqor.com/content?offset=0&limit=" +
-            self._step);
-        promise.done(function(data){
-            self._loadItems(data);
-        });
-        */
     };
 
-    _.extend(AthleteListViewModel.prototype, {
+    _.extend(FeedListModel.prototype, {
 
         /**
          * Adds a delegate to our list of delegates
@@ -1088,6 +1076,12 @@ setupSettings(Sqor);
             });
         },
 
+        /**
+         * Pushes items into our local array of entries
+         *
+         * @param {object} data,
+         * @return {Null}
+         */
         _loadItems: function(data){
             var self = this;
             var results = data.results;
@@ -1101,8 +1095,10 @@ setupSettings(Sqor);
 
         loadBottomItems: function(){
             var self = this;
+            // q=*
+            // q=type:instragram
             var promise =  $.get(
-                "http://feedtools-dev.sqor.com/content?offset=" +
+                "http://feedtools-dev.sqor.com/content?&q=*&offset=" +
                 self._offset + "&limit=" + self._step);
             promise.done(function(data){
                 self._loadItems(data);
@@ -1143,7 +1139,7 @@ setupSettings(Sqor);
         sdfsd3423452349249239493234: null
     });
 
-    Sqor.Modules.AthleteListViewModel = AthleteListViewModel;
+    Sqor.Modules.FeedListModel = FeedListModel;
 })(Sqor);
 
 
@@ -1298,7 +1294,7 @@ $(document).ready(function(){
      * @return {Null}
      */
     var runSimpleDynamicTableModule =  function() {
-        var c = new Sqor.Modules.AthleteListViewController();
+        var c = new Sqor.Modules.FeedListController();
         $("body").append(c.getDomElement());
         //append to Model
         // c._model.appendItems(10);
