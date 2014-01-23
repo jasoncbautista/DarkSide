@@ -471,6 +471,7 @@ setupSettings(Sqor);
 
     // Extending our widgets prototype to add basic functionality:
     _.extend(DisplayCard.prototype, {
+
         /**
          * Creates the basic DOM element representing our Display Card.
          * @param {Object} options,
@@ -888,7 +889,6 @@ setupSettings(Sqor);
             self._el = $("<div></div");
             self._el.append(self._tableView.getDomElement());
             self._el.append(self._footerView.getDomElement());
-
             self._bindScroll();
         },
 
@@ -928,7 +928,6 @@ setupSettings(Sqor);
                 // if we are over half way through.. load more items
                 var scrollLimit =  documentHeight * 1/3;
                 if (self._isScrolledIntoView(self._footerView.getDomElement())){
-                // if ( scrollTop >=  scrollLimit ) {
                     if (self._modelCount <= self._model.size()  &&
                         self._lastLoadedReturned) {
                         self._lastLoadedReturned = false;
@@ -949,11 +948,10 @@ setupSettings(Sqor);
             var self = this;
             // TODO:  remove this timeout:
             // set on timer to emulate delay in ajax...
-            setTimeout( function(){
-                self._model.appendItems(20);
+            self._model.loadBottomItems(function(){
                 console.log("loading more...");
                 self._lastLoadedReturned = true;
-            }, 500);
+            });
         },
 
         /**
@@ -1015,12 +1013,11 @@ setupSettings(Sqor);
         var self = this;
         self._delegates = [];
         self._size  = 0;
+        self._offset= 0;
+        self._sep = 25;
         var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=0&limit=25&q=type:instagram");
         promise.done(function(data){
-            var results = data.results;
-            self._size = results.length;
-            self.appendItems(results.length);
-            console.log('size', self._size);
+            self._loadItems(data);
         });
     };
 
@@ -1047,6 +1044,23 @@ setupSettings(Sqor);
                 if (_.isReal(delegate.dataChanged)) {
                     delegate.dataChanged.apply(delegate, args);
                 }
+            });
+        },
+
+        _loadItems: function(data){
+            var self = this;
+            var results = data.results;
+            self._size = results.length;
+            self.appendItems(results.length);
+            self._offset += self._sep;
+        },
+
+        loadBottomItems: function(successHandler){
+            var self = this;
+            var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=" + self._offset + "&limit=25&q=type:instagram");
+            promise.done(function(data){
+                self._loadItems(data);
+                successHandler();
             });
         },
 
