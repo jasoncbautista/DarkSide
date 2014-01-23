@@ -1001,18 +1001,30 @@ setupSettings(Sqor);
          */
         getCellAtIndex: function(index) {
             var self = this;
+            var model = self._model._items[index];
+            var displayAreaSize = self._getWidgeForType(model);
+            return displayCard.getDomElement();
+        },
+
+        /**
+         * Returns the correct type of widget for the given model
+         * @param {object} model,
+         * @return {object}, widget for model
+         */
+        _getWidgeForType: function(model){
+            var self = this;
             var imageURI = "";
             try{
-            imageURI = self._model._items[index].doc.media_ig[0].url;
+                imageURI = model.doc.media_ig[0].url;
             } catch(e){
             }
             var options = {
-                        title:  "" + index + ")."
-                    ,   subtitle:  self._model._items[index].doc.content
-                    ,   imageURI: imageURI//"images/person_placeholder.jpg"
-                };
+                title:  "" + index + ")."
+                ,   subtitle:  self._model._items[index].doc.content
+                ,   imageURI: imageURI//"images/person_placeholder.jpg"
+            };
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
-            return displayCard.getDomElement();
+            return displayCard;
         },
 
         /**
