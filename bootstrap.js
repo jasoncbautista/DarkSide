@@ -910,13 +910,23 @@ setupSettings(Sqor);
             return isVisible;
         },
 
+        /**
+         * A delegate method to be called by the model when the feed changes.
+         * @param {object} data,
+         * @return {Null}
+         */
         dataChanged: function(data){
             var self = this;
             // Make sure we are up to date in terms of data:
             self._loadMoreDataIfNeeded();
+            self._lastLoadedReturned = true;
         },
 
 
+        /**
+         * A hacky way to do infinite scroll by loading more data
+         * @return {Null}
+         */
         _loadMoreDataIfNeeded: function(){
             // TODO: set our view to reflect state of data!
             // ---> or set it's little model... DATA DRIVEN
@@ -960,7 +970,6 @@ setupSettings(Sqor);
             // set on timer to emulate delay in ajax...
             self._model.loadBottomItems(function(){
                 console.log("loading more...");
-                self._lastLoadedReturned = true;
             });
         },
 
