@@ -321,7 +321,6 @@ setupSettings(Sqor);
         };
         newOptions = _.extend({}, defaults, options);
         self._options = newOptions;
-
         self.create();
     };
 
@@ -1015,9 +1014,14 @@ setupSettings(Sqor);
     var  AthleteListViewModel = function(){
         var self = this;
         self._delegates = [];
-        self._size  = 10;
-
-        // $.get("http://feedtools-dev.sqor.com/content?offset=0&limit=25&q=type:instagram");
+        self._size  = 0;
+        var promise =  $.get("http://feedtools-dev.sqor.com/content?offset=0&limit=25&q=type:instagram");
+        promise.done(function(data){
+            var results = data.results;
+            self._size = results.length;
+            self.appendItems(results.length);
+            console.log('size', self._size);
+        });
     };
 
     _.extend(AthleteListViewModel.prototype, {
