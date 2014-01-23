@@ -858,7 +858,6 @@ setupSettings(Sqor);
      *
      *  var c = new Sqor.Modules.AthleteListViewController();
      *  $("body").append(c.getDomElement());
-     *  c._model.setSize(100);
      *
      * @param {object} options,
      * @return {Null}
@@ -1013,7 +1012,6 @@ setupSettings(Sqor);
     var  AthleteListViewModel = function(){
         var self = this;
         self._delegates = [];
-        self._size  = 0;
         self._offset= 0;
         self._sep = 25;
         self._items = [];
@@ -1076,7 +1074,6 @@ setupSettings(Sqor);
          */
         prependItems: function(count) {
             var self = this;
-            self._size+=count;
             self._callDelegates("prepend", count);
         },
 
@@ -1087,20 +1084,9 @@ setupSettings(Sqor);
          */
         appendItems: function(count) {
             var self = this;
-            self._size+=count;
             self._callDelegates("append", count);
         },
 
-        /**
-         * Sets the size of the table
-         * @param {number} size, new size
-         * @return {Null}
-         */
-        setSize: function(size){
-            var self = this;
-            self._size = size;
-            self._callDelegates();
-        },
 
         /**
          * Returns the size of the list / table
@@ -1108,7 +1094,7 @@ setupSettings(Sqor);
          */
         size: function() {
             var self = this;
-            return self._size;
+            return self._items.length;
         },
 
         // Workaround for annoying last comma rule.
@@ -1272,7 +1258,6 @@ $(document).ready(function(){
     var runSimpleDynamicTableModule =  function() {
         var c = new Sqor.Modules.AthleteListViewController();
         $("body").append(c.getDomElement());
-        // c._model.setSize(2);
         //append to Model
         // c._model.appendItems(10);
         // c._model.prepend(10);
