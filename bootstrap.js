@@ -1093,13 +1093,17 @@ setupSettings(Sqor);
             self.appendItems(results.length);
         },
 
+        /**
+         * Make request to load data from network/server.
+         * @return {Null}
+         */
         loadBottomItems: function(){
             var self = this;
+            var requestURL= "http://feedtools-dev.sqor.com/content?q=*&offset=" +
+                self._offset + "&limit=" + self._step;
             // q=*
             // q=type:instragram
-            var promise =  $.get(
-                "http://feedtools-dev.sqor.com/content?&q=*&offset=" +
-                self._offset + "&limit=" + self._step);
+            var promise =  $.get(requestURL);
             promise.done(function(data){
                 self._loadItems(data);
             });
