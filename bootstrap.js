@@ -880,6 +880,8 @@ setupSettings(Sqor);
             var tableViewOptions = {
                 dataDelegate: self
             };
+
+            self._modelCount = 0;
             self._model.addDelegate(self);
             self._tableView = new Sqor.Widgets.DynamicTable(tableViewOptions);
             self._footerView = new Sqor.Widgets.FeedFooter();
@@ -924,7 +926,13 @@ setupSettings(Sqor);
             // We might just be finishing up loading our stuff...
             setTimeout(function(){
                 self._loadMoreDataIfNeeded();
-            }, 100);
+            }, 100); // TODO: fix this... this is done so we don't double
+            // hit the loading spinner..
+            //
+            // NOTE: this is a function of the loader being
+            // stuck while we load more since we don't append items fast
+            // enough... race donition type of thing. Don't wanna dobule
+            // load
         },
 
 
@@ -939,7 +947,7 @@ setupSettings(Sqor);
             var documentHeight = $(document).height();
             var scrollTop = $(document).scrollTop();
             if (self._isScrolledIntoView(self._footerView.getDomElement())){
-                if (self._modelCount <= self._model.size()  &&
+                if (self._modelCount <=  self._model.size()  &&
                     self._lastLoadedReturned) {
                         self._lastLoadedReturned = false;
                         self._tryToLoadMore();
