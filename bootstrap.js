@@ -1017,6 +1017,9 @@ setupSettings(Sqor);
         var self = this;
         self._delegates = [];
         self._size  = 10;
+
+
+        // $.get("http://feedtools-dev.sqor.com/content?offset=0&limit=25&q=type:instagram");
     };
 
     _.extend(AthleteListViewModel.prototype, {
