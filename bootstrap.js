@@ -1036,7 +1036,7 @@ setupSettings(Sqor);
         var self = this;
         self._delegates = [];
         self._offset= 0;
-        self._step = 5;
+        self._step = 10;
         self._items = [];
         // q=*
         var promise =  $.get(
@@ -1063,12 +1063,12 @@ setupSettings(Sqor);
          * Calls all delegates listening for dataChanges
          * @return {Null}
          */
-        _callDelegates: function(type, count){
+        _callDelegates: function(type, count, methodName){
             var self = this;
             var args = arguments;
             _.each(self._delegates, function(delegate) {
-                if (_.isReal(delegate.dataChanged)) {
-                    delegate.dataChanged.apply(delegate, args);
+                if (_.isReal(delegate[methodName])) {
+                    delegate[methodName].apply(delegate, args);
                 }
             });
         },
@@ -1101,7 +1101,7 @@ setupSettings(Sqor);
          */
         prependItems: function(count) {
             var self = this;
-            self._callDelegates("prepend", count);
+            self._callDelegates("prepend", count, "dataChanged");
         },
 
         /**
@@ -1111,7 +1111,7 @@ setupSettings(Sqor);
          */
         appendItems: function(count) {
             var self = this;
-            self._callDelegates("append", count);
+            self._callDelegates("append", count, "dataChanged");
         },
 
 
