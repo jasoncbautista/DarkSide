@@ -1012,17 +1012,33 @@ setupSettings(Sqor);
          * @return {object}, widget for model
          */
         _getWidgeForType: function(model){
+            // TODO: replace this with a widget per type:
             var self = this;
-            var imageURI = "";
-            try{
-                imageURI = model.media_ig[0].url;
-            } catch(e){
-            }
             var options = {
-                title: ""
-                ,   subtitle:  model.content
-                ,   imageURI: imageURI//"images/person_placeholder.jpg"
+                title:""
+                , subtitle: "NONE"
+                , imageURI: ""
             };
+
+            if (model.type === "twitter"){
+                var imageURI = "";
+                try{
+                    imageURI = model.media_ig[0].url;
+                } catch(e){
+                }
+                options.imageURI = imageURI;
+                options.title = model.author;
+                options.subtitle = model.summary;
+            } else if (model.type === "instagram") {
+                var imageURI = "";
+                try{
+                    imageURI = model.media_ig[0].url;
+                } catch(e){
+                }
+                options.imageURI = imageURI;
+                debugger;
+            } else {
+            }
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
             return displayCard;
         },
