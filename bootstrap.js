@@ -968,9 +968,7 @@ setupSettings(Sqor);
             var self = this;
             // TODO:  remove this timeout:
             // set on timer to emulate delay in ajax...
-            self._model.loadBottomItems(function(){
-                console.log("loading more...");
-            });
+            self._model.loadBottomItems();
         },
 
         /**
@@ -1086,14 +1084,13 @@ setupSettings(Sqor);
             self._offset += self._step;
         },
 
-        loadBottomItems: function(successHandler){
+        loadBottomItems: function(){
             var self = this;
             var promise =  $.get(
                 "http://feedtools-dev.sqor.com/content?offset=" +
                 self._offset + "&limit=25");
             promise.done(function(data){
                 self._loadItems(data);
-                successHandler();
             });
         },
 
