@@ -921,7 +921,10 @@ setupSettings(Sqor);
             var self = this;
             // Make sure we are up to date in terms of data:
             self._lastLoadedReturned = true;
-            self._loadMoreDataIfNeeded();
+            // We might just be finishing up loading our stuff...
+            setTimeout(function(){
+                self._loadMoreDataIfNeeded();
+            }, 100);
         },
 
 
@@ -1085,15 +1088,15 @@ setupSettings(Sqor);
                 self._items.push(result);
             });
 
-            self.appendItems(results.length);
             self._offset += self._step;
+            self.appendItems(results.length);
         },
 
         loadBottomItems: function(){
             var self = this;
             var promise =  $.get(
                 "http://feedtools-dev.sqor.com/content?offset=" +
-                self._offset + "&limit=25");
+                self._offset + "&limit=" + self._step);
             promise.done(function(data){
                 self._loadItems(data);
             });
