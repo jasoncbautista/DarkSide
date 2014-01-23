@@ -1017,14 +1017,19 @@ setupSettings(Sqor);
             var options = {
                 title:""
                 , subtitle: ""
+                , author: ""
                 , imageURI: ""
+                , externalURI: ""
             };
+            options.externalURI = model.link;
             var imageURI = "";
             try{
                 imageURI = model.media_ig[0].url;
             } catch(e){
             }
             options.imageURI = imageURI;
+
+            // TODO: awful, remove
             if (model.type === "twitter"){
                 options.title = model.author;
                 options.subtitle = model.summary;
@@ -1038,6 +1043,9 @@ setupSettings(Sqor);
             } else if (model.type === "espn_api") {
                 options.title = model.title;
                 options.summary= model.summary;
+            } else if (model.type === "sqor") {
+                options.title = model.author;
+                options.summary= model.content;
             } else {
                 console.log(model.type);
                 debugger;
