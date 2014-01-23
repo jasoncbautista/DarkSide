@@ -973,10 +973,11 @@ setupSettings(Sqor);
          */
         getCellAtIndex: function(index) {
             var self = this;
+            var imageURI = self._model._items[index].doc.media_ig[0].url;
             var options = {
                         title:  "" + index + ")."
                     ,   subtitle:  self._model._items[index].doc.content
-                    ,   imageURI: "images/person_placeholder.jpg"
+                    ,   imageURI: imageURI//"images/person_placeholder.jpg"
                 };
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
             return displayCard.getDomElement();
