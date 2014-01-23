@@ -1001,8 +1001,8 @@ setupSettings(Sqor);
          */
         getCellAtIndex: function(index) {
             var self = this;
-            var model = self._model._items[index];
-            var displayAreaSize = self._getWidgeForType(model);
+            var model = self._model._items[index].doc;
+            var displayCard = self._getWidgeForType(model);
             return displayCard.getDomElement();
         },
 
@@ -1015,12 +1015,12 @@ setupSettings(Sqor);
             var self = this;
             var imageURI = "";
             try{
-                imageURI = model.doc.media_ig[0].url;
+                imageURI = model.media_ig[0].url;
             } catch(e){
             }
             var options = {
-                title:  "" + index + ")."
-                ,   subtitle:  self._model._items[index].doc.content
+                title: ""
+                ,   subtitle:  model.content
                 ,   imageURI: imageURI//"images/person_placeholder.jpg"
             };
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
