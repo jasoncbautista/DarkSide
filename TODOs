@@ -3,7 +3,6 @@ Thu 1/23/2014:
 [x] load all types of data feeds
 [x] function to figure out which type
 [ ] When all models have loaded all, then change footer
-
 [ ] write base widget that all "feedEntry" widgets inherit from
 [ ] load appropriate widget type 
 [ ] instead of storing raw json, store models?

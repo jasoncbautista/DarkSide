@@ -283,6 +283,9 @@ setupSettings(Sqor);
     Model.prototype = new Sqor.Core.Eventer();
 
     _.extend(Model.prototype, {
+        // TODO:
+        // get("key", "defaultValue");
+        // var title = model.get("title", "");
 
     });
 
@@ -1086,7 +1089,7 @@ setupSettings(Sqor);
         var self = this;
         self._delegates = [];
         self._offset= 0;
-        self._step = 100;
+        self._step = 10;
         self._items = [];
     };
 
@@ -1139,7 +1142,7 @@ setupSettings(Sqor);
          */
         loadBottomItems: function(){
             var self = this;
-            var requestURL= "http://feedtools-dev.sqor.com/content?q=*&offset=" +
+            var requestURL= "http://feedtools-dev.sqor.com/content?q=type:instagram&offset=" +
                 self._offset + "&limit=" + self._step;
             // q=*
             // q=type:instragram
