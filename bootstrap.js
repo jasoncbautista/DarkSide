@@ -750,17 +750,37 @@ setupSettings(Sqor);
             });
         },
 
+        _getNumberOfRows: function(){
+            var self = this;
+            var cellCount = self._dataDelegate.getNumberOfCells();
+            var maxColumns = self._options.maxColumns;
+            var result =  Math.ceil(cellCount/maxColumns);
+            return result;
+        },
+
+        _getMaxCellsPerRow: function(){
+            var self = this;
+            return self._getNumberOfColumns();
+        }
+
+        _getNumberOfColumns: function(){
+            var self = this;
+            return self._options.maxColumns;
+        },
+
         /**
          * Renders the table by loading each cell from the dataDelegate.
          * @return {Null}
          */
-
         _render: function(){
             var self = this;
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
             var cellCount = self._dataDelegate.getNumberOfCells();
             // Render each cell by calling into our delegate
+            // TODO: do this with a Tempalte.. real one..
+            var currentIndex = 0;
             for(var ii = 0; ii < cellCount; ii++){
+                var columnDOM = $("<div></div>");
                 var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
                 cellsContainer.append(currentCellDOM);
             }
@@ -1500,7 +1520,7 @@ $(document).ready(function(){
             },
 
             getCellAtIndex:  function(index){
-                return $("<div class='SQOR_fakeCell'><h2>" + index + "</h2></div>");
+                return $("<span class='SQOR_fakeCell'>" + index + "</span>");
             }
         };
 
