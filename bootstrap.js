@@ -671,6 +671,59 @@ setupSettings(Sqor);
     Sqor.Widgets.SimpleTable = SimpleTable;
 })(Sqor);
 
+
+// SimpleGrid.js
+(function(Sqor) {
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var SimpleGrid = function(options){
+        var self = this;
+        var defaults = {
+                parentElement: null
+            ,   renderedCallback: $.noop
+            , templateValues: {
+                    "className": null
+                }
+            , dataDelegate: {
+                "getNumberOfCells": function(){
+                    return 0;
+                },
+                "getCellAtIndex": function(index){
+                    return $("");
+                }
+            }
+        };
+        self._delegates = [];
+        self._options = _.extend({}, defaults, options);
+        self._dataDelegate = self._options.dataDelegate;
+        self.create(self._options);
+    };
+
+    _.extend(SimpleGrid.prototype, {
+        create: function(options){
+            var self = this;
+            // Setup our  holder element:
+            self._el = HTML.createSpinnerHolder();
+            self._el.empty();
+            self._el.append(HTML.getSpinner());
+            HTML.get("simpleGrid", self._options.templateValues,
+            function(domElement){
+                self._el.empty();
+                self._el.append(domElement);
+                self._render();
+                self._options.renderedCallback(self._el, domElement);
+            });
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
+
+    Sqor.Widgets.SimpleGrid = SimpleGrid;
+})(Sqor);
 // DynamicTable.js
 (function(Sqor) {
     // Dependencies
