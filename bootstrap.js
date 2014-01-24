@@ -717,6 +717,10 @@ setupSettings(Sqor);
                 }
             }
         };
+
+        // TODO: add 'displayDelegate' ... and a fake one..
+        // so we can do reload and display in this mode with these many
+        // rows...
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
         self._dataDelegate = self._options.dataDelegate;
@@ -1491,13 +1495,12 @@ $(document).ready(function(){
 
     var runSimpleGrid = function(count) {
         var dataDelegate = {
-            cellCount: function() {
-                var self = this;
-                return self._count;
+            getNumberOfCells: function() {
+                return count;
             },
 
-            cellAtIndex:  function(index){
-                return $("<div><h2>" + index + "</h2></div>");
+            getCellAtIndex:  function(index){
+                return $("<div class='SQOR_fakeCell'><h2>" + index + "</h2></div>");
             }
         };
 
@@ -1511,10 +1514,10 @@ $(document).ready(function(){
             dataDelegate: dataDelegate
         };
         var grid = new Sqor.Widgets.SimpleGrid(options);
-        $("body").append(c.getDomElement());
+        $("body").append(grid.getDomElement());
     };
 
-    runSimpleGrid();
+    runSimpleGrid(10);
     // runSimpleDynamicTableModule();
     // runComplexTable();
 });
