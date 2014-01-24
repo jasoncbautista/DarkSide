@@ -761,7 +761,7 @@ setupSettings(Sqor);
         _getMaxCellsPerRow: function(){
             var self = this;
             return self._getNumberOfColumns();
-        }
+        },
 
         _getNumberOfColumns: function(){
             var self = this;
@@ -779,10 +779,20 @@ setupSettings(Sqor);
             // Render each cell by calling into our delegate
             // TODO: do this with a Tempalte.. real one..
             var currentIndex = 0;
-            for(var ii = 0; ii < cellCount; ii++){
-                var columnDOM = $("<div></div>");
-                var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
-                cellsContainer.append(currentCellDOM);
+            var rowCount = self._getNumberOfRows();
+            var columnCount = self._getNumberOfColumns();
+
+            for(var rr  = 0; rr < rowCount ; rr++){
+                var rowDom = $("<div></div>");
+                for(var cc = 0; cc < columnCount; cc++) {
+                    if (currentIndex < cellCount) {
+                        var currentCellDOM =
+                            self._dataDelegate.getCellAtIndex(currentIndex);
+                        currentIndex++;
+                    }
+                }
+                rowDom.append(currentCellDOM);
+                cellsContainer.append(rowDom);
             }
         },
 
@@ -1537,7 +1547,7 @@ $(document).ready(function(){
         $("body").append(grid.getDomElement());
     };
 
-    runSimpleGrid(10);
+    runSimpleGrid(12);
     // runSimpleDynamicTableModule();
     // runComplexTable();
 });
