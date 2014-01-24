@@ -703,7 +703,7 @@ setupSettings(Sqor);
         var defaults = {
                 parentElement: null
             ,   renderedCallback: $.noop
-            ,   maxColumns: 2
+            ,   maxColumns: 5
             ,   graphingMode: CONSTANTS.ROWS_FIRST
             , templateValues: {
                     "className": null
@@ -782,17 +782,28 @@ setupSettings(Sqor);
             var rowCount = self._getNumberOfRows();
             var columnCount = self._getNumberOfColumns();
 
+            // TODO: if ROWS_FIRST CONSTANT
+            // We loop over our rows, and create
+            //  make into function
             for(var rr  = 0; rr < rowCount ; rr++){
-                var rowDom = $("<div></div>");
+                // Create our holder row
+                // [ ----- row ----------]
+                var rowDOM = $("<div></div>");
+                // Now we loop over and insert each cell for a given column
+                // at that row level:
+                // [ ------- last row full ---]
+                // [ [cell0 | cell1 ........  ]
                 for(var cc = 0; cc < columnCount; cc++) {
+                    // Make sure we haven't gone over
                     if (currentIndex < cellCount) {
                         var currentCellDOM =
                             self._dataDelegate.getCellAtIndex(currentIndex);
                         currentIndex++;
+                        rowDOM.append(currentCellDOM);
+                    } else {
                     }
                 }
-                rowDom.append(currentCellDOM);
-                cellsContainer.append(rowDom);
+                cellsContainer.append(rowDOM);
             }
         },
 
