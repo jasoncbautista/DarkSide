@@ -24,6 +24,7 @@ var initialize = function(){
 
 // settings.js
 var setupSettings = function(Sqor){
+    Sqor.CONSTANTS  = {};
     //Sqor.Settings.Server = "http://sqor.com";
     Sqor.Settings.Server = "";
     //Sqor.Settings.RestAPI = "/rest/api";
@@ -679,11 +680,31 @@ setupSettings(Sqor);
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    // Constants for this specific class
+    Sqor.CONSTANTS.SimpleGrid = {
+            ROWS_FIRST: "rows_first"
+        ,   COLUMNS_FIRST: "columns_first"
+    };
+
+    var CONSTANTS = Sqor.CONSTANTS.SimpleGrid;
+
+    // TODO document usage
+    /**
+     * A simple grid that can be used to graph anything from a simple one
+     * column table to a multi-dimensional.
+     * @param {object} options,
+     * @return {Null}
+     */
+    // TODO: test edge cases for maxColumn: 0, 1,
+    // TODO: what are valid default values?
+    //          --- some type of error handling library would be super cool
     var SimpleGrid = function(options){
         var self = this;
         var defaults = {
                 parentElement: null
             ,   renderedCallback: $.noop
+            ,   maxColumns: 2
+            ,   graphingMode: CONSTANTS.ROWS_FIRST
             , templateValues: {
                     "className": null
                 }
@@ -703,6 +724,13 @@ setupSettings(Sqor);
     };
 
     _.extend(SimpleGrid.prototype, {
+
+        /**
+         * Creates a simple grid widget, which will allow us to create
+         * simple tables side by side of same or similar sizes
+         * @param {type} options,
+         * @return {Null}
+         */
         create: function(options){
             var self = this;
             // Setup our  holder element:
@@ -716,6 +744,65 @@ setupSettings(Sqor);
                 self._render();
                 self._options.renderedCallback(self._el, domElement);
             });
+        },
+
+        /**
+         * Renders the table by loading each cell from the dataDelegate.
+         * @return {Null}
+         */
+
+        _render: function(){
+            var self = this;
+            var cellsContainer = self._el.find(".SQOR_cellsContainer");
+            var cellCount = self._dataDelegate.getNumberOfCells();
+            // Render each cell by calling into our delegate
+            for(var ii = 0; ii < cellCount; ii++){
+                var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
+                cellsContainer.append(currentCellDOM);
+            }
+        },
+
+        /**
+         * Set's the current dataDelegate to specifcy cells, and count.
+         * @param {object} delegate, dataDelegate containing key methods
+         * @return {Null}
+         */
+        setDataDelegate: function(delegate){
+            var self = this;
+            self._dataDelegate = delegate;
+        },
+
+        /**
+         * Returns the jQuery dom element representing the SimpleTable
+         * @return {object}, jQuery object
+         */
+        getDomElement: function(){
+            var self = this;
+            return self._el;
+        },
+
+       /**
+        * A delegate method we expose as a way to be notified when we should
+        * rerender.
+        *
+        * @return {Null}
+        */
+       dataChanged: function(){
+            var self = this;
+            self.rerender();
+        },
+
+        /**
+         * Helper function to rerender (after everything has already been
+         * rendered).
+         * @return {Null}
+         */
+        rerender: function(){
+            var self = this;
+            var cellsContainer = self._el.find(".SQOR_cellsContainer");
+            cellsContainer.empty();
+
+            self._render();
         },
 
         // Workaround for annoying last comma rule.
@@ -1402,7 +1489,33 @@ $(document).ready(function(){
         window._c = c;
     };
 
-    runSimpleDynamicTableModule();
+    var runSimpleGrid = function(count) {
+        var dataDelegate = {
+            cellCount: function() {
+                var self = this;
+                return self._count;
+            },
+
+            cellAtIndex:  function(index){
+                return $("<div><h2>" + index + "</h2></div>");
+            }
+        };
+
+        /**
+         * A simple dummy delegate method used to test our table.
+         * @param {type} index,
+         * @return {Null}
+         */
+
+        var options = {
+            dataDelegate: dataDelegate
+        };
+        var grid = new Sqor.Widgets.SimpleGrid(options);
+        $("body").append(c.getDomElement());
+    };
+
+    runSimpleGrid();
+    // runSimpleDynamicTableModule();
     // runComplexTable();
 });
 
