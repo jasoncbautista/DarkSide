@@ -686,6 +686,7 @@ setupSettings(Sqor);
         ,   COLUMNS_FIRST: "columns_first"
     };
 
+    // TODO: displayDelegate
     var CONSTANTS = Sqor.CONSTANTS.SimpleGrid;
 
     // TODO document usage
@@ -703,8 +704,11 @@ setupSettings(Sqor);
         var defaults = {
                 parentElement: null
             ,   renderedCallback: $.noop
-            ,   maxColumns: 5
-            ,   graphingMode: CONSTANTS.ROWS_FIRST
+            , displayDelegate: {
+                     maxColumns: function(){ return 2}
+                ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST}
+
+            }
             , templateValues: {
                     "className": null
                 }
@@ -753,7 +757,7 @@ setupSettings(Sqor);
         _getNumberOfRows: function(){
             var self = this;
             var cellCount = self._dataDelegate.getNumberOfCells();
-            var maxColumns = self._options.maxColumns;
+            var maxColumns = self._options.displayDelegate.maxColumns();
             var result =  Math.ceil(cellCount/maxColumns);
             return result;
         },
@@ -765,7 +769,7 @@ setupSettings(Sqor);
 
         _getNumberOfColumns: function(){
             var self = this;
-            return self._options.maxColumns;
+            return self._options.displayDelegate.maxColumns();
         },
 
         /**
@@ -1535,6 +1539,7 @@ $(document).ready(function(){
     };
 
     var runSimpleGrid = function(count) {
+
         var dataDelegate = {
             getNumberOfCells: function() {
                 return count;
