@@ -409,7 +409,7 @@ setupSettings(Sqor);
 
         _handleFetch: function(response, successHandler, params){
             var rows = response.rows;
-            self._rawData = rows;
+            self._rawData = self._rawData.concat(rows);
             self._sortedData = self._rawData.concat([]);
             successHandler(self._rawData);
             self._notifyDelegates("dataChanged");
