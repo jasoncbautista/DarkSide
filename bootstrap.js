@@ -25,10 +25,10 @@ var initialize = function(){
 // settings.js
 var setupSettings = function(Sqor){
     Sqor.CONSTANTS  = {};
-    //Sqor.Settings.Server = "http://sqor.com";
-    Sqor.Settings.Server = "";
+    //Sqor.Settings.Server = "";
     //Sqor.Settings.RestAPI = "/rest/api";
-    Sqor.Settings.RestAPI = "/fakeRestAPI";
+    Sqor.Settings.Server = "http://sqor.com";
+    Sqor.Settings.RestAPI = "/rest";
     Sqor.Settings.FeedAPI = "/rest/feed/api";
 };
 
@@ -157,6 +157,7 @@ setupSettings(Sqor);
     Sqor.Core.Eventer = Eventer;
 })(Sqor);
 
+//Messenger.js
 (function(Sqor){
     // Dependencies:
     var $ = Sqor.$;
@@ -330,7 +331,7 @@ setupSettings(Sqor);
                 self.save();
             }
             self.trigger(propertyName, {data: self._rawData, newValue: value});
-        },,
+        },
 
         /**
          * Simple function to help load our data into local varible
@@ -353,7 +354,6 @@ setupSettings(Sqor);
     Sqor.Core.Model = Model;
 })(Sqor);
 
-
 // SimpleCollection.js
 (function(Sqor) {
     // Dependencies:
@@ -366,15 +366,30 @@ setupSettings(Sqor);
     var SimpleCollection = function(options){
         var self = this;
         var defaults = {
-            model: Sqor.Models.Generic
+                model: Sqor.Core.Model
+            ,   path: "/"
+            ,   fetchAll: false
         };
+
+        self._options = _.extend({}, defaults, options);
+        self.create();
     };
 
     _.extend(SimpleCollection, {
+        create: function(){
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
     });
 
     Sqor.Core.SimpleCollection = SimpleCollection;
 })(Sqor);
+
+
+// StaticCollection.js
+//  Supports sorting, etc.
+//  Filtering
 
 // Collection.js
 (function(Sqor) {
@@ -766,7 +781,7 @@ setupSettings(Sqor);
 
     var ExampleGridController = function(options){
         var self = this;
-        self.create(options):
+        self.create(options);
     };
 
     _.extend(ExampleGridController.prototype, {
@@ -1683,7 +1698,6 @@ $(document).ready(function(){
          * @param {type} index,
          * @return {Null}
          */
-
         var options = {
             dataDelegate: dataDelegate
         };
@@ -1692,7 +1706,7 @@ $(document).ready(function(){
     };
 
     runSimpleGrid(13);
-     //runSimpleDynamicTableModule();
+    //runSimpleDynamicTableModule();
     // runComplexTable();
 });
 
