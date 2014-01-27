@@ -368,15 +368,60 @@ setupSettings(Sqor);
         var defaults = {
                 model: Sqor.Core.Model
             ,   path: "/"
+            ,   successHandler: $.noop
             ,   fetchAll: false
+            ,  sortOnKey: "id"
         };
 
         self._options = _.extend({}, defaults, options);
+        self._rawData = [];
+        self._sortedData = [];
         self.create();
     };
 
+    SimpleCollection.prototype = new Eventer();
+
     _.extend(SimpleCollection, {
         create: function(){
+            var self = this;
+            self._itemsInCollection = 0;
+
+            if (self._options.fetchAll) {
+                self.fetchAll(self._options.successHandler);
+            }
+        },
+
+        fetchAll: function(successHandler){
+            var self = this;
+            var params = {
+                    sport: "nba"
+                ,   limit: 100
+                ,   offset: 0
+            };
+            // TODO: fix and make recurisve
+            var request = Messenger.request("GET". self._options.path, params);
+            request.done(function(response){
+                self._handleFetch(response, successHandler, params);
+            });
+        },
+
+        _handleFetch: function(response, successHandler, params){
+            var rows = response.rows;
+            self._rawData = rows;
+            self._sortedData = self._rawData.concat([]);
+        },
+
+        _resort: function(keyToSortOn){
+            var self = this;
+            self._sortedData = _.sortBy(self._rawData, function(item){
+                return item[keyToSortOn];
+            });
+        },
+
+        getSorted: function(keyToSortOn){
+            var self = this;
+            self._resort(keyToSortOn);
+            return self._sortedData;
         },
 
         // Workaround for annoying last comma rule.
