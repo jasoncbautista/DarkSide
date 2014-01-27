@@ -369,11 +369,13 @@ setupSettings(Sqor);
                 model: Sqor.Core.Model
             ,   path: "/"
             ,   successHandler: $.noop
+            ,   delegates: []
             ,   fetchAll: false
             ,  sortOnKey: "id"
         };
 
         self._options = _.extend({}, defaults, options);
+        self._delegates = self._options.delegates;
         self._rawData = [];
         self._sortedData = [];
         self.create();
@@ -409,6 +411,32 @@ setupSettings(Sqor);
             var rows = response.rows;
             self._rawData = rows;
             self._sortedData = self._rawData.concat([]);
+            successHandler(self._rawData);
+            self._notifyDelegates("dataChanged");
+        },
+
+        /**
+         * Calls all delegates listening for dataChanges
+         * @return {Null}
+         */
+        _notifyDelegates: function(methodName, _arguments){
+            var self = this;
+            var args = _arguments;
+            _.each(self._delegates, function(delegate) {
+                if (_.isReal(delegate[methodName])) {
+                    delegate[methodName].apply(delegate, args);
+                }
+            });
+        },
+
+        /**
+         * Adds a delegate to our list of delegates
+         * @param {object} delegate,
+         * @return {Null}
+         */
+        addDelegate: function(delegate){
+            var self = this;
+            self._delegates.push(delegate);
         },
 
         _resort: function(keyToSortOn){
@@ -1486,7 +1514,7 @@ setupSettings(Sqor);
          * Calls all delegates listening for dataChanges
          * @return {Null}
          */
-        _callDelegates: function(type, count, methodName){
+        _notifyDelegates: function(type, count, methodName){
             var self = this;
             var args = arguments;
             _.each(self._delegates, function(delegate) {
@@ -1536,7 +1564,7 @@ setupSettings(Sqor);
          */
         prependItems: function(count) {
             var self = this;
-            self._callDelegates("prepend", count, "dataChanged");
+            self._notifyDelegates("prepend", count, "dataChanged");
         },
 
         /**
@@ -1546,7 +1574,7 @@ setupSettings(Sqor);
          */
         appendItems: function(count) {
             var self = this;
-            self._callDelegates("append", count, "dataChanged");
+            self._notifyDelegates("append", count, "dataChanged");
         },
 
 
