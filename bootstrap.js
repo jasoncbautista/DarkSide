@@ -279,6 +279,7 @@ setupSettings(Sqor);
      * @return {Null}
      */
     var Model = function(options){
+
     };
 
     Model.prototype = new Sqor.Core.Eventer();
@@ -673,6 +674,52 @@ setupSettings(Sqor);
 })(Sqor);
 
 
+// ExampleGridController.js
+(function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    var ExampleGridController = function(options){
+    };
+
+    _.extend(ExampleGridController.prototype, {
+
+        /**
+         * Siple create function to setup model and view along with delegates.
+         * @return {Null}
+         */
+        create: function(){
+            var self = this;
+            self._model = new Sqor.Modules.FeedListModel();
+            var tableViewOptions = {
+                dataDelegate: self
+            };
+
+            self._modelCount = 0;
+            self._model.addDelegate(self);
+            self._tableView = new Sqor.Widgets.DynamicTable(tableViewOptions);
+            self._footerView = new Sqor.Widgets.FeedFooter();
+            self._model.addDelegate(self._tableView);
+
+            // TODO: fix this, use actual template:
+            self._el = $("<div></div");
+            self._el.append(self._tableView.getDomElement());
+            self._el.append(self._footerView.getDomElement());
+            self._bindScroll();
+            self._lastLoadedReturned = true;
+            self._loadMoreDataIfNeeded();
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+
+    });
+
+
+})(Sqor);
+
 // SimpleGrid.js
 (function(Sqor) {
     // Dependencies
@@ -705,7 +752,7 @@ setupSettings(Sqor);
                 parentElement: null
             ,   renderedCallback: $.noop
             , displayDelegate: {
-                     maxColumns: function(){ return 2}
+                     maxColumns: function(){ return 5}
                 ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST}
 
             }
@@ -1563,8 +1610,8 @@ $(document).ready(function(){
         $("body").append(grid.getDomElement());
     };
 
-    runSimpleGrid(12);
-    // runSimpleDynamicTableModule();
+    runSimpleGrid(13);
+     //runSimpleDynamicTableModule();
     // runComplexTable();
 });
 
