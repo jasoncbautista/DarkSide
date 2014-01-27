@@ -693,31 +693,24 @@ setupSettings(Sqor);
         create: function(){
             var self = this;
             self._model = new Sqor.Modules.FeedListModel();
-            var tableViewOptions = {
+            var gridViewOptions = {
                 dataDelegate: self
+                // , displayDelegate: self
             };
 
             self._modelCount = 0;
             self._model.addDelegate(self);
-            self._tableView = new Sqor.Widgets.DynamicTable(tableViewOptions);
-            self._footerView = new Sqor.Widgets.FeedFooter();
-            self._model.addDelegate(self._tableView);
+            self._gridView= new Sqor.Widgets.DynamicTable(gridViewOptions);
+            self._model.addDelegate(self._gridView);
 
             // TODO: fix this, use actual template:
             self._el = $("<div></div");
-            self._el.append(self._tableView.getDomElement());
-            self._el.append(self._footerView.getDomElement());
-            self._bindScroll();
-            self._lastLoadedReturned = true;
-            self._loadMoreDataIfNeeded();
+            self._el.append(self._gridView.getDomElement());
         },
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
-
     });
-
-
 })(Sqor);
 
 // SimpleGrid.js
