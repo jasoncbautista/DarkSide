@@ -396,10 +396,9 @@ setupSettings(Sqor);
 
         fetchAll: function(successHandler){
             var self = this;
-
             var params = self._options.urlParams;
             // TODO: fix and make recurisve
-            var request = Messenger.request("GET". self._options.path, params);
+            var request = Messenger.request("GET", self._options.path, params);
             request.done(function(response){
                 self._handleFetch(response, successHandler, params);
             });
