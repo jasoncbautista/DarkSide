@@ -455,9 +455,12 @@ setupSettings(Sqor);
             });
         },
 
-        getSorted: function(keyToSortOn){
+        getSorted: function(keyToSortOn, dontTriggerDataChange){
             var self = this;
             self._resort(keyToSortOn);
+            if (!dontTriggerDataChange){
+                self._notifyDelegates("dataChanged");
+            }
             return self._sortedData;
         },
 
@@ -895,12 +898,7 @@ setupSettings(Sqor);
                 // , displayDelegate: self
             };
 
-            self._modelCount = 0;
-            var viewOptions = {
-                dataDelegate: self
-            };
-            self._gridView = new Sqor.Widgets.SimpleGrid(viewOptions);
-
+            self._gridView = new Sqor.Widgets.SimpleGrid(gridViewOptions);
             self._models.addDelegate(self._gridView);
 
             // TODO: fix this, use actual template:
