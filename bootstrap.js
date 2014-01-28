@@ -231,7 +231,8 @@ setupSettings(Sqor);
            var handle = {};
            if (type === "GET") {
                 var getParams = self._serializeGetParams(data);
-                handle = $.get(url + getParams);
+                var urlWithGetParams = url + "?" +  getParams;
+                handle = $.get(urlWithGetParams);
            } else {
                handle = $.ajax({
                    type: type
