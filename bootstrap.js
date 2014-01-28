@@ -1835,8 +1835,19 @@ $(document).ready(function(){
         $("body").append(grid.getDomElement());
     };
 
-    runSimpleGrid(13);
+    runDataGrid = function(){
+        var c = new Sqor.Modules.ExampleGridController();
+        $("body").append(c.getDomElement());
+        //append to Model
+        // c._model.appendItems(10);
+        // c._model.prepend(10);
+        window._c = c;
+
+    };
+
+    //runSimpleGrid(13);
     //runSimpleDynamicTableModule();
     // runComplexTable();
+    runDataGrid();
 });
 
