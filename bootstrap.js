@@ -877,7 +877,7 @@ setupSettings(Sqor);
             var defaultModelOptions= {
                     path: "/sports/teams"
                 ,   fetchAll: true
-                ,   params: {
+                ,   urlParams: {
                         sport: "nba"
                     ,   limit: 100
                     ,   offset: 0
