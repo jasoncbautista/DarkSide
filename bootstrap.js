@@ -368,6 +368,7 @@ setupSettings(Sqor);
         var defaults = {
                 model: Sqor.Core.Model
             ,   path: "/"
+            ,   urlParams: {}
             ,   successHandler: $.noop
             ,   delegates: []
             ,   fetchAll: false
@@ -395,11 +396,8 @@ setupSettings(Sqor);
 
         fetchAll: function(successHandler){
             var self = this;
-            var params = {
-                    sport: "nba"
-                ,   limit: 100
-                ,   offset: 0
-            };
+
+            var params = self._options.urlParams;
             // TODO: fix and make recurisve
             var request = Messenger.request("GET". self._options.path, params);
             request.done(function(response){
@@ -427,6 +425,16 @@ setupSettings(Sqor);
                     delegate[methodName].apply(delegate, args);
                 }
             });
+        },
+
+        getItem: function(index){
+            var self = this;
+            return self._sortedData[index];
+        },
+
+        length: function(){
+            var self = this;
+            return self._rawData.length;
         },
 
         /**
@@ -866,10 +874,21 @@ setupSettings(Sqor);
          */
         create: function(options){
             var self = this;
-            var modelOptions = {
+            var defaultModelOptions= {
+                    path: "/sports/teams"
                 ,   fetchAll: true
+                ,   params = {
+                        sport: "nba"
+                    ,   limit: 100
+                    ,   offset: 0
+                }
             };
-            self._model = new Sqor.Modules.FeedListModel();
+
+            var modelOptions = _.extend({}
+                , defaultModelOptions
+                , options.modelOptions);
+
+            self._models = new Sqor.Core.SimpleCollection(modelOptions);
             var gridViewOptions = {
                     dataDelegate: self
                 // , displayDelegate: self
@@ -877,8 +896,8 @@ setupSettings(Sqor);
 
             self._modelCount = 0;
             self._gridView= new Sqor.Widgets.DynamicTable(gridViewOptions);
-            self._model.addDelegate(self._gridView);
-            self._model.addDelegate(self._gridView);
+            self._models.addDelegate(self._gridView);
+            self._models.addDelegate(self._gridView);
 
             // TODO: fix this, use actual template:
             self._el = $("<div></div");
@@ -905,9 +924,18 @@ setupSettings(Sqor);
          */
         getCellAtIndex: function(index) {
             var self = this;
-            var model = self._model._items[index].doc;
+            var model = self._models._items[index].doc;
             var displayCard = self._getWidgeForType(model);
             return displayCard.getDomElement();
+        },
+
+        /**
+         * Returns number of cells by calling on model:
+         * @return {number} size of table
+         */
+        getNumberOfCells: function(){
+            var self = this;
+            return self._models.length();
         },
 
         // Workaround for annoying last comma rule.
