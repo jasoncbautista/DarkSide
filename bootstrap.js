@@ -929,7 +929,16 @@ setupSettings(Sqor);
             var model = self._models.getItem(index);
             // var displayCard = self._getWidgeForType(model);
             // return displayCard.getDomElement();
-            return $("<div>" + model.id + "<div>");
+            var options = {
+                title: model.name
+                , subtitle: model.division + " - " + model.location
+                , author: ""
+                , imageURI: ""
+                , externalURI: ""
+            };
+
+            var displayCard  = new Sqor.Widgets.DisplayCard(options);
+            return displayCard.getDomElement();
         },
 
         /**
