@@ -214,7 +214,7 @@ setupSettings(Sqor);
         requestRestAPI: function(type, path, data){
             var self = this;
             path = Sqor.Settings.RestAPI + path;
-            self.request(type, path, data);
+            return self.request(type, path, data);
         },
 
         /**
@@ -398,7 +398,7 @@ setupSettings(Sqor);
             var self = this;
             var params = self._options.urlParams;
             // TODO: fix and make recurisve
-            var request = Messenger.request("GET", self._options.path, params);
+            var request = Messenger.requestRestAPI("GET", self._options.path, params);
             request.done(function(response){
                 self._handleFetch(response, successHandler, params);
             });
