@@ -991,8 +991,8 @@ setupSettings(Sqor);
                 parentElement: null
             ,   renderedCallback: $.noop
             , displayDelegate: {
-                     maxColumns: function(){ return 5}
-                ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST}
+                     maxColumns: function(){ return 5;}
+                ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST;}
 
             }
             , templateValues: {
@@ -1847,8 +1847,16 @@ $(document).ready(function(){
         $("body").append(grid.getDomElement());
     };
 
-    runDataGrid = function(){
-        var c = new Sqor.Modules.ExampleGridController({modelOptions: {}});
+    var runDataGrid = function(){
+        var playerModelOptions = {
+                    path: "/sports/players"
+                ,   fetchAll: true
+                ,   urlParams: {
+                        team_id: 32043
+                    ,   limit: 30000
+                }
+        };
+        var c = new Sqor.Modules.ExampleGridController({modelOptions: playerModelOptions});
         $("body").append(c.getDomElement());
         //append to Model
         // c._model.appendItems(10);
