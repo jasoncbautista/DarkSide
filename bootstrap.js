@@ -384,7 +384,7 @@ setupSettings(Sqor);
 
     SimpleCollection.prototype = new Eventer();
 
-    _.extend(SimpleCollection, {
+    _.extend(SimpleCollection.prototype, {
         create: function(){
             var self = this;
             self._itemsInCollection = 0;
@@ -942,6 +942,7 @@ setupSettings(Sqor);
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
+    Sqor.Modules.ExampleGridController = ExampleGridController;
 })(Sqor);
 
 // ExampleGridModel.js
@@ -1836,7 +1837,7 @@ $(document).ready(function(){
     };
 
     runDataGrid = function(){
-        var c = new Sqor.Modules.ExampleGridController();
+        var c = new Sqor.Modules.ExampleGridController({modelOptions: {}});
         $("body").append(c.getDomElement());
         //append to Model
         // c._model.appendItems(10);
