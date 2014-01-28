@@ -896,7 +896,10 @@ setupSettings(Sqor);
             };
 
             self._modelCount = 0;
-            self._gridView = new Sqor.Widgets.SimpleGrid(options);
+            var viewOptions = {
+                dataDelegate: self
+            };
+            self._gridView = new Sqor.Widgets.SimpleGrid(viewOptions);
 
             self._models.addDelegate(self._gridView);
 
