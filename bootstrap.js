@@ -931,7 +931,7 @@ setupSettings(Sqor);
             // return displayCard.getDomElement();
             var options = {
                 title: model.name
-                , subtitle: "" //model.division + " - " + model.location
+                , subtitle: model.first_name + " " + model.last_name
                 , author: ""
                 , imageURI: ""
                 , externalURI: ""
