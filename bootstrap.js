@@ -927,7 +927,7 @@ setupSettings(Sqor);
             var model = self._models.getItem(index);
             // var displayCard = self._getWidgeForType(model);
             // return displayCard.getDomElement();
-            return $("<div>" + model.id "<div>");
+            return $("<div>" + model.id + "<div>");
         },
 
         /**
