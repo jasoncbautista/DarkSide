@@ -308,7 +308,6 @@ setupSettings(Sqor);
             self._loadData(self._options.data);
         },
 
-
         save: function(newProperties){
             // TODO: implement
         },
@@ -345,6 +344,7 @@ setupSettings(Sqor);
             if (shouldNotify) {
             }
         },
+
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
@@ -1456,7 +1456,6 @@ setupSettings(Sqor);
                 options.summary= model.content;
             } else {
                 console.log(model.type);
-                debugger;
                 // TODO: implement generic widget
             }
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
