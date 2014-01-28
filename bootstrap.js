@@ -991,7 +991,7 @@ setupSettings(Sqor);
                 parentElement: null
             ,   renderedCallback: $.noop
             , displayDelegate: {
-                     maxColumns: function(){ return 5;}
+                     maxColumns: function(){ return 2;}
                 ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST;}
 
             }
@@ -1856,6 +1856,8 @@ $(document).ready(function(){
                     ,   limit: 30000
                 }
         };
+        //var playerModelOptions = {};
+
         var c = new Sqor.Modules.ExampleGridController({modelOptions: playerModelOptions});
         $("body").append(c.getDomElement());
         //append to Model
