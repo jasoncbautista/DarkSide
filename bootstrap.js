@@ -851,6 +851,7 @@ setupSettings(Sqor);
     var HTML = Sqor.Services.HTML;
     var $ = Sqor.$;
     var _ = Sqor._;
+    var SimpleCollection = Sqor.Core.SimpleCollection;
 
     var ExampleGridController = function(options){
         var self = this;
@@ -865,20 +866,48 @@ setupSettings(Sqor);
          */
         create: function(options){
             var self = this;
+            var modelOptions = {
+                ,   fetchAll: true
+            };
             self._model = new Sqor.Modules.FeedListModel();
             var gridViewOptions = {
-                dataDelegate: self
+                    dataDelegate: self
                 // , displayDelegate: self
             };
 
             self._modelCount = 0;
-            self._model.addDelegate(self);
             self._gridView= new Sqor.Widgets.DynamicTable(gridViewOptions);
+            self._model.addDelegate(self._gridView);
             self._model.addDelegate(self._gridView);
 
             // TODO: fix this, use actual template:
             self._el = $("<div></div");
             self._el.append(self._gridView.getDomElement());
+        },
+
+        /**
+         * A simple way to return the DOM element representing this controller
+         * @return {object} jquery DOM element
+         */
+        getDomElement: function(){
+            var self = this;
+            return self._el;
+        },
+
+        /**********************************************************************
+         *  Delegate API Methods Implemented
+         *********************************************************************/
+
+        /**
+         * Simple function to return a DOM element for a given cell position.
+         * @param {number} index,
+         * @return {Object} jquery Object
+         */
+        getCellAtIndex: function(index) {
+            var self = this;
+            var model = self._model._items[index].doc;
+            var displayCard = self._getWidgeForType(model);
+            return displayCard.getDomElement();
         },
 
         // Workaround for annoying last comma rule.
