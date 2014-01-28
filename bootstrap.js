@@ -405,6 +405,7 @@ setupSettings(Sqor);
         },
 
         _handleFetch: function(response, successHandler, params){
+            var self = this;
             var rows = response.rows;
             self._rawData = self._rawData.concat(rows);
             self._sortedData = self._rawData.concat([]);
