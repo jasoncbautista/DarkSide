@@ -895,8 +895,8 @@ setupSettings(Sqor);
             };
 
             self._modelCount = 0;
-            self._gridView= new Sqor.Widgets.DynamicTable(gridViewOptions);
-            self._models.addDelegate(self._gridView);
+            self._gridView = new Sqor.Widgets.SimpleGrid(options);
+
             self._models.addDelegate(self._gridView);
 
             // TODO: fix this, use actual template:
@@ -924,9 +924,10 @@ setupSettings(Sqor);
          */
         getCellAtIndex: function(index) {
             var self = this;
-            var model = self._models._items[index].doc;
-            var displayCard = self._getWidgeForType(model);
-            return displayCard.getDomElement();
+            var model = self._models.getItem(index);
+            // var displayCard = self._getWidgeForType(model);
+            // return displayCard.getDomElement();
+            return $("<div>" + model.id "<div>");
         },
 
         /**
