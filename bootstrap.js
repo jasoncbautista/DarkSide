@@ -165,10 +165,29 @@ setupSettings(Sqor);
     var Eventer = Sqor.Core.Eventer;
 
     var Router = function(){
+        var self = this;
+        self._routes = []; // TODO: {}
     };
 
      Router.prototype.eventer = new Eventer();
     _.extend(Router.prototype, {
+        addRoutes: function(routes){
+            var self = this;
+            _.each(routes, function(route){
+                self.addRoute(route.key, route.pattern);
+            });
+        },
+
+        addRoute: function(key, routePathPattern){
+            var self = this;
+            self._routes.push({
+                    "key": key
+                ,   "pathPattern": routePathPattern
+            });
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
     });
 
     Sqor.Core.Router = new Router();
