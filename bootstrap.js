@@ -25,8 +25,6 @@ var initialize = function(){
 // settings.js
 var setupSettings = function(Sqor){
     Sqor.CONSTANTS  = {};
-    //Sqor.Settings.Server = "";
-    //Sqor.Settings.RestAPI = "/rest/api";
     Sqor.Settings.Server = "http://sqor.com";
     Sqor.Settings.RestAPI = "/rest";
     Sqor.Settings.FeedAPI = "/rest/feed/api";
@@ -74,6 +72,7 @@ setupSettings(Sqor);
         /**
          *  A simple helper to add the event to our event map and return
          *  a functio to make it easy to unbind.
+         *
          * @param {string} eventName, name of the event to subscribe to
          * @param {string} id, unieque id associated with handler
          * @param {function} handler, callback function to trigger on event
@@ -88,7 +87,8 @@ setupSettings(Sqor);
                 self._subscrptions[eventName] = {};
                 subscriptionsForEvent = self._subscrptions[eventName];
             }
-            // Finally, we add our subscription
+
+            // Finally, we add our subscription.
             //
             // WARNING: a very rare problem would be to add two subscriptions
             // with the same id, potential solution is to loop on
@@ -212,8 +212,10 @@ setupSettings(Sqor);
             });
         },
 
-        // TODO: onReady... notify all who depend on us
+        getKeyForPath: function(urlPath) {
+        },,
 
+        // TODO: onReady... notify all who depend on us
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
