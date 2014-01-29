@@ -2,7 +2,9 @@
 Wed 1/29/2014
 [/][70] simple router - 1hr
 [x] watch video on JS static analysis 50  minutes
+[x] researched various static analysis tools, setup Plato on Jenkins with Noah
 [ ] setup example where a module is loaded by going to a route  path - 30 min
+
 [ ] setup linter  - 1hr 
 [ ] setup web hooks
 [ ] test out bluebird - 1hr
