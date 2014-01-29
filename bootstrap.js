@@ -16,7 +16,7 @@ var initialize = function(){
     Sqor.Services = {};
     Sqor.Settings = {};
     Sqor.TP = {};
-    // TODO FIX THIS:
+    // TODO(Jason): FIX THIS:
     Sqor.$ = $;
     Sqor._ = _;
     return Sqor;
@@ -157,7 +157,6 @@ setupSettings(Sqor);
     Sqor.Core.Eventer = Eventer;
 })(Sqor);
 
-
 //Router.js
 (function(Sqor){
     var $ = Sqor.$;
@@ -166,13 +165,13 @@ setupSettings(Sqor);
 
     var Router = function(){
         var self = this;
-        self._routes = []; // TODO: {}
+        self._routes = []; // TODO(Jason): {}
     };
 
      /**
       * Router is a static class that will be available as one instance
-      * that takes care of notifying anyone that cares about events that
-      * just happened.
+      * (singleton) that takes care of notifying anyone that cares about events
+      * that just happened.
       *
       * @constructor
       * @return {Null}
@@ -215,7 +214,7 @@ setupSettings(Sqor);
         getKeyForPath: function(urlPath) {
         },,
 
-        // TODO: onReady... notify all who depend on us
+        // TODO(Jason): onReady... notify all who depend on us
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
@@ -342,7 +341,7 @@ setupSettings(Sqor);
     var _ = Sqor._;
     var Messenger = Sqor.Services.Messenger;
     var Eventer = Sqor.Core.Eventer;
-    // TODO: switch away from static model
+    // TODO(Jason): switch away from static model
     /**
      * @constructor
      * @param {type} options,
@@ -366,7 +365,7 @@ setupSettings(Sqor);
     Model.prototype = new Eventer();
 
     _.extend(Model.prototype, {
-        // TODO:
+        // TODO(Jason):
         // get("key", "defaultValue");
         // var title = model.get("title", "");
 
@@ -377,10 +376,10 @@ setupSettings(Sqor);
         },
 
         save: function(newProperties){
-            // TODO: implement
+            // TODO(Jason): implement
         },
 
-        // TODO: overwrite subscribe to accept things like:
+        // TODO(Jason): overwrite subscribe to accept things like:
         //  set:PropertyName   delete:PropertyName
 
 
@@ -465,7 +464,7 @@ setupSettings(Sqor);
         fetchAll: function(successHandler){
             var self = this;
             var params = self._options.urlParams;
-            // TODO: fix and make recurisve
+            // TODO(Jason): fix and make recurisve
             var request = Messenger.requestRestAPI("GET", self._options.path, params);
             request.done(function(response){
                 self._handleFetch(response, successHandler, params);
@@ -591,7 +590,7 @@ setupSettings(Sqor);
             self._iterPosition = 0;
         },
 
-        // TODO: implement iterator
+        // TODO(Jason): implement iterator
         next: function(){
             var self = this;
             if ( self._models.length > self._originalCount ) {
@@ -720,7 +719,7 @@ setupSettings(Sqor);
         };
         var newOptions = _.extend({}, defaults, options);
         this.create(newOptions);
-        // TODO: we need to return a promise... somehow too..
+        // TODO(Jason): we need to return a promise... somehow too..
         return this;
     };
 
@@ -968,7 +967,7 @@ setupSettings(Sqor);
             self._gridView = new Sqor.Widgets.SimpleGrid(gridViewOptions);
             self._models.addDelegate(self._gridView);
 
-            // TODO: fix this, use actual template:
+            // TODO(Jason): fix this, use actual template:
             self._el = $("<div></div");
             self._el.append(self._gridView.getDomElement());
         },
@@ -1039,18 +1038,18 @@ setupSettings(Sqor);
         ,   COLUMNS_FIRST: "columns_first"
     };
 
-    // TODO: displayDelegate
+    // TODO(Jason): displayDelegate
     var CONSTANTS = Sqor.CONSTANTS.SimpleGrid;
 
-    // TODO document usage
+    // TODO(Jason):  document usage
     /**
      * A simple grid that can be used to graph anything from a simple one
      * column table to a multi-dimensional.
      * @param {object} options,
      * @return {Null}
      */
-    // TODO: test edge cases for maxColumn: 0, 1,
-    // TODO: what are valid default values?
+    // TODO(Jason): test edge cases for maxColumn: 0, 1,
+    // TODO(Jason): what are valid default values?
     //          --- some type of error handling library would be super cool
     var SimpleGrid = function(options){
         var self = this;
@@ -1075,7 +1074,7 @@ setupSettings(Sqor);
             }
         };
 
-        // TODO: add 'displayDelegate' ... and a fake one..
+        // TODO(Jason): add 'displayDelegate' ... and a fake one..
         // so we can do reload and display in this mode with these many
         // rows...
         self._delegates = [];
@@ -1134,12 +1133,12 @@ setupSettings(Sqor);
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
             var cellCount = self._dataDelegate.getNumberOfCells();
             // Render each cell by calling into our delegate
-            // TODO: do this with a Tempalte.. real one..
+            // TODO(Jason): do this with a Tempalte.. real one..
             var currentIndex = 0;
             var rowCount = self._getNumberOfRows();
             var columnCount = self._getNumberOfColumns();
 
-            // TODO: if ROWS_FIRST CONSTANT
+            // TODO(Jason): if ROWS_FIRST CONSTANT
             // We loop over our rows, and create
             //  make into function
             for(var rr  = 0; rr < rowCount ; rr++){
@@ -1247,7 +1246,7 @@ setupSettings(Sqor);
      *
      * var table = new DynamicTable(options);
      *
-     *  // TODO demonstrate example of appending
+     *  // TODO(Jason):  demonstrate example of appending
      *
      *
      * @constructor
@@ -1279,7 +1278,7 @@ setupSettings(Sqor);
                 // We need to add a few rorrws
                 self.renderMoreTopRows(count);
             } else if (type === "append"){
-                // TODO: if count > 0
+                // TODO(Jason): if count > 0
                 self.renderMoreBottomRows(count);
             }
         },
@@ -1347,7 +1346,7 @@ setupSettings(Sqor);
     };
 
     _.extend(FeedFooter.prototype, {
-        // TODO: MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
+        // TODO(Jason): MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
         // code????
         create: function(){
             var self = this;
@@ -1430,7 +1429,7 @@ setupSettings(Sqor);
             self._footerView = new Sqor.Widgets.FeedFooter();
             self._model.addDelegate(self._tableView);
 
-            // TODO: fix this, use actual template:
+            // TODO(Jason): fix this, use actual template:
             self._el = $("<div></div");
             self._el.append(self._tableView.getDomElement());
             self._el.append(self._footerView.getDomElement());
@@ -1469,7 +1468,7 @@ setupSettings(Sqor);
             // We might just be finishing up loading our stuff...
             setTimeout(function(){
                 self._loadMoreDataIfNeeded();
-            }, 100); // TODO: fix this... this is done so we don't double
+            }, 100); // TODO(Jason): fix this... this is done so we don't double
             // hit the loading spinner..
             //
             // NOTE: this is a function of the loader being
@@ -1483,7 +1482,7 @@ setupSettings(Sqor);
          * @return {Null}
          */
         _loadMoreDataIfNeeded: function(){
-            // TODO: set our view to reflect state of data!
+            // TODO(Jason): set our view to reflect state of data!
             // ---> or set it's little model... DATA DRIVEN
             var self = this;
             var documentHeight = $(document).height();
@@ -1521,7 +1520,7 @@ setupSettings(Sqor);
          */
         _tryToLoadMore: function(){
             var self = this;
-            // TODO:  remove this timeout:
+            // TODO(Jason):  remove this timeout:
             // set on timer to emulate delay in ajax...
             self._model.loadBottomItems();
         },
@@ -1557,7 +1556,7 @@ setupSettings(Sqor);
          * @return {object}, widget for model
          */
         _getWidgeForType: function(model){
-            // TODO: replace this with a widget per type:
+            // TODO(Jason): replace this with a widget per type:
             var self = this;
             var options = {
                 title:""
@@ -1574,7 +1573,7 @@ setupSettings(Sqor);
             }
             options.imageURI = imageURI;
 
-            // TODO: awful, remove
+            // TODO(Jason): awful, remove
             if (model.type === "twitter"){
                 options.title = model.author;
                 options.subtitle = model.summary;
@@ -1593,7 +1592,7 @@ setupSettings(Sqor);
                 options.summary= model.content;
             } else {
                 console.log(model.type);
-                // TODO: implement generic widget
+                // TODO(Jason): implement generic widget
             }
             var displayCard  = new Sqor.Widgets.DisplayCard(options);
             return displayCard;
@@ -1775,7 +1774,7 @@ setupSettings(Sqor);
                     var middleElementRealTop = (middleElementTop + middleElement.height() );
                     console.log('middleElementRealTop', middleElementRealTop);
                     console.log('displayAreaHeight/2', displayAreaHeight/2);
-                    // TODO: This needs to be based on diff of scroll
+                    // TODO(Jason): This needs to be based on diff of scroll
                     // from last scroll ... and not on position of elements..
                     //  so if you scroll up a little.. you move some elements
                     //  if you scroll up a ton.. you rredraw
@@ -1834,7 +1833,7 @@ setupSettings(Sqor);
             parentEl.append(newEl);
             domElements.push(newEl);
             var height = newEl.height();
-            // TODO: start this at - 1/3 hidden away
+            // TODO(Jason): start this at - 1/3 hidden away
             newEl.css("top", height * ii + "px");
         }
         addListener(domElements);
