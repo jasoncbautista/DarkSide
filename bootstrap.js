@@ -56,7 +56,7 @@ setupSettings(Sqor);
      *
      *
      * @constructor
-     * @return {Null}
+     * @return {null}
      */
     var Eventer = function(){
         var self = this;
@@ -100,10 +100,11 @@ setupSettings(Sqor);
         },
 
         /**
-         * Removes a handler associated with a given eventName
+         * Removes a handler associated with a given eventName.
+         *.
          * @param {string} eventName, name to unbind from
          * @param {string} id, the unique id of the handler
-         * @return {Null}
+         * @return {null}
          */
         _removeSubscription: function(eventName, id) {
             var self = this;
@@ -140,7 +141,7 @@ setupSettings(Sqor);
          *
          * @param {string} eventName, the name of the event to trigger
          * @param {array} args, arguments to pass when triggering
-         * @return {Null}
+         * @return {null}
          */
         trigger: function(eventName, args) {
             var self = this;
@@ -174,7 +175,7 @@ setupSettings(Sqor);
       * that just happened.
       *
       * @constructor
-      * @return {Null}
+      * @return {null}
       */
      Router.prototype.eventer = new Eventer();
     _.extend(Router.prototype, {
@@ -185,15 +186,15 @@ setupSettings(Sqor);
          * Usage:
          *
          *  var routes = [
-         *          { "someKey", "/path/one"}
-         *      ,   { "someKeyX", "/path/x"}
-         *      ,   { "someKeyY", "/path/y"}
+         *          { key: "someKey", pattern: "/path/one"}
+         *      ,   { key: "someKeyX", pattern: "/path/X"}
+         *      ,   { key: "someKeyY", pattern: "/path/Y"}
          *  ];
          *
          * Router.addRoute(routes);
-         *
-         * @param {type} routes,
-         * @return {Null}
+         * -------------------------
+         * @param {array} routes, array of
+         * @return {null}
          */
         addRoutes: function(routes){
             var self = this;
@@ -202,6 +203,16 @@ setupSettings(Sqor);
             });
         },
 
+        /**
+         * Add a single route pattern to our set of routes.
+         *
+         * Usage:
+         *
+         *
+         * @param {type} key,
+         * @param {type} routePathPattern,
+         * @return {Null}
+         */
         addRoute: function(key, routePathPattern){
             var self = this;
             // Lowercase all:
@@ -211,8 +222,30 @@ setupSettings(Sqor);
             });
         },
 
-        getKeyForPath: function(urlPath) {
-        },,
+        /**
+         * Given a url path, we try to match against our set of routes and
+         * triger an even when this happens.
+         *
+         * Ussage:
+         *
+         *  router.triggerRouteForPath("path/one");
+         * -------------------------
+         * @param {type} urlPath,
+         * @return {null}
+         */
+        triggerRouteForPath: function(urlPath) {
+            var self = this;
+            _.each(self._routes, function(route){
+                // TODO(Jason): make this
+                if( route.pathPattern === urlPath){
+                    var matchInfo= {
+                        requestedURLPath: urlPath
+                        matchedPattern: route.pathPattern
+                    };
+                    self.trigger(route.key, params)
+                }
+            });
+        },
 
         // TODO(Jason): onReady... notify all who depend on us
         // Workaround for annoying last comma rule.
@@ -237,7 +270,7 @@ setupSettings(Sqor);
      *  var p = Sqor.Services.Messenger.request("get", "feeds",  data);
      *
      * @param {type} options,
-     * @return {Null}
+     * @return {null}
      */
     var Messenger = function(options){
         var self = this;
@@ -275,7 +308,7 @@ setupSettings(Sqor);
          * @param {type} type,
          * @param {type} path,
          * @param {type} data,
-         * @return {Null}
+         * @return {null}
          */
         requestRestAPI: function(type, path, data){
             var self = this;
@@ -345,7 +378,7 @@ setupSettings(Sqor);
     /**
      * @constructor
      * @param {type} options,
-     * @return {Null}
+     * @return {null}
      */
     var Model = function(options){
         var self = this;
@@ -388,7 +421,7 @@ setupSettings(Sqor);
          * if they are the same value. We also save by default.
          * @param {type} propertyName,
          * @param {type} value,
-         * @return {Null}
+         * @return {null}
          */
         set: function(propertyName, value /*, notifyOnlyIfDifferent*/) {
             var self = this;
@@ -403,7 +436,7 @@ setupSettings(Sqor);
          * Simple function to help load our data into local varible
          * @param {type} data,
          * @param {type} shouldNotify,
-         * @return {Null}
+         * @return {null}
          */
         _loadData: function(data, shouldNotify){
             var self = this;
@@ -482,7 +515,7 @@ setupSettings(Sqor);
 
         /**
          * Calls all delegates listening for dataChanges
-         * @return {Null}
+         * @return {null}
          */
         _notifyDelegates: function(methodName, _arguments){
             var self = this;
@@ -507,7 +540,7 @@ setupSettings(Sqor);
         /**
          * Adds a delegate to our list of delegates
          * @param {object} delegate,
-         * @return {Null}
+         * @return {null}
          */
         addDelegate: function(delegate){
             var self = this;
@@ -559,7 +592,7 @@ setupSettings(Sqor);
      *
      * @constructor
      * @param {type} options,
-     * @return {Null}
+     * @return {null}
      */
     var Collection = function(options){
         var self = this;
@@ -652,7 +685,7 @@ setupSettings(Sqor);
      * @param {string} templateName, name of template to fetch
      * @param {object} options, fields to substitute inside template
      * @param {function} callback, handler for when DOM element is ready
-     * @return {Null}
+     * @return {null}
      */
     HTML.get = function(templateName,  options, callback){
         $.get("html/" +  templateName + ".html", function(htmlString) {
@@ -729,7 +762,7 @@ setupSettings(Sqor);
         /**
          * Creates the basic DOM element representing our Display Card.
          * @param {Object} options,
-         * @return {Null}
+         * @return {null}
          */
         create: function(options){
             var self = this;
@@ -754,7 +787,7 @@ setupSettings(Sqor);
         /**
          *  A quick and dirty way to reload data.
          * @param {object} data, data pertaining to how to render
-         * @return {Null}
+         * @return {null}
          */
         reloadData: function(data){
             var self = this;
@@ -810,7 +843,7 @@ setupSettings(Sqor);
      *
      * @consructor
      * @param {type} options,
-     * @return {Null}
+     * @return {null}
      */
     var SimpleTable = function(options){
         var self = this;
@@ -839,7 +872,7 @@ setupSettings(Sqor);
         /**
          * Creates a simple table by loading the HTML template
          * @param {object} options, used to configure the widget
-         * @return {Null}
+         * @return {null}
          */
         create: function(options) {
             var self = this;
@@ -858,7 +891,7 @@ setupSettings(Sqor);
 
         /**
          * Renders the table by loading each cell from the dataDelegate.
-         * @return {Null}
+         * @return {null}
          */
         _render: function(){
             var self = this;
@@ -874,7 +907,7 @@ setupSettings(Sqor);
         /**
          * Set's the current dataDelegate to specifcy cells, and count.
          * @param {object} delegate, dataDelegate containing key methods
-         * @return {Null}
+         * @return {null}
          */
         setDataDelegate: function(delegate){
             var self = this;
@@ -894,7 +927,7 @@ setupSettings(Sqor);
         * A delegate method we expose as a way to be notified when we should
         * rerender.
         *
-        * @return {Null}
+        * @return {null}
         */
        dataChanged: function(){
             var self = this;
@@ -904,7 +937,7 @@ setupSettings(Sqor);
         /**
          * Helper function to rerender (after everything has already been
          * rendered).
-         * @return {Null}
+         * @return {null}
          */
         rerender: function(){
             var self = this;
@@ -940,7 +973,7 @@ setupSettings(Sqor);
 
         /**
          * Siple create function to setup model and view along with delegates.
-         * @return {Null}
+         * @return {null}
          */
         create: function(options){
             var self = this;
@@ -1046,7 +1079,7 @@ setupSettings(Sqor);
      * A simple grid that can be used to graph anything from a simple one
      * column table to a multi-dimensional.
      * @param {object} options,
-     * @return {Null}
+     * @return {null}
      */
     // TODO(Jason): test edge cases for maxColumn: 0, 1,
     // TODO(Jason): what are valid default values?
@@ -1089,7 +1122,7 @@ setupSettings(Sqor);
          * Creates a simple grid widget, which will allow us to create
          * simple tables side by side of same or similar sizes
          * @param {type} options,
-         * @return {Null}
+         * @return {null}
          */
         create: function(options){
             var self = this;
@@ -1126,7 +1159,7 @@ setupSettings(Sqor);
 
         /**
          * Renders the table by loading each cell from the dataDelegate.
-         * @return {Null}
+         * @return {null}
          */
         _render: function(){
             var self = this;
@@ -1166,7 +1199,7 @@ setupSettings(Sqor);
         /**
          * Set's the current dataDelegate to specifcy cells, and count.
          * @param {object} delegate, dataDelegate containing key methods
-         * @return {Null}
+         * @return {null}
          */
         setDataDelegate: function(delegate){
             var self = this;
@@ -1186,7 +1219,7 @@ setupSettings(Sqor);
         * A delegate method we expose as a way to be notified when we should
         * rerender.
         *
-        * @return {Null}
+        * @return {null}
         */
        dataChanged: function(){
             var self = this;
@@ -1196,7 +1229,7 @@ setupSettings(Sqor);
         /**
          * Helper function to rerender (after everything has already been
          * rendered).
-         * @return {Null}
+         * @return {null}
          */
         rerender: function(){
             var self = this;
@@ -1251,7 +1284,7 @@ setupSettings(Sqor);
      *
      * @constructor
      * @param {type} options,
-     * @return {Null}
+     * @return {null}
      */
     var DynamicTable = function(options){
         // Subclass off super
@@ -1267,7 +1300,7 @@ setupSettings(Sqor);
          *
          * @param {string} type,
          * @param {number} count,
-         * @return {Null}
+         * @return {null}
          */
         dataChanged: function(type, count){
             var self = this;
@@ -1286,7 +1319,7 @@ setupSettings(Sqor);
         /**
          * Does old school infinite scroll rendering
          * @param {type} count,
-         * @return {Null}
+         * @return {null}
          */
         renderMoreTopRows: function(count){
             var self = this;
@@ -1301,7 +1334,7 @@ setupSettings(Sqor);
         /**
          * Takes our dom structure and adds rows to the bottom
          * @param {type} count, number of rows to add
-         * @return {Null}
+         * @return {null}
          */
         renderMoreBottomRows: function(count){
             var self = this;
@@ -1332,7 +1365,7 @@ setupSettings(Sqor);
      * Facebook and a few big sites do it.
      *
      * @param {type} options,
-     * @return {Null}
+     * @return {null}
      */
     var FeedFooter = function(options){
         var self = this;
@@ -1365,7 +1398,7 @@ setupSettings(Sqor);
 
         /**
          * Renders our widget for the first time.
-         * @return {Null}
+         * @return {null}
          */
         _render: function(){
         },
@@ -1402,7 +1435,7 @@ setupSettings(Sqor);
      *  $("body").append(c.getDomElement());
      *
      * @param {object} options,
-     * @return {Null}
+     * @return {null}
      */
     var FeedListController = function(options){
         var defaults = {};
@@ -1414,7 +1447,7 @@ setupSettings(Sqor);
 
         /**
          * Siple create function to setup model and view along with delegates.
-         * @return {Null}
+         * @return {null}
          */
         create: function(){
             var self = this;
@@ -1442,7 +1475,7 @@ setupSettings(Sqor);
          * Helper function to return if a certain element is in the "viewport"
          * of the browser at this time
          * @param {type} elem,
-         * @return {Null}
+         * @return {null}
          */
         _isScrolledIntoView: function(elem){
             var offscreenTop =  $(document.body).scrollTop()
@@ -1459,7 +1492,7 @@ setupSettings(Sqor);
         /**
          * A delegate method to be called by the model when the feed changes.
          * @param {object} data,
-         * @return {Null}
+         * @return {null}
          */
         dataChanged: function(data){
             var self = this;
@@ -1479,7 +1512,7 @@ setupSettings(Sqor);
 
         /**
          * A hacky way to do infinite scroll by loading more data
-         * @return {Null}
+         * @return {null}
          */
         _loadMoreDataIfNeeded: function(){
             // TODO(Jason): set our view to reflect state of data!
@@ -1501,7 +1534,7 @@ setupSettings(Sqor);
          * We create a binding to scroll event so that we can load more
          * items when we reach a certain point
          *
-         * @return {Null}
+         * @return {null}
          */
         _bindScroll: function(){
             var self = this;
@@ -1516,7 +1549,7 @@ setupSettings(Sqor);
          * We go to the server / model  and try to load more  items
          * worry about that.
          *
-         * @return {Null}
+         * @return {null}
          */
         _tryToLoadMore: function(){
             var self = this;
@@ -1623,7 +1656,7 @@ setupSettings(Sqor);
 
     /**
      * Initializes a simple model to represetn the state of the list module.
-     * @return {Null}
+     * @return {null}
      */
     var  FeedListModel = function(){
         var self = this;
@@ -1638,7 +1671,7 @@ setupSettings(Sqor);
         /**
          * Adds a delegate to our list of delegates
          * @param {object} delegate,
-         * @return {Null}
+         * @return {null}
          */
         addDelegate: function(delegate){
             var self = this;
@@ -1647,7 +1680,7 @@ setupSettings(Sqor);
 
         /**
          * Calls all delegates listening for dataChanges
-         * @return {Null}
+         * @return {null}
          */
         _notifyDelegates: function(type, count, methodName){
             var self = this;
@@ -1663,7 +1696,7 @@ setupSettings(Sqor);
          * Pushes items into our local array of entries
          *
          * @param {object} data,
-         * @return {Null}
+         * @return {null}
          */
         _loadItems: function(data){
             var self = this;
@@ -1678,7 +1711,7 @@ setupSettings(Sqor);
 
         /**
          * Make request to load data from network/server.
-         * @return {Null}
+         * @return {null}
          */
         loadBottomItems: function(){
             var self = this;
@@ -1695,7 +1728,7 @@ setupSettings(Sqor);
         /**
          * New rows / items were added to the beginning
          * @param {type} count,
-         * @return {Null}
+         * @return {null}
          */
         prependItems: function(count) {
             var self = this;
@@ -1705,7 +1738,7 @@ setupSettings(Sqor);
         /**
          * Old rows /items were loaded into memory:
          * @param {type} count,
-         * @return {Null}
+         * @return {null}
          */
         appendItems: function(count) {
             var self = this;
@@ -1851,7 +1884,7 @@ $(document).ready(function(){
 
     /**
      * Quickwa to call our experimental smart dynamic table
-     * @return {Null}
+     * @return {null}
      */
     var runComplexTable  = function() {
         var dataDelegate = function(count) {
@@ -1867,7 +1900,7 @@ $(document).ready(function(){
         /**
          * A simple dummy delegate method used to test our table.
          * @param {type} index,
-         * @return {Null}
+         * @return {null}
          */
         dataDelegate.prototype.cellAtIndex = function(index){
             return $("<div><h2>" + index + "</h2></div>");
@@ -1878,7 +1911,7 @@ $(document).ready(function(){
     /**
      * Helper function to load our dynamic table module.
      * It basically auto loads more  models to do infinite scroll
-     * @return {Null}
+     * @return {null}
      */
     var runSimpleDynamicTableModule =  function() {
         var c = new Sqor.Modules.FeedListController();
@@ -1904,7 +1937,7 @@ $(document).ready(function(){
         /**
          * A simple dummy delegate method used to test our table.
          * @param {type} index,
-         * @return {Null}
+         * @return {null}
          */
         var options = {
             dataDelegate: dataDelegate
