@@ -4,7 +4,7 @@
  * Simply initializes a few key holder objects.
  * @return {Object} a shell object for our library, Sqor
  */
-var initialize = function(){
+var initialize = function(window, document){
     var Sqor = {};
 
     // We define aa few primary holders
@@ -19,6 +19,9 @@ var initialize = function(){
     // TODO(Jason): FIX THIS:
     Sqor.$ = $;
     Sqor._ = _;
+    Sqor.Globals = {};
+    Sqor.Globals.window = window;
+    Sqor.Globals.document = document;
     return Sqor;
 };
 
@@ -30,8 +33,41 @@ var setupSettings = function(Sqor){
     Sqor.Settings.FeedAPI = "/rest/feed/api";
 };
 
-var Sqor = initialize();
+
+var Sqor = initialize(window, document);
 setupSettings(Sqor);
+
+
+/**
+ * We should call this function when jquery says we have done loading .
+ *
+ * TODO(Jason): strictly speaking, we can do some of this stuff before
+ * we are done loading..
+ * TODO(Jason): consider doing this on router.onReady
+ * ... then we can have router be the one to trigger on ready when it
+ * has bound everything
+ * @return {Null}
+ */
+Sqor.onReady = function(){
+
+    // Need to add routes to router.... and handlers..
+    Sqor.demoRoutes();
+
+    //TODO(Jason): this should be done in its own class.. Scheduler?
+    var Scheduler = function(urlPath){
+        // For now we just delete everything on our page
+        Sqor.$("body").empty();
+    };
+    Sqor.Router.subscribe("onUrlPathChanged", Scheduler);
+};
+
+// DemoRoutes.js
+Sqor.demoRoutes = function(){
+    // Subscribe to a few routes to see what we can do
+
+    // TODO(Jason): each module should subscribe itself to these
+};
+
 
 // Eventer.js
 (function(Sqor) {
@@ -125,6 +161,7 @@ setupSettings(Sqor);
          *  of the event.
          * @return {object}, callback to unsubscribe and id for handler
          */
+        //TODO(Jason): make this return a promise.
         subscribe:  function(eventName, handler) {
             var self = this;
             var id = ("" + Math.random()).replace(".", "_");
@@ -163,10 +200,12 @@ setupSettings(Sqor);
     var $ = Sqor.$;
     var _ = Sqor._;
     var Eventer = Sqor.Core.Eventer;
+    var window = Sqor.Globals.window;
 
     var Router = function(){
         var self = this;
         self._routes = []; // TODO(Jason): {}
+        self._bindToHashChange();
     };
 
      /**
@@ -179,6 +218,15 @@ setupSettings(Sqor);
       */
      Router.prototype.eventer = new Eventer();
     _.extend(Router.prototype, {
+
+        _bindToHashChange: function(){
+            var self = this;
+            $(window).on("hashchange", function(){
+                // TODO: on first load?
+                debugger;
+            });
+        },
+
         /**
          * Quick and easy way to add a few routes all at once.
          * These routes will create an easy way to make subscriptions.
@@ -233,16 +281,17 @@ setupSettings(Sqor);
          * @param {type} urlPath,
          * @return {null}
          */
-        triggerRouteForPath: function(urlPath) {
+        _triggerRouteForPath: function(urlPath) {
             var self = this;
             _.each(self._routes, function(route){
                 // TODO(Jason): make this
                 if( route.pathPattern === urlPath){
                     var matchInfo= {
-                        requestedURLPath: urlPath
-                        matchedPattern: route.pathPattern
+                            requestedURLPath: urlPath
+                        ,   matchedPattern: route.pathPattern
                     };
                     self.trigger(route.key, params)
+                    self.trigger("onUrlPathChanged");
                 }
             });
         },
@@ -1969,6 +2018,6 @@ $(document).ready(function(){
     //runSimpleGrid(13);
     //runSimpleDynamicTableModule();
     // runComplexTable();
-    runDataGrid();
+    //runDataGrid();
 });
 
