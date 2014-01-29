@@ -15,4 +15,29 @@ Benchmarking
 -- moving many elements all at once
 
 
+
+
+[ ]  Low Level JS
+[ ] sweet.js
+    - macros
+
+[ ] Transpilation
+
+[ ] symbolic execution ---> tries to break your stuff ( divide by zero)
+
+
  
+
+
+
+ // JSComplexity
+
+https://npmjs.org/package/jscomplexity
+
+
+
+npm install -g jscomplexity
+
+// try sudo
+// jscomplexity@0.0.15 /usr/local/lib/node_modules/jscomplexity
+

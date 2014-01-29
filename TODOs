@@ -1,12 +1,14 @@
 
 Wed 1/29/2014
 [/][70] simple router - 1hr
+[x] watch video on JS static analysis 50  minutes
 [ ] setup example where a module is loaded by going to a route  path - 30 min
-
 [ ] setup linter  - 1hr 
+[ ] setup web hooks
+[ ] test out bluebird - 1hr
+
 [ ] add better comments  + diagrams + usage 30 minutes
 [ ] add destroy methods 30 minutes
-[ ] watch video on JS static analysis 45 minutes
 
 [ ] setup google closure compiler - 30 minutes
 
@@ -22,6 +24,75 @@ Wed 1/29/2014
 [ ] Checkoff todos
 [ ] look into sass / etc 20 minutes
 [ ] dataChanged vs transFormationHappened methods for SimpleCollection
+
+[ ] setup jsodoc / closure docs - 30 minutes
+
+[ ] git precommit hook - 30 minutes
+    -  git prepush hook? 
+    - linter
+    - validator
+
+
+
+[ ] on push attempt... run tests to measure code --> publish to web  - 30 min
+[ ] identifier / length - 10 minutes
+[ ] comment density
+[ ] expression depth
+[ ] duplicate / similar fragment
+
+[ ] double equal operator
+[ ] boolean traps
+[ ] double negatives 
+[ ] nested ternary
+
+[ ] strict mode check - 10 minutes
+    [ ] double data property
+    [ ] typo
+    [ ] variable not used
+
+[ ] code complexity, physicolmatic complexity - 10 min
+[ ] http://jscomplexity.org
+
+[ ] code coverage analysis - 10 min 
+    - what parts are being executed ... tests check important part of code
+    - instrumentation: node-cover github
+
+[ ] branch coverage , statement coverage    - 15 minutes
+    - istanbul github
+
+
+[ ] jqueryMobile .. slow?
+
+[ ] v8 tools
+    - classes, adding methods after
+
+
+[ ] tracking scability
+
+
+[ ] coding styles - string quotes
+    - double quotes, transformation
+
+[ ] style formatting
+
+[ ] code painter
+    - formats code for you...
+    
+
+[ ] code review ..... should not have to do dumb checks - 30 minutes
+    - use tools
+    - setup prehooks
+
+[ ] Syntax query if ( x = 0)  : WARN  - 10 minutes
+[ ] copy paste mistake ?  - 10 minutes
+
+[ ] vim  / search replace
+
+[ ] semantic diff
+
+[ ] symbolic execution:w
+
+
 
 Mon 1/27/2014
 [ ] grid controller
