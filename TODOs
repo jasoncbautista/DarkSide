@@ -1,7 +1,7 @@
 
 Wed 1/29/2014
-[ ] simple router - 1hr
-[ ] setup example where a module is based on going to a route - 30 minutes
+[/][70] simple router - 1hr
+[ ] setup example where a module is loaded by going to a route  path - 30 min
 
 [ ] setup linter  - 1hr 
 [ ] add better comments  + diagrams + usage 30 minutes
@@ -18,14 +18,9 @@ Wed 1/29/2014
 [ ] write auto generate folders script - 30 minutes 
 
 [ ] write sample app with backbone  40 minutes
-
 [ ] setup with ngnix inside our main site - 35 minutes
-
-
 [ ] Checkoff todos
-
 [ ] look into sass / etc 20 minutes
-
 [ ] dataChanged vs transFormationHappened methods for SimpleCollection
 
 Mon 1/27/2014
