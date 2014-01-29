@@ -6,7 +6,6 @@
  */
 var initialize = function(window, document){
     var Sqor = {};
-
     // We define aa few primary holders
     Sqor.Core = {};
     Sqor.Models= {};
@@ -32,7 +31,6 @@ var setupSettings = function(Sqor){
     Sqor.Settings.RestAPI = "/rest";
     Sqor.Settings.FeedAPI = "/rest/feed/api";
 };
-
 
 var Sqor = initialize(window, document);
 setupSettings(Sqor);
@@ -68,7 +66,6 @@ Sqor.demoRoutes = function(){
     // TODO(Jason): each module should subscribe itself to these
 };
 
-
 // Eventer.js
 (function(Sqor) {
     // Dependencies:
@@ -86,7 +83,7 @@ Sqor.demoRoutes = function(){
      *  eventer.subscribe("all", function() {
      *      console.log('something changed...');
      *  });
-     *
+         *
      *  // Server
      *  eventer.trigger("all");
      *
@@ -267,7 +264,7 @@ Sqor.demoRoutes = function(){
          *      ,   { key: "someKeyY", pattern: "/path/Y"}
          *  ];
          *
-         * Router.addRoute(routes);
+         * Router.addRoutes(routes);
          * -------------------------
          * @param {array} routes, array of
          * @return {null}
@@ -284,7 +281,8 @@ Sqor.demoRoutes = function(){
          *
          * Usage:
          *
-         *
+         * router.addRoute("someKey", "somePattern");
+         * -------------------------
          * @param {type} key,
          * @param {type} routePathPattern,
          * @return {Null}
@@ -304,7 +302,7 @@ Sqor.demoRoutes = function(){
          *
          * Ussage:
          *
-         *  router.triggerRouteForPath("path/one");
+         *  router._triggerRouteForPath("path/one");
          * -------------------------
          * @param {type} urlPath,
          * @return {null}
