@@ -201,6 +201,7 @@ Sqor.demoRoutes = function(){
     var _ = Sqor._;
     var Eventer = Sqor.Core.Eventer;
     var window = Sqor.Globals.window;
+    var document = Sqor.Globals.document;
 
     var Router = function(){
         var self = this;
@@ -219,12 +220,39 @@ Sqor.demoRoutes = function(){
      Router.prototype.eventer = new Eventer();
     _.extend(Router.prototype, {
 
+        /**
+         * The router binds itself to events on changes of the url path.
+         * A first time load is considered a "change".
+         * @return {Null}
+         */
         _bindToHashChange: function(){
             var self = this;
-            $(window).on("hashchange", function(){
-                // TODO: on first load?
-                debugger;
+            // We must bind to our
+            $(document).ready(function(){
+                var urlPath =
+                    self._cleanUpUrlPath(window.location.hash);
+                self._triggerRouteForPath(urlPath);
+
+                $(window).on("hashchange", function(){
+                    // TODO: on first load?
+                    var urlPath =
+                        self._cleanUpUrlPath(window.location.hash);
+                    self._triggerRouteForPath(urlPath);
+                });
             });
+        },
+
+        /**
+         * Helper method to clean up our url path, particularly removing
+         * the # character.
+         * @param {string} urlPath, dirty version of the path
+         * @return {string}, cleaned version of the path
+         */
+        _cleanUpUrlPath: function(urlPath){
+            var self = this;
+            // WARNING: this assumes no # are allowed anywhere else on the
+            // url path
+            return urlPath.replace("#", "");
         },
 
         /**
