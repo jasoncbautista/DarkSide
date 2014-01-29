@@ -1,7 +1,9 @@
 
 Wed 1/29/2014
-[ ] setup linter  - 1hr 
 [ ] simple router - 1hr
+[ ] setup example where a module is based on going to a route - 30 minutes
+
+[ ] setup linter  - 1hr 
 [ ] add better comments  + diagrams + usage 30 minutes
 [ ] add destroy methods 30 minutes
 [ ] watch video on JS static analysis 45 minutes
@@ -14,6 +16,13 @@ Wed 1/29/2014
 [ ] break up into multiple files
 [ ] setup vim spell checker  10 minutes
 [ ] write auto generate folders script - 30 minutes 
+
+[ ] write sample app with backbone  40 minutes
+
+[ ] setup with ngnix inside our main site - 35 minutes
+
+
+[ ] Checkoff todos
 
 
 Mon 1/27/2014
