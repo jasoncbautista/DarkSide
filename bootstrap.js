@@ -157,6 +157,23 @@ setupSettings(Sqor);
     Sqor.Core.Eventer = Eventer;
 })(Sqor);
 
+
+(function(Sqor){
+    var $ = Sqor.$;
+    var _ = Sqor._;
+    var Eventer = Sqor.Core.Eventer;
+
+    var Router = function(){
+    };
+
+     Router.prototype.eventer = new Eventer();
+    _.extend(Router.prototype, {
+    });
+
+    Sqor.Core.Router = new Router();
+
+})(Sqor);
+
 //Messenger.js
 (function(Sqor){
     // Dependencies:
@@ -991,7 +1008,7 @@ setupSettings(Sqor);
                 parentElement: null
             ,   renderedCallback: $.noop
             , displayDelegate: {
-                     maxColumns: function(){ return 2;}
+                     maxColumns: function(){ return 1;}
                 ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST;}
 
             }
@@ -1856,7 +1873,7 @@ $(document).ready(function(){
                     ,   limit: 30000
                 }
         };
-        //var playerModelOptions = {};
+        // var playerModelOptions = {};
 
         var c = new Sqor.Modules.ExampleGridController({modelOptions: playerModelOptions});
         $("body").append(c.getDomElement());
