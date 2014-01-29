@@ -1,8 +1,19 @@
 
 Wed 1/29/2014
-[ ] simple router
-[ ] destroy methods
-[ ] better comments with illustrations
+[ ] setup linter  - 1hr 
+[ ] simple router - 1hr
+[ ] add better comments  + diagrams + usage 30 minutes
+[ ] add destroy methods 30 minutes
+[ ] watch video on JS static analysis 45 minutes
+
+[ ] setup google closure compiler - 30 minutes
+
+[ ] Documentation Wiki / Overview - 25 miutes
+
+
+[ ] break up into multiple files
+[ ] setup vim spell checker  10 minutes
+[ ] write auto generate folders script - 30 minutes 
 
 
 Mon 1/27/2014
