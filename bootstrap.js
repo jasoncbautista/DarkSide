@@ -169,8 +169,33 @@ setupSettings(Sqor);
         self._routes = []; // TODO: {}
     };
 
+     /**
+      * Router is a static class that will be available as one instance
+      * that takes care of notifying anyone that cares about events that
+      * just happened.
+      *
+      * @constructor
+      * @return {Null}
+      */
      Router.prototype.eventer = new Eventer();
     _.extend(Router.prototype, {
+        /**
+         * Quick and easy way to add a few routes all at once.
+         * These routes will create an easy way to make subscriptions.
+         *
+         * Usage:
+         *
+         *  var routes = [
+         *          { "someKey", "/path/one"}
+         *      ,   { "someKeyX", "/path/x"}
+         *      ,   { "someKeyY", "/path/y"}
+         *  ];
+         *
+         * Router.addRoute(routes);
+         *
+         * @param {type} routes,
+         * @return {Null}
+         */
         addRoutes: function(routes){
             var self = this;
             _.each(routes, function(route){
@@ -180,11 +205,14 @@ setupSettings(Sqor);
 
         addRoute: function(key, routePathPattern){
             var self = this;
+            // Lowercase all:
             self._routes.push({
                     "key": key
                 ,   "pathPattern": routePathPattern
             });
         },
+
+        // TODO: onReady... notify all who depend on us
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
