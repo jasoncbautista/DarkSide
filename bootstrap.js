@@ -35,7 +35,6 @@ var setupSettings = function(Sqor){
 var Sqor = initialize(window, document);
 setupSettings(Sqor);
 
-
 /**
  * We should call this function when jquery says we have done loading .
  *

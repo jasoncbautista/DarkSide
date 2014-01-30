@@ -1,18 +1,27 @@
+Thursday 1/30/2014
+[ ] setup google closure compiler - 30 minutes
+[ ] setup example where a module is loaded by going to a route  path - 30 min
+
+[ ] setup linter  - 1hr   - jsthint?
+[ ] code painter - setup
+[ ] use strict - 10 minutes
+
+[ ] break up into multiple files
+[ ] create unit testing library (imports compiled js, then tests...)
+[ ] setup selenium
+
+[ ] watch jsprime talk - 1hr
+[ ] watch jswiz  - 30 minute 
 
 Wed 1/29/2014
 [/][70] simple router - 1hr
 [x] watch video on JS static analysis 50  minutes
 [x] researched various static analysis tools, setup Plato on Jenkins with Noah
-[ ] setup example where a module is loaded by going to a route  path - 30 min
-
-[ ] setup linter  - 1hr 
-[ ] setup web hooks
 [ ] test out bluebird - 1hr
 
 [ ] add better comments  + diagrams + usage 30 minutes
 [ ] add destroy methods 30 minutes
 
-[ ] setup google closure compiler - 30 minutes
 
 [ ] Documentation Wiki / Overview - 25 miutes
 
@@ -34,6 +43,7 @@ Wed 1/29/2014
     - linter
     - validator
 
+[ ] setup web hooks
 
 
 [ ] on push attempt... run tests to measure code --> publish to web  - 30 min
@@ -77,7 +87,6 @@ Wed 1/29/2014
 
 [ ] style formatting
 
-[ ] code painter
     - formats code for you...
     
 
