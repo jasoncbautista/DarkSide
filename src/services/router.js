@@ -56,7 +56,7 @@
             var self = this;
             // WARNING: this assumes no # are allowed anywhere else on the
             // url path
-            return urlPath.replace("#", "");
+            return urlPath.replace("#!", "");
         },
 
         /**
@@ -118,7 +118,7 @@
         _triggerRouteForPath: function(urlPath) {
             var self = this;
             _.each(self._routes, function(route){
-                // TODO(Jason): make this
+                // TODO(Jason): make this cleaner
                 if( route.pathPattern === urlPath){
                     var matchInfo= {
                             requestedURLPath: urlPath

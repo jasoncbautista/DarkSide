@@ -1,11 +1,4 @@
-
 // AthleteList
-
-
-
-// experiMENTAL
-//           experiMENTAL
-//                  experiMENTAL
 (function(Sqor){
     var SmartTable = function(){
     };

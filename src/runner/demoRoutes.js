@@ -94,9 +94,9 @@ Sqor.demoRoutes = function(Sqor){
 
     // Now we bind to our router...
     Router.addRoutes([
-                { "key": "runDataGrid", "pattern": "#/runDataGrid"}
-            ,   { "key": "runSimpleDynamicTableModule", "pattern": "#/runSimpleDynamicTableModule"}
-            ,   { "key": "runComplexTable", "pattern": "#/runComplexTable"}
+                { "key": "runDataGrid", "pattern": "#!/runDataGrid"}
+            ,   { "key": "runSimpleDynamicTableModule", "pattern": "#!/runSimpleDynamicTableModule"}
+            ,   { "key": "runComplexTable", "pattern": "#!/runComplexTable"}
     ]);
 
     Router.subscribe("runDataGrid", function(){

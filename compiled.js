@@ -13121,7 +13121,7 @@ setupSettings(Sqor);
             var self = this;
             // WARNING: this assumes no # are allowed anywhere else on the
             // url path
-            return urlPath.replace("#", "");
+            return urlPath.replace("#!", "");
         },
 
         /**
@@ -13183,7 +13183,7 @@ setupSettings(Sqor);
         _triggerRouteForPath: function(urlPath) {
             var self = this;
             _.each(self._routes, function(route){
-                // TODO(Jason): make this
+                // TODO(Jason): make this cleaner
                 if( route.pathPattern === urlPath){
                     var matchInfo= {
                             requestedURLPath: urlPath
@@ -13202,7 +13202,7 @@ setupSettings(Sqor);
 
     Sqor.Core.Router = new Router();
 
-})(Sqor);// exampleService.js// Collection.js
+})(Sqor);// Collection.js
 (function(Sqor) {
     // Dependencies:
     var $ = Sqor.$;
@@ -13265,14 +13265,7 @@ setupSettings(Sqor);
     });
 
 })(Sqor);
-
 // AthleteList
-
-
-
-// experiMENTAL
-//           experiMENTAL
-//                  experiMENTAL
 (function(Sqor){
     var SmartTable = function(){
     };
@@ -14835,9 +14828,9 @@ Sqor.demoRoutes = function(Sqor){
 
     // Now we bind to our router...
     Router.addRoutes([
-                { "key": "runDataGrid", "pattern": "#/runDataGrid"}
-            ,   { "key": "runSimpleDynamicTableModule", "pattern": "#/runSimpleDynamicTableModule"}
-            ,   { "key": "runComplexTable", "pattern": "#/runComplexTable"}
+                { "key": "runDataGrid", "pattern": "#!/runDataGrid"}
+            ,   { "key": "runSimpleDynamicTableModule", "pattern": "#!/runSimpleDynamicTableModule"}
+            ,   { "key": "runComplexTable", "pattern": "#!/runComplexTable"}
     ]);
 
     Router.subscribe("runDataGrid", function(){
