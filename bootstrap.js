@@ -159,7 +159,6 @@ Sqor.demoRoutes = function(Sqor){
             ,   { "key": "runSimpleGrid", "pattern": "#/run/simpleGrid"}
     ]);
 
-    debugger;
     Router.subscribe("runDataGrid", function(){
         console.log("runDataGrid");
     });
@@ -266,7 +265,7 @@ Sqor.demoRoutes = function(Sqor){
             var self = this;
             var id = ("" + Math.random()).replace(".", "_");
             // Delegate the addition of the actual subscription to a helper
-            var unsubscribeCallback = _addEvent(eventName, id, handler);
+            var unsubscribeCallback = self._addEvent(eventName, id, handler);
             return {
                     unsubscribe: unsubscribeCallback
                 ,   id: id
@@ -317,7 +316,7 @@ Sqor.demoRoutes = function(Sqor){
       * @constructor
       * @return {null}
       */
-     Router.prototype.eventer = new Eventer();
+     Router.prototype = new Eventer();
     _.extend(Router.prototype, {
 
         /**
@@ -393,6 +392,7 @@ Sqor.demoRoutes = function(Sqor){
         addRoute: function(key, routePathPattern){
             var self = this;
             // Lowercase all:
+            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
             self._routes.push({
                     "key": key
                 ,   "pathPattern": routePathPattern
@@ -411,7 +411,6 @@ Sqor.demoRoutes = function(Sqor){
          * @return {null}
          */
         _triggerRouteForPath: function(urlPath) {
-            debugger;
             var self = this;
             _.each(self._routes, function(route){
                 // TODO(Jason): make this
@@ -420,8 +419,7 @@ Sqor.demoRoutes = function(Sqor){
                             requestedURLPath: urlPath
                         ,   matchedPattern: route.pathPattern
                     };
-                    debugger;
-                    self.trigger(route.key, params)
+                    self.trigger(route.key, matchInfo)
                     self.trigger("onUrlPathChanged");
                 }
             });
