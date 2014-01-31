@@ -54,7 +54,7 @@ Sqor.onReady = function(Sqor){
     //TODO(Jason): this should be done in its own class.. Scheduler?
     var Scheduler = function(urlPath){
         // For now we just delete everything on our page
-        Sqor.$("body").empty();
+        // Sqor.$("body").empty();
     };
     Router.subscribe("onUrlPathChanged", Scheduler);
 
@@ -64,6 +64,7 @@ Sqor.onReady = function(Sqor){
 // DemoRoutes.js
 Sqor.demoRoutes = function(Sqor){
     var Router = Sqor.Core.Router;
+    var $ = Sqor.$;
     // Subscribe to a few routes to see what we can do
 
     // TODO(Jason): each module should subscribe itself to these
@@ -155,16 +156,29 @@ Sqor.demoRoutes = function(Sqor){
 
     // Now we bind to our router...
     Router.addRoutes([
-                { "key": "runDataGrid", "pattern": "#/run/dataGrid"}
-            ,   { "key": "runSimpleGrid", "pattern": "#/run/simpleGrid"}
+                { "key": "runDataGrid", "pattern": "#/runDataGrid"}
+            ,   { "key": "runSimpleDynamicTableModule", "pattern": "#/runSimpleDynamicTableModule"}
+            ,   { "key": "runComplexTable", "pattern": "#/runComplexTable"}
     ]);
 
     Router.subscribe("runDataGrid", function(){
         console.log("runDataGrid");
+        Sqor.$("body").empty();
+        runDataGrid();
     });
-    Router.subscribe("runSimpleGrid", function(){
-        console.log("runSimpleGrid");
+    Router.subscribe("runComplexTable", function(){
+        console.log("runComplexTable");
+        Sqor.$("body").empty();
+        runComplexTable();
     });
+
+    Router.subscribe("runSimpleDynamicTableModule", function(){
+        console.log("runSimpleDynamicTableModule");
+        Sqor.$("body").empty();
+        runSimpleDynamicTableModule();
+    });
+
+
 };
 
 
