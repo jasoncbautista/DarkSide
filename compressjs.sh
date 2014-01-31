@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 # Constants
@@ -12,5 +13,5 @@ then
 	exit
 fi
 
-# Itearate through all files
-cat $* > $NEWFILE
+
+find $* -name "*.js"  | xargs cat > $NEWFILE

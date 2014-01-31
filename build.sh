@@ -1,1 +1,1 @@
-./compressjs.sh src/thirdparty/*.js src/bootstrap/*.js bootstrap.js src/runner/*.js 
+./compressjs.sh src/thirdparty/ src/bootstrap/  src/core src/services src/widgets  src/modules   src/runner/
