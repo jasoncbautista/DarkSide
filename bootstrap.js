@@ -45,25 +45,28 @@ setupSettings(Sqor);
  * has bound everything
  * @return {Null}
  */
-Sqor.onReady = function(){
+Sqor.onReady = function(Sqor){
+    var Router = Sqor.Core.Router;
+    console.log("ready..");
 
     // Need to add routes to router.... and handlers..
-    Sqor.demoRoutes();
-
+    Sqor.demoRoutes(Sqor);
     //TODO(Jason): this should be done in its own class.. Scheduler?
     var Scheduler = function(urlPath){
         // For now we just delete everything on our page
         Sqor.$("body").empty();
     };
-    Sqor.Router.subscribe("onUrlPathChanged", Scheduler);
+    Router.subscribe("onUrlPathChanged", Scheduler);
+
+    Router.bindToHashChanges();
 };
 
 // DemoRoutes.js
-Sqor.demoRoutes = function(){
+Sqor.demoRoutes = function(Sqor){
+    var Router = Sqor.Core.Router;
     // Subscribe to a few routes to see what we can do
 
     // TODO(Jason): each module should subscribe itself to these
-
 
     /**
      * Quickwa to call our experimental smart dynamic table
@@ -148,12 +151,23 @@ Sqor.demoRoutes = function(){
         // c._model.appendItems(10);
         // c._model.prepend(10);
         window._c = c;
-
     };
 
     // Now we bind to our router...
+    Router.addRoutes([
+                { "key": "runDataGrid", "pattern": "#/run/dataGrid"}
+            ,   { "key": "runSimpleGrid", "pattern": "#/run/simpleGrid"}
+    ]);
 
+    debugger;
+    Router.subscribe("runDataGrid", function(){
+        console.log("runDataGrid");
+    });
+    Router.subscribe("runSimpleGrid", function(){
+        console.log("runSimpleGrid");
+    });
 };
+
 
 // Eventer.js
 (function(Sqor) {
@@ -292,7 +306,7 @@ Sqor.demoRoutes = function(){
     var Router = function(){
         var self = this;
         self._routes = []; // TODO(Jason): {}
-        self._bindToHashChange();
+        //self._bindToHashChanges();
     };
 
      /**
@@ -311,7 +325,7 @@ Sqor.demoRoutes = function(){
          * A first time load is considered a "change".
          * @return {Null}
          */
-        _bindToHashChange: function(){
+        bindToHashChanges: function(){
             var self = this;
             // We must bind to our
             $(document).ready(function(){
@@ -397,6 +411,7 @@ Sqor.demoRoutes = function(){
          * @return {null}
          */
         _triggerRouteForPath: function(urlPath) {
+            debugger;
             var self = this;
             _.each(self._routes, function(route){
                 // TODO(Jason): make this
@@ -405,6 +420,7 @@ Sqor.demoRoutes = function(){
                             requestedURLPath: urlPath
                         ,   matchedPattern: route.pathPattern
                     };
+                    debugger;
                     self.trigger(route.key, params)
                     self.trigger("onUrlPathChanged");
                 }
@@ -2046,6 +2062,7 @@ Sqor.demoRoutes = function(){
 
 $(document).ready(function(){
 
+    Sqor.onReady(Sqor);
     //runSimpleGrid(13);
     //runSimpleDynamicTableModule();
     // runComplexTable();

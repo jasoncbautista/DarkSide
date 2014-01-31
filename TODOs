@@ -1,16 +1,39 @@
 Thursday 1/30/2014
-[ ] setup google closure compiler - 30 minutes
+
+[x] watch jsprime talk - 1hr
+[x] research methods to combine js - 20 minutes
+[ ] modify jquery.HTML to be safe.. but if pass flag.. then it is .text ! - 10 mins
 [ ] setup example where a module is loaded by going to a route  path - 30 min
+[ ] break up into multiple files - 30 minutes
+
+[ ] abstract jquery away - 1hr (we dont wanna depeond on it)
+
+[ ] replace $.html with $.text   - 20 minutes 
+
+[ ] create Debugger class - 30 minutes
+    -- can set debugger to debug only certain keys ['keys'
+    -- to debug everything...
+
+[x] test JSPrime  - 20 minutes --- broken.... doesn't handle any real projects
+
+
+[ ] research benchmarking (ember) 10 minutes
+[ ] research static security analysis - 70 minutes
+
+
+[ ] setup compile to have comments as part of function ---> compiler
+[ ] dev shoudl be setup to not be compressed / minimified
+
+
+[ ] setup google closure compiler - 30 minutes
 
 [ ] setup linter  - 1hr   - jsthint?
 [ ] code painter - setup
 [ ] use strict - 10 minutes
 
-[ ] break up into multiple files
 [ ] create unit testing library (imports compiled js, then tests...)
 [ ] setup selenium
 
-[ ] watch jsprime talk - 1hr
 [ ] watch jswiz  - 30 minute 
 
 Wed 1/29/2014
