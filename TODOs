@@ -2,11 +2,12 @@ Thursday 1/30/2014
 
 [x] watch jsprime talk - 1hr
 [x] research methods to combine js - 20 minutes
+[ ] break up into multiple files - 30 minutes
 [ ] cache the HTML templates (transparently) 20 minutes
+[ ] destroy method (especially obvious for infinite scroll - 30 mins
 
 [ ] modify jquery.HTML to be safe.. but if pass flag.. then it is .text ! - 10 mins
 [ ] setup example where a module is loaded by going to a route  path - 30 min
-[ ] break up into multiple files - 30 minutes
 
 
 
