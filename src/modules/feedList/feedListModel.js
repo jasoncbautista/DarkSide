@@ -1,4 +1,3 @@
-
 // FeedListModel.js
 (function(Sqor){
     // Dependencies
