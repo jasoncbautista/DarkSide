@@ -1274,7 +1274,79 @@
   });
 
 }).call(this);
-//     Backbone.js 1.1.0
+_.mixin({
+
+  // Makes sure that arg is anything but null/undefined
+  isReal: function(arg) {
+    return !_.isNotReal(arg);
+  },
+
+  /**
+   * A simple utility function to avoid having  to check if each step is
+   * really defined.
+   *
+   *  Usually we do something like:
+   *    if (b && b.m && b.m.x && b.m.x.y && b.m.x.y.z) {
+   *      b.x.z("example");
+   *    }
+   *
+   *  So the object we pass is b like this:
+   *
+   *  var result = _.isReachable(b, "m.x.y.z");
+   *  if (_.isReal(result.value)) {
+   *    result.value("example");
+   *  }
+   *
+   *
+   * @param  {Object} base, a hash
+   * @param  {String} _string a string that represents what should be called
+   * @return {Object}  returns an object of the form:
+   *    {value: "value", failedStep: ""}
+   */
+  isReachable: function(base, _string) {
+    var list = _string.split(".");
+    var listLength = list.length;
+    var returnValue = {
+      value: null,
+      failedStep: null
+    };
+    var currBase = base;
+    for (var ii = 0; ii < listLength; ii++) {
+      var currEntry = list[ii];
+      if (_.isReal(currBase[currEntry])) {
+        returnValue.value = currBase[currEntry];
+      } else {
+        return {
+          value: null,
+          failedStep: currEntry
+        };
+      }
+      currBase = currBase[currEntry];
+    }
+    // Could call the function:
+    return returnValue;
+  },
+
+  // Returns true if arg euqlas null/undefined
+  isNotReal: function(arg) {
+    return arg == null;
+  },
+
+  // Makes sure this value is a number. Shorthand.
+  isNumeric: function(n) {
+    return !isNaN(parseFloat(n));
+  },
+
+  // if x is defined as null, it is still considered defined
+  isDefined: function(arg) {
+    return !_.isUndefined(arg);
+  },
+
+  // Shorcut to not being null
+  isNotNull: function(arg) {
+    return !_.isNull(arg);
+  }
+});//     Backbone.js 1.1.0
 
 //     (c) 2010-2011 Jeremy Ashkenas, DocumentCloud Inc.
 //     (c) 2011-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12644,79 +12716,7 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
 }
 
 })( window );
-_.mixin({
-
-  // Makes sure that arg is anything but null/undefined
-  isReal: function(arg) {
-    return !_.isNotReal(arg);
-  },
-
-  /**
-   * A simple utility function to avoid having  to check if each step is
-   * really defined.
-   *
-   *  Usually we do something like:
-   *    if (b && b.m && b.m.x && b.m.x.y && b.m.x.y.z) {
-   *      b.x.z("example");
-   *    }
-   *
-   *  So the object we pass is b like this:
-   *
-   *  var result = _.isReachable(b, "m.x.y.z");
-   *  if (_.isReal(result.value)) {
-   *    result.value("example");
-   *  }
-   *
-   *
-   * @param  {Object} base, a hash
-   * @param  {String} _string a string that represents what should be called
-   * @return {Object}  returns an object of the form:
-   *    {value: "value", failedStep: ""}
-   */
-  isReachable: function(base, _string) {
-    var list = _string.split(".");
-    var listLength = list.length;
-    var returnValue = {
-      value: null,
-      failedStep: null
-    };
-    var currBase = base;
-    for (var ii = 0; ii < listLength; ii++) {
-      var currEntry = list[ii];
-      if (_.isReal(currBase[currEntry])) {
-        returnValue.value = currBase[currEntry];
-      } else {
-        return {
-          value: null,
-          failedStep: currEntry
-        };
-      }
-      currBase = currBase[currEntry];
-    }
-    // Could call the function:
-    return returnValue;
-  },
-
-  // Returns true if arg euqlas null/undefined
-  isNotReal: function(arg) {
-    return arg == null;
-  },
-
-  // Makes sure this value is a number. Shorthand.
-  isNumeric: function(n) {
-    return !isNaN(parseFloat(n));
-  },
-
-  // if x is defined as null, it is still considered defined
-  isDefined: function(arg) {
-    return !_.isUndefined(arg);
-  },
-
-  // Shorcut to not being null
-  isNotNull: function(arg) {
-    return !_.isNull(arg);
-  }
-});// bootstrap.js
+// bootstrap.js
 
 /**
  * Simply initializes a few key holder objects.
@@ -12877,82 +12877,6 @@ setupSettings(Sqor);
     });
 
     Sqor.Core.Eventer = Eventer;
-})(Sqor);
-// Data.js
-(function(Sqor) {
-    // Dependencies:
-    var $ = Sqor.$;
-    var _ = Sqor._;
-
-    var Data = {};
-
-    Data.getAllPlayers = function() {
-    };
-
-    Data.getFeedForCurrentUser = function() {
-    };
-
-})(Sqor);
-// HTML.js
-(function(Sqor) {
-    // Dependencies:
-    var $ = Sqor.$;
-    var _ = Sqor._;
-
-    // Creating our HTML Service to process tempaltes
-    /**
-     * A static object that holds a few key functions to fetch our templates.
-     * Internally using underscore templating engine. This service takes
-     * care of fetching everything from the server and provides a simple
-     * interface.
-     *
-     *  Usage:
-     *   var onRender = function(domElement) {
-     *      // NOTE: domElement is actually a jquery object
-     *      domElement.find(".someClass");
-     *   }
-     *   HTML.get('exampleTempalte', {'fieldOne': 'fieldValue'}, onRender);
-     *
-     */
-    var HTML = {};
-
-    /**
-     * Returns a jQuery dom element for the template with options applied
-     * to the corresponding fields in the template.
-     *
-     * @param {string} templateName, name of template to fetch
-     * @param {object} options, fields to substitute inside template
-     * @param {function} callback, handler for when DOM element is ready
-     * @return {null}
-     */
-    HTML.get = function(templateName,  options, callback){
-        $.get("html/" +  templateName + ".html", function(htmlString) {
-            var compiledTemplate = _.template(htmlString)(options);
-            var domElement =  $(compiledTemplate);
-            callback(domElement);
-        });
-    };
-
-    /**
-     * Returns a holder object with a spinner inside
-     * @return {Object}, DOM holder
-     */
-    HTML.createSpinnerHolder = function(){
-        var domElement = $("<span></span>");
-        domElement.append(HTML.getSpinner());
-        return domElement;
-    };
-
-    /**
-     * A very simple spinner to indicate there is loading goign on.
-     * @return {Object} DOM element
-     */
-    HTML.getSpinner = function() {
-        var domElement  = $("<span> <img src='images/spinner.gif'/></span>");
-        return domElement;
-    };
-   
-    Sqor.Services.HTML = HTML;
 })(Sqor);
 
 (function(Sqor){
@@ -13201,66 +13125,169 @@ setupSettings(Sqor);
 
     Sqor.Core.Router = new Router();
 
-})(Sqor);// Collection.js
+})(Sqor);// Data.js
 (function(Sqor) {
     // Dependencies:
     var $ = Sqor.$;
     var _ = Sqor._;
 
-    /*
-     * create -> POST
-     * read -> GET
-     * update -> PUT
-     * delete -> DELETE
+    var Data = {};
+
+    Data.getAllPlayers = function() {
+    };
+
+    Data.getFeedForCurrentUser = function() {
+    };
+
+})(Sqor);
+// HTML.js
+(function(Sqor) {
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    // Creating our HTML Service to process tempaltes
+    /**
+     * A static object that holds a few key functions to fetch our templates.
+     * Internally using underscore templating engine. This service takes
+     * care of fetching everything from the server and provides a simple
+     * interface.
+     *
+     *  Usage:
+     *   var onRender = function(domElement) {
+     *      // NOTE: domElement is actually a jquery object
+     *      domElement.find(".someClass");
+     *   }
+     *   HTML.get('exampleTempalte', {'fieldOne': 'fieldValue'}, onRender);
+     *
      */
+    var HTML = {};
 
     /**
+     * Returns a jQuery dom element for the template with options applied
+     * to the corresponding fields in the template.
      *
+     * @param {string} templateName, name of template to fetch
+     * @param {object} options, fields to substitute inside template
+     * @param {function} callback, handler for when DOM element is ready
+     * @return {null}
+     */
+    HTML.get = function(templateName,  options, callback){
+        $.get("html/" +  templateName + ".html", function(htmlString) {
+            var compiledTemplate = _.template(htmlString)(options);
+            var domElement =  $(compiledTemplate);
+            callback(domElement);
+        });
+    };
+
+    /**
+     * Returns a holder object with a spinner inside
+     * @return {Object}, DOM holder
+     */
+    HTML.createSpinnerHolder = function(){
+        var domElement = $("<span></span>");
+        domElement.append(HTML.getSpinner());
+        return domElement;
+    };
+
+    /**
+     * A very simple spinner to indicate there is loading goign on.
+     * @return {Object} DOM element
+     */
+    HTML.getSpinner = function() {
+        var domElement  = $("<span> <img src='images/spinner.gif'/></span>");
+        return domElement;
+    };
+   
+    Sqor.Services.HTML = HTML;
+})(Sqor);
+
+
+// Model.js
+(function(Sqor) {
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+    var Messenger = Sqor.Services.Messenger;
+    var Eventer = Sqor.Core.Eventer;
+    // TODO(Jason): switch away from static model
+    /**
      * @constructor
      * @param {type} options,
      * @return {null}
      */
-    var Collection = function(options){
+    var Model = function(options){
         var self = this;
         var defaults = {
-                model: null
-            ,   mode: "probe"
-            ,   appendHandler: $.noop
-            ,   prependHandler: $.noop
-            ,   insertHandler: $.noop
-            ,   allChanges: $.noop
-            ,   firstLoad: $.noop
-            ,   iterSize: 25
+                path: "/"
+            , connectionType: "REST"
+            , isLocalOnly: true
+            , atuosave: true
+            , data: {}
         };
-        newOptions = _.extend({}, defaults, options);
-        self._options = newOptions;
+
+        self._options = _.extend({}, defaults, options);
         self.create();
     };
 
-    Collection.prototype = new Sqor.Core.Eventer();
-    _.extend(Collection.prototype, {
-        create: function(){
-            self._models = [];
-            self._rawList = [];
-            self._originalCount= false;
-            self._tailFetches= 0;
-            self._noneTailFetches= 0;
-            self._headFetches= 0;
-            self._iterPosition = 0;
+    // We subclass off our eventer class
+    Model.prototype = new Eventer();
+
+    _.extend(Model.prototype, {
+        // TODO(Jason):
+        // get("key", "defaultValue");
+        // var title = model.get("title", "");
+
+        create: function() {
+            var self = this;
+            // Load our data
+            self._loadData(self._options.data);
         },
 
-        // TODO(Jason): implement iterator
-        next: function(){
+        save: function(newProperties){
+            // TODO(Jason): implement
+        },
+
+        // TODO(Jason): overwrite subscribe to accept things like:
+        //  set:PropertyName   delete:PropertyName
+
+
+        /**
+         * Whenever there is a set on a given property, we notify even
+         * if they are the same value. We also save by default.
+         * @param {type} propertyName,
+         * @param {type} value,
+         * @return {null}
+         */
+        set: function(propertyName, value /*, notifyOnlyIfDifferent*/) {
             var self = this;
-            if ( self._models.length > self._originalCount ) {
+            self._rawData[propertyName] =  value;
+            if (!self._options.isLocalOnly) {
+                self.save();
             }
-            return [];
+            self.trigger(propertyName, {data: self._rawData, newValue: value});
+        },
+
+        /**
+         * Simple function to help load our data into local varible
+         * @param {type} data,
+         * @param {type} shouldNotify,
+         * @return {null}
+         */
+        _loadData: function(data, shouldNotify){
+            var self = this;
+            self._rawData = data;
+            if (shouldNotify) {
+            }
         },
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });
 
+    _.extend(Model, {
+    });
+    Sqor.Core.Model = Model;
 })(Sqor);
 // AthleteList
 (function(Sqor){
@@ -13351,94 +13378,6 @@ setupSettings(Sqor);
     Sqor.Widgets.SmartTable = SmartTable;
 })(Sqor);
 
-
-
-// Model.js
-(function(Sqor) {
-    // Dependencies:
-    var $ = Sqor.$;
-    var _ = Sqor._;
-    var Messenger = Sqor.Services.Messenger;
-    var Eventer = Sqor.Core.Eventer;
-    // TODO(Jason): switch away from static model
-    /**
-     * @constructor
-     * @param {type} options,
-     * @return {null}
-     */
-    var Model = function(options){
-        var self = this;
-        var defaults = {
-                path: "/"
-            , connectionType: "REST"
-            , isLocalOnly: true
-            , atuosave: true
-            , data: {}
-        };
-
-        self._options = _.extend({}, defaults, options);
-        self.create();
-    };
-
-    // We subclass off our eventer class
-    Model.prototype = new Eventer();
-
-    _.extend(Model.prototype, {
-        // TODO(Jason):
-        // get("key", "defaultValue");
-        // var title = model.get("title", "");
-
-        create: function() {
-            var self = this;
-            // Load our data
-            self._loadData(self._options.data);
-        },
-
-        save: function(newProperties){
-            // TODO(Jason): implement
-        },
-
-        // TODO(Jason): overwrite subscribe to accept things like:
-        //  set:PropertyName   delete:PropertyName
-
-
-        /**
-         * Whenever there is a set on a given property, we notify even
-         * if they are the same value. We also save by default.
-         * @param {type} propertyName,
-         * @param {type} value,
-         * @return {null}
-         */
-        set: function(propertyName, value /*, notifyOnlyIfDifferent*/) {
-            var self = this;
-            self._rawData[propertyName] =  value;
-            if (!self._options.isLocalOnly) {
-                self.save();
-            }
-            self.trigger(propertyName, {data: self._rawData, newValue: value});
-        },
-
-        /**
-         * Simple function to help load our data into local varible
-         * @param {type} data,
-         * @param {type} shouldNotify,
-         * @return {null}
-         */
-        _loadData: function(data, shouldNotify){
-            var self = this;
-            self._rawData = data;
-            if (shouldNotify) {
-            }
-        },
-
-        // Workaround for annoying last comma rule.
-        sdfsd3423452349249239493234: null
-    });
-
-    _.extend(Model, {
-    });
-    Sqor.Core.Model = Model;
-})(Sqor);
 
 // SimpleCollection.js
 (function(Sqor) {
@@ -13556,46 +13495,103 @@ setupSettings(Sqor);
     Sqor.Core.SimpleCollection = SimpleCollection;
 })(Sqor);
 
-// SimpleTable.js
-(function(Sqor){
+// Collection.js
+(function(Sqor) {
+    // Dependencies:
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    /*
+     * create -> POST
+     * read -> GET
+     * update -> PUT
+     * delete -> DELETE
+     */
+
+    /**
+     *
+     * @constructor
+     * @param {type} options,
+     * @return {null}
+     */
+    var Collection = function(options){
+        var self = this;
+        var defaults = {
+                model: null
+            ,   mode: "probe"
+            ,   appendHandler: $.noop
+            ,   prependHandler: $.noop
+            ,   insertHandler: $.noop
+            ,   allChanges: $.noop
+            ,   firstLoad: $.noop
+            ,   iterSize: 25
+        };
+        newOptions = _.extend({}, defaults, options);
+        self._options = newOptions;
+        self.create();
+    };
+
+    Collection.prototype = new Sqor.Core.Eventer();
+    _.extend(Collection.prototype, {
+        create: function(){
+            self._models = [];
+            self._rawList = [];
+            self._originalCount= false;
+            self._tailFetches= 0;
+            self._noneTailFetches= 0;
+            self._headFetches= 0;
+            self._iterPosition = 0;
+        },
+
+        // TODO(Jason): implement iterator
+        next: function(){
+            var self = this;
+            if ( self._models.length > self._originalCount ) {
+            }
+            return [];
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
+
+})(Sqor);
+// SimpleGrid.js
+(function(Sqor) {
     // Dependencies
     var HTML = Sqor.Services.HTML;
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    // Constants for this specific class
+    Sqor.CONSTANTS.SimpleGrid = {
+            ROWS_FIRST: "rows_first"
+        ,   COLUMNS_FIRST: "columns_first"
+    };
+
+    // TODO(Jason): displayDelegate
+    var CONSTANTS = Sqor.CONSTANTS.SimpleGrid;
+
+    // TODO(Jason):  document usage
     /**
-     * A simple table that renders cells in a list form.
-     *
-     * Usage:
-     *
-     * var someObject = {
-     *  getNumberOfCells: function(){ return 2; },
-     *
-     *  getCellAtIndex: function(index) {
-     *      var cells = [
-     *           $("<div> Cell One </div>"),
-     *           $("<div> Cell Two </div>"),
-     *      ];
-     *
-     *      return cells[index];
-     *  };
-     *
-     * };
-     * var options = {
-     *  dataDelegate: someObject
-     * };
-     *
-     * var table = new SimpleTable(options);
-     *
-     * @consructor
-     * @param {type} options,
+     * A simple grid that can be used to graph anything from a simple one
+     * column table to a multi-dimensional.
+     * @param {object} options,
      * @return {null}
      */
-    var SimpleTable = function(options){
+    // TODO(Jason): test edge cases for maxColumn: 0, 1,
+    // TODO(Jason): what are valid default values?
+    //          --- some type of error handling library would be super cool
+    var SimpleGrid = function(options){
         var self = this;
         var defaults = {
                 parentElement: null
             ,   renderedCallback: $.noop
+            , displayDelegate: {
+                     maxColumns: function(){ return 1;}
+                ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST;}
+
+            }
             , templateValues: {
                     "className": null
                 }
@@ -13608,31 +13604,55 @@ setupSettings(Sqor);
                 }
             }
         };
+
+        // TODO(Jason): add 'displayDelegate' ... and a fake one..
+        // so we can do reload and display in this mode with these many
+        // rows...
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
         self._dataDelegate = self._options.dataDelegate;
         self.create(self._options);
     };
 
-    _.extend(SimpleTable.prototype, {
+    _.extend(SimpleGrid.prototype, {
+
         /**
-         * Creates a simple table by loading the HTML template
-         * @param {object} options, used to configure the widget
+         * Creates a simple grid widget, which will allow us to create
+         * simple tables side by side of same or similar sizes
+         * @param {type} options,
          * @return {null}
          */
-        create: function(options) {
+        create: function(options){
             var self = this;
             // Setup our  holder element:
             self._el = HTML.createSpinnerHolder();
             self._el.empty();
             self._el.append(HTML.getSpinner());
-            HTML.get("simpleTable", self._options.templateValues,
+            HTML.get("simpleGrid", self._options.templateValues,
             function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
                 self._render();
                 self._options.renderedCallback(self._el, domElement);
             });
+        },
+
+        _getNumberOfRows: function(){
+            var self = this;
+            var cellCount = self._dataDelegate.getNumberOfCells();
+            var maxColumns = self._options.displayDelegate.maxColumns();
+            var result =  Math.ceil(cellCount/maxColumns);
+            return result;
+        },
+
+        _getMaxCellsPerRow: function(){
+            var self = this;
+            return self._getNumberOfColumns();
+        },
+
+        _getNumberOfColumns: function(){
+            var self = this;
+            return self._options.displayDelegate.maxColumns();
         },
 
         /**
@@ -13644,9 +13664,33 @@ setupSettings(Sqor);
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
             var cellCount = self._dataDelegate.getNumberOfCells();
             // Render each cell by calling into our delegate
-            for(var ii = 0; ii < cellCount; ii++){
-                var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
-                cellsContainer.append(currentCellDOM);
+            // TODO(Jason): do this with a Tempalte.. real one..
+            var currentIndex = 0;
+            var rowCount = self._getNumberOfRows();
+            var columnCount = self._getNumberOfColumns();
+
+            // TODO(Jason): if ROWS_FIRST CONSTANT
+            // We loop over our rows, and create
+            //  make into function
+            for(var rr  = 0; rr < rowCount ; rr++){
+                // Create our holder row
+                // [ ----- row ----------]
+                var rowDOM = $("<div></div>");
+                // Now we loop over and insert each cell for a given column
+                // at that row level:
+                // [ ------- last row full ---]
+                // [ [cell0 | cell1 ........  ]
+                for(var cc = 0; cc < columnCount; cc++) {
+                    // Make sure we haven't gone over
+                    if (currentIndex < cellCount) {
+                        var currentCellDOM =
+                            self._dataDelegate.getCellAtIndex(currentIndex);
+                        currentIndex++;
+                        rowDOM.append(currentCellDOM);
+                    } else {
+                    }
+                }
+                cellsContainer.append(rowDOM);
             }
         },
 
@@ -13697,11 +13741,72 @@ setupSettings(Sqor);
         sdfsd3423452349249239493234: null
     });
 
-    // Export our widget
-    Sqor.Widgets.SimpleTable = SimpleTable;
-})(Sqor);
+    Sqor.Widgets.SimpleGrid = SimpleGrid;
+})(Sqor);//feedFooter.js
+(function(Sqor) {
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
 
-// DisplayCard.js
+    /**
+     * This widget will reflect the state of the feed list. Similar to how
+     * Facebook and a few big sites do it.
+     *
+     * @param {type} options,
+     * @return {null}
+     */
+    var FeedFooter = function(options){
+        var self = this;
+        var defaults = {
+                templateValues: {}
+            ,   renderedCallback: $.noop
+        };
+        self._delegates = [];
+        self._options = _.extend({}, defaults, options);
+        self.create(self._options);
+    };
+
+    _.extend(FeedFooter.prototype, {
+        // TODO(Jason): MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
+        // code????
+        create: function(){
+            var self = this;
+            // Setup our  holder element:
+            self._el = HTML.createSpinnerHolder();
+            self._el.empty();
+            self._el.append(HTML.getSpinner());
+            HTML.get("feedFooterxx", self._options.templateValues,
+            function(domElement){
+                self._el.empty();
+                self._el.append(domElement);
+                self._render();
+                self._options.renderedCallback(self._el, domElement);
+            });
+        },
+
+        /**
+         * Renders our widget for the first time.
+         * @return {null}
+         */
+        _render: function(){
+        },
+
+        /**
+         * Returns the jQuery dom element representing our widget
+         * @return {object}, jQuery object
+         */
+        getDomElement: function(){
+            var self = this;
+            return self._el;
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
+
+    Sqor.Widgets.FeedFooter = FeedFooter;
+})(Sqor);// DisplayCard.js
 (function(Sqor) {
     // Dependencies
     var HTML = Sqor.Services.HTML;
@@ -13900,106 +14005,46 @@ setupSettings(Sqor);
 
     Sqor.Widgets.DynamicTable = DynamicTable;
 })(Sqor);
-//feedFooter.js
-(function(Sqor) {
+// SimpleTable.js
+(function(Sqor){
     // Dependencies
     var HTML = Sqor.Services.HTML;
     var $ = Sqor.$;
     var _ = Sqor._;
 
     /**
-     * This widget will reflect the state of the feed list. Similar to how
-     * Facebook and a few big sites do it.
+     * A simple table that renders cells in a list form.
      *
+     * Usage:
+     *
+     * var someObject = {
+     *  getNumberOfCells: function(){ return 2; },
+     *
+     *  getCellAtIndex: function(index) {
+     *      var cells = [
+     *           $("<div> Cell One </div>"),
+     *           $("<div> Cell Two </div>"),
+     *      ];
+     *
+     *      return cells[index];
+     *  };
+     *
+     * };
+     * var options = {
+     *  dataDelegate: someObject
+     * };
+     *
+     * var table = new SimpleTable(options);
+     *
+     * @consructor
      * @param {type} options,
      * @return {null}
      */
-    var FeedFooter = function(options){
-        var self = this;
-        var defaults = {
-                templateValues: {}
-            ,   renderedCallback: $.noop
-        };
-        self._delegates = [];
-        self._options = _.extend({}, defaults, options);
-        self.create(self._options);
-    };
-
-    _.extend(FeedFooter.prototype, {
-        // TODO(Jason): MAKE ALL WIDGETS inherit from BASEWIDGET .. .and remove this
-        // code????
-        create: function(){
-            var self = this;
-            // Setup our  holder element:
-            self._el = HTML.createSpinnerHolder();
-            self._el.empty();
-            self._el.append(HTML.getSpinner());
-            HTML.get("feedFooterxx", self._options.templateValues,
-            function(domElement){
-                self._el.empty();
-                self._el.append(domElement);
-                self._render();
-                self._options.renderedCallback(self._el, domElement);
-            });
-        },
-
-        /**
-         * Renders our widget for the first time.
-         * @return {null}
-         */
-        _render: function(){
-        },
-
-        /**
-         * Returns the jQuery dom element representing our widget
-         * @return {object}, jQuery object
-         */
-        getDomElement: function(){
-            var self = this;
-            return self._el;
-        },
-
-        // Workaround for annoying last comma rule.
-        sdfsd3423452349249239493234: null
-    });
-
-    Sqor.Widgets.FeedFooter = FeedFooter;
-})(Sqor);// SimpleGrid.js
-(function(Sqor) {
-    // Dependencies
-    var HTML = Sqor.Services.HTML;
-    var $ = Sqor.$;
-    var _ = Sqor._;
-
-    // Constants for this specific class
-    Sqor.CONSTANTS.SimpleGrid = {
-            ROWS_FIRST: "rows_first"
-        ,   COLUMNS_FIRST: "columns_first"
-    };
-
-    // TODO(Jason): displayDelegate
-    var CONSTANTS = Sqor.CONSTANTS.SimpleGrid;
-
-    // TODO(Jason):  document usage
-    /**
-     * A simple grid that can be used to graph anything from a simple one
-     * column table to a multi-dimensional.
-     * @param {object} options,
-     * @return {null}
-     */
-    // TODO(Jason): test edge cases for maxColumn: 0, 1,
-    // TODO(Jason): what are valid default values?
-    //          --- some type of error handling library would be super cool
-    var SimpleGrid = function(options){
+    var SimpleTable = function(options){
         var self = this;
         var defaults = {
                 parentElement: null
             ,   renderedCallback: $.noop
-            , displayDelegate: {
-                     maxColumns: function(){ return 1;}
-                ,   graphingMode: function(){ return CONSTANTS.ROWS_FIRST;}
-
-            }
             , templateValues: {
                     "className": null
                 }
@@ -14012,55 +14057,31 @@ setupSettings(Sqor);
                 }
             }
         };
-
-        // TODO(Jason): add 'displayDelegate' ... and a fake one..
-        // so we can do reload and display in this mode with these many
-        // rows...
         self._delegates = [];
         self._options = _.extend({}, defaults, options);
         self._dataDelegate = self._options.dataDelegate;
         self.create(self._options);
     };
 
-    _.extend(SimpleGrid.prototype, {
-
+    _.extend(SimpleTable.prototype, {
         /**
-         * Creates a simple grid widget, which will allow us to create
-         * simple tables side by side of same or similar sizes
-         * @param {type} options,
+         * Creates a simple table by loading the HTML template
+         * @param {object} options, used to configure the widget
          * @return {null}
          */
-        create: function(options){
+        create: function(options) {
             var self = this;
             // Setup our  holder element:
             self._el = HTML.createSpinnerHolder();
             self._el.empty();
             self._el.append(HTML.getSpinner());
-            HTML.get("simpleGrid", self._options.templateValues,
+            HTML.get("simpleTable", self._options.templateValues,
             function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
                 self._render();
                 self._options.renderedCallback(self._el, domElement);
             });
-        },
-
-        _getNumberOfRows: function(){
-            var self = this;
-            var cellCount = self._dataDelegate.getNumberOfCells();
-            var maxColumns = self._options.displayDelegate.maxColumns();
-            var result =  Math.ceil(cellCount/maxColumns);
-            return result;
-        },
-
-        _getMaxCellsPerRow: function(){
-            var self = this;
-            return self._getNumberOfColumns();
-        },
-
-        _getNumberOfColumns: function(){
-            var self = this;
-            return self._options.displayDelegate.maxColumns();
         },
 
         /**
@@ -14072,33 +14093,9 @@ setupSettings(Sqor);
             var cellsContainer = self._el.find(".SQOR_cellsContainer");
             var cellCount = self._dataDelegate.getNumberOfCells();
             // Render each cell by calling into our delegate
-            // TODO(Jason): do this with a Tempalte.. real one..
-            var currentIndex = 0;
-            var rowCount = self._getNumberOfRows();
-            var columnCount = self._getNumberOfColumns();
-
-            // TODO(Jason): if ROWS_FIRST CONSTANT
-            // We loop over our rows, and create
-            //  make into function
-            for(var rr  = 0; rr < rowCount ; rr++){
-                // Create our holder row
-                // [ ----- row ----------]
-                var rowDOM = $("<div></div>");
-                // Now we loop over and insert each cell for a given column
-                // at that row level:
-                // [ ------- last row full ---]
-                // [ [cell0 | cell1 ........  ]
-                for(var cc = 0; cc < columnCount; cc++) {
-                    // Make sure we haven't gone over
-                    if (currentIndex < cellCount) {
-                        var currentCellDOM =
-                            self._dataDelegate.getCellAtIndex(currentIndex);
-                        currentIndex++;
-                        rowDOM.append(currentCellDOM);
-                    } else {
-                    }
-                }
-                cellsContainer.append(rowDOM);
+            for(var ii = 0; ii < cellCount; ii++){
+                var currentCellDOM = self._dataDelegate.getCellAtIndex(ii);
+                cellsContainer.append(currentCellDOM);
             }
         },
 
@@ -14149,8 +14146,11 @@ setupSettings(Sqor);
         sdfsd3423452349249239493234: null
     });
 
-    Sqor.Widgets.SimpleGrid = SimpleGrid;
-})(Sqor);// ExampleGridController.js
+    // Export our widget
+    Sqor.Widgets.SimpleTable = SimpleTable;
+})(Sqor);
+
+// ExampleGridController.js
 (function(Sqor){
     // Dependencies
     var HTML = Sqor.Services.HTML;
@@ -14248,6 +14248,120 @@ setupSettings(Sqor);
     });
     Sqor.Modules.ExampleGridController = ExampleGridController;
 })(Sqor);
+// FeedListModel.js
+(function(Sqor){
+    // Dependencies
+    var HTML = Sqor.Services.HTML;
+    var $ = Sqor.$;
+    var _ = Sqor._;
+
+    /**
+     * Initializes a simple model to represetn the state of the list module.
+     * @return {null}
+     */
+    var  FeedListModel = function(){
+        var self = this;
+        self._delegates = [];
+        self._offset= 0;
+        self._step = 10;
+        self._items = [];
+    };
+
+    _.extend(FeedListModel.prototype, {
+
+        /**
+         * Adds a delegate to our list of delegates
+         * @param {object} delegate,
+         * @return {null}
+         */
+        addDelegate: function(delegate){
+            var self = this;
+            self._delegates.push(delegate);
+        },
+
+        /**
+         * Calls all delegates listening for dataChanges
+         * @return {null}
+         */
+        _notifyDelegates: function(type, count, methodName){
+            var self = this;
+            var args = arguments;
+            _.each(self._delegates, function(delegate) {
+                if (_.isReal(delegate[methodName])) {
+                    delegate[methodName].apply(delegate, args);
+                }
+            });
+        },
+
+        /**
+         * Pushes items into our local array of entries
+         *
+         * @param {object} data,
+         * @return {null}
+         */
+        _loadItems: function(data){
+            var self = this;
+            var results = data.results;
+            _.each(results, function(result){
+                self._items.push(result);
+            });
+
+            self._offset += self._step;
+            self.appendItems(results.length);
+        },
+
+        /**
+         * Make request to load data from network/server.
+         * @return {null}
+         */
+        loadBottomItems: function(){
+            var self = this;
+            var requestURL= "http://feedtools-dev.sqor.com/content?q=type:instagram&offset=" +
+                self._offset + "&limit=" + self._step;
+            // q=*
+            // q=type:instragram
+            var promise =  $.get(requestURL);
+            promise.done(function(data){
+                self._loadItems(data);
+            });
+        },
+
+        /**
+         * New rows / items were added to the beginning
+         * @param {type} count,
+         * @return {null}
+         */
+        prependItems: function(count) {
+            var self = this;
+            self._notifyDelegates("prepend", count, "dataChanged");
+        },
+
+        /**
+         * Old rows /items were loaded into memory:
+         * @param {type} count,
+         * @return {null}
+         */
+        appendItems: function(count) {
+            var self = this;
+            self._notifyDelegates("append", count, "dataChanged");
+        },
+
+        /**
+         * Returns the size of the list / table
+         * @return {number} size of list
+         */
+        size: function() {
+            var self = this;
+            return self._items.length;
+        },
+
+        // Workaround for annoying last comma rule.
+        sdfsd3423452349249239493234: null
+    });
+
+    Sqor.Modules.FeedListModel = FeedListModel;
+})(Sqor);
+
 
 // FeedListController.js
 (function(Sqor){
@@ -14476,120 +14590,6 @@ setupSettings(Sqor);
 
     Sqor.Modules.FeedListController = FeedListController;
 })(Sqor);
-// FeedListModel.js
-(function(Sqor){
-    // Dependencies
-    var HTML = Sqor.Services.HTML;
-    var $ = Sqor.$;
-    var _ = Sqor._;
-
-    /**
-     * Initializes a simple model to represetn the state of the list module.
-     * @return {null}
-     */
-    var  FeedListModel = function(){
-        var self = this;
-        self._delegates = [];
-        self._offset= 0;
-        self._step = 10;
-        self._items = [];
-    };
-
-    _.extend(FeedListModel.prototype, {
-
-        /**
-         * Adds a delegate to our list of delegates
-         * @param {object} delegate,
-         * @return {null}
-         */
-        addDelegate: function(delegate){
-            var self = this;
-            self._delegates.push(delegate);
-        },
-
-        /**
-         * Calls all delegates listening for dataChanges
-         * @return {null}
-         */
-        _notifyDelegates: function(type, count, methodName){
-            var self = this;
-            var args = arguments;
-            _.each(self._delegates, function(delegate) {
-                if (_.isReal(delegate[methodName])) {
-                    delegate[methodName].apply(delegate, args);
-                }
-            });
-        },
-
-        /**
-         * Pushes items into our local array of entries
-         *
-         * @param {object} data,
-         * @return {null}
-         */
-        _loadItems: function(data){
-            var self = this;
-            var results = data.results;
-            _.each(results, function(result){
-                self._items.push(result);
-            });
-
-            self._offset += self._step;
-            self.appendItems(results.length);
-        },
-
-        /**
-         * Make request to load data from network/server.
-         * @return {null}
-         */
-        loadBottomItems: function(){
-            var self = this;
-            var requestURL= "http://feedtools-dev.sqor.com/content?q=type:instagram&offset=" +
-                self._offset + "&limit=" + self._step;
-            // q=*
-            // q=type:instragram
-            var promise =  $.get(requestURL);
-            promise.done(function(data){
-                self._loadItems(data);
-            });
-        },
-
-        /**
-         * New rows / items were added to the beginning
-         * @param {type} count,
-         * @return {null}
-         */
-        prependItems: function(count) {
-            var self = this;
-            self._notifyDelegates("prepend", count, "dataChanged");
-        },
-
-        /**
-         * Old rows /items were loaded into memory:
-         * @param {type} count,
-         * @return {null}
-         */
-        appendItems: function(count) {
-            var self = this;
-            self._notifyDelegates("append", count, "dataChanged");
-        },
-
-        /**
-         * Returns the size of the list / table
-         * @return {number} size of list
-         */
-        size: function() {
-            var self = this;
-            return self._items.length;
-        },
-
-        // Workaround for annoying last comma rule.
-        sdfsd3423452349249239493234: null
-    });
-
-    Sqor.Modules.FeedListModel = FeedListModel;
-})(Sqor);
-
 
 // demoRoutes.js
 Sqor.demoRoutes = function(Sqor){

@@ -20,6 +20,9 @@
      *
      */
     var HTML = {};
+    HTML._cached = {};
+
+
 
     /**
      * Returns a jQuery dom element for the template with options applied
@@ -31,6 +34,9 @@
      * @return {null}
      */
     HTML.get = function(templateName,  options, callback){
+        if (_.isReal(HTML._cached[templateName]) {
+            return
+        }
         $.get("html/" +  templateName + ".html", function(htmlString) {
             var compiledTemplate = _.template(htmlString)(options);
             var domElement =  $(compiledTemplate);
@@ -56,6 +62,6 @@
         var domElement  = $("<span> <img src='images/spinner.gif'/></span>");
         return domElement;
     };
-   
+
     Sqor.Services.HTML = HTML;
 })(Sqor);
