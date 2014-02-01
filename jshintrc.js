@@ -1,4 +1,3 @@
 {
-        "laxbreak": true
-        , "laxcomma": true
+         "laxcomma": true
 }
