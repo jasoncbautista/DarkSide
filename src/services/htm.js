@@ -22,7 +22,18 @@
     var HTML = {};
     HTML._cached = {};
 
-
+    /**
+     * Serves our template given  a template string
+     * @param {string} templateString,
+     * @param {object} options,
+     * @param {function} callback,
+     * @return {Null}
+     */
+    HTML._serveTemplate = function(templateString, options, callback) {
+        var compiledTemplate = _.template(htmlString)(options);
+        var domElement =  $(compiledTemplate);
+        callback(domElement);
+    };
 
     /**
      * Returns a jQuery dom element for the template with options applied
@@ -34,13 +45,15 @@
      * @return {null}
      */
     HTML.get = function(templateName,  options, callback){
-        if (_.isReal(HTML._cached[templateName]) {
-            return
+        // We want to prevent multiple requests for the same template:
+        var cachedTemplate =  HTML._cached[templateName];
+        if (_.isReal(cachedTemplate) {
+            HTML._serveTemplate(cachedTemplate, options, callback);
         }
         $.get("html/" +  templateName + ".html", function(htmlString) {
-            var compiledTemplate = _.template(htmlString)(options);
-            var domElement =  $(compiledTemplate);
-            callback(domElement);
+            // We cache the template:
+            HTML._cached[templateName] = htmlString;
+            HTML._serveTemplate(htmlString, options, callback);
         });
     };
 
