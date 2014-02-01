@@ -13,5 +13,11 @@ then
 	exit
 fi
 
+echo "// Compiled:" > $NEWFILE  
+for f in $*
+do
+    find ${f}  -name "*.js" | sort   | xargs cat >> $NEWFILE
+done
 
-find $* -name "*.js"  | xargs cat > $NEWFILE
+
+# find $* -name "*.js"  | xargs cat > $NEWFILE

@@ -1,3 +1,4 @@
+alert("st");
 // SimpleTable.js
 (function(Sqor){
     // Dependencies
