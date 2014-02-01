@@ -47,7 +47,7 @@
     HTML.get = function(templateName,  options, callback){
         // We want to prevent multiple requests for the same template:
         var cachedTemplate =  HTML._cached[templateName];
-        if (_.isReal(cachedTemplate) {
+        if (_.isReal(cachedTemplate)) {
             HTML._serveTemplate(cachedTemplate, options, callback);
         }
         $.get("html/" +  templateName + ".html", function(htmlString) {
