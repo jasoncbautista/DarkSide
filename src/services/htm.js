@@ -30,7 +30,7 @@
      * @return {Null}
      */
     HTML._serveTemplate = function(templateString, options, callback) {
-        var compiledTemplate = _.template(htmlString)(options);
+        var compiledTemplate = _.template(templateString)(options);
         var domElement =  $(compiledTemplate);
         callback(domElement);
     };

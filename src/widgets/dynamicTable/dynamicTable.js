@@ -1,4 +1,3 @@
-alert("dt");
 // DynamicTable.js
 (function(Sqor) {
     // Dependencies
