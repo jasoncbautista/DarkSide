@@ -47,7 +47,7 @@
 
         /**
          * Send request to REST API.
-         * @param {type} type,
+         * @param {string} type, GET, POST, PUT DELETE
          * @param {type} path,
          * @param {type} data,
          * @return {null}
@@ -61,7 +61,7 @@
         /**
          * A wrapper around get / post /put /delete ajaxy calls.
          *
-         * @param {string} type,
+         * @param {string} type, GET, POST, PUT DELETE
          * @param {string} path, api path
          * @param {object} data, map of params
          * @return {object}, jquery promise
