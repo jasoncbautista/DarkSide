@@ -1,11 +1,22 @@
+Saturday  2/1/2014
+[ ] Create logger class - 10 minutes
+[ ] Hit kirks dev logging - 20 minutes
+[ ] create Debugger class - 30 minutes
+    -- can set debugger to debug only certain keys ['keys'
+    -- to debug everything...
+
+
 
 Friday 1/31/2014
 [x] break up into multiple files - 30 minutes
 [x] add  html tempaltes caching  - 30 minutes
 [x] setup linter  - 1hr   - jsthint?
-[ ] use strict - 10 minutes
+[x] use strict - 10 minutes
+[x] setup example where a module is loaded by going to a route  path - 30 min
 [ ] setup watcher for build script  - 20 minutes
 [ ] destroy method (especially obvious for infinite scroll - 30 mins
+
+
 
 Thursday 1/30/2014
 
@@ -13,17 +24,12 @@ Thursday 1/30/2014
 [x] research methods to combine js - 20 minutes
 
 [ ] modify jquery.HTML to be safe.. but if pass flag.. then it is .text ! - 10 mins
-[ ] setup example where a module is loaded by going to a route  path - 30 min
 
 
 
 [ ] abstract jquery away - 1hr (we dont wanna depeond on it)
 
 [ ] replace $.html with $.text   - 20 minutes 
-
-[ ] create Debugger class - 30 minutes
-    -- can set debugger to debug only certain keys ['keys'
-    -- to debug everything...
 
 [x] test JSPrime  - 20 minutes --- broken.... doesn't handle any real projects
 
