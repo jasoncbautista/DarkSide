@@ -51,9 +51,7 @@
             var self = this;
             if ( self._models.length > self._originalCount ) {
             }
-
             return [];
-            return false;
         },
 
         // Workaround for annoying last comma rule.

@@ -55,8 +55,7 @@
     HTML.getSpinner = function() {
         var domElement  = $("<span> <img src='images/spinner.gif'/></span>");
         return domElement;
-    },
-
-    // HTML.getTempalte=
+    };
+   
     Sqor.Services.HTML = HTML;
 })(Sqor);

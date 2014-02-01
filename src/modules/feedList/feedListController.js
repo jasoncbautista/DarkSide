@@ -58,7 +58,7 @@
          * @return {null}
          */
         _isScrolledIntoView: function(elem){
-            var offscreenTop =  $(document.body).scrollTop()
+            var offscreenTop =  $(document.body).scrollTop();
             var displayAreaSize = window.innerHeight;
 
             var elemTop = $(elem).offset().top;

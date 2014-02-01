@@ -124,7 +124,7 @@
                             requestedURLPath: urlPath
                         ,   matchedPattern: route.pathPattern
                     };
-                    self.trigger(route.key, matchInfo)
+                    self.trigger(route.key, matchInfo);
                     self.trigger("onUrlPathChanged");
                 }
             });
