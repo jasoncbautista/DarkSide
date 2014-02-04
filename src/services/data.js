@@ -8,13 +8,13 @@
 
 
     Data.getAllPlayersCount = function() {
-    	// Testing unit testing..    		
-    	return 0;
+        // Testing unit testing..
+        return 0;
     };
 
     Data.getFeedForCurrentUser = function() {
-    	// More comments to test watcher
-    	return [];
+        // More comments to test watcher
+        return [];
     };
 
     Sqor.Data = Data;
