@@ -1,6 +1,6 @@
 // SimpleCollection.js
 (function(Sqor) {
-    'use strict'
+    'use strict';
     // Dependencies:
     var $ = Sqor.$;
     var _ = Sqor._;

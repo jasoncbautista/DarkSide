@@ -1,5 +1,4 @@
 // bootstrap.js
-
 /**
  * Simply initializes a few key holder objects.
  * @return {Object} a shell object for our library, Sqor
