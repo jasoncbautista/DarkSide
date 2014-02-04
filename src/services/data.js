@@ -6,10 +6,13 @@
 
     var Data = {};
 
-    Data.getAllPlayers = function() {
+    Data.getAllPlayersCount = function() {
+    	return 0;
     };
 
     Data.getFeedForCurrentUser = function() {
+    	return [];
     };
 
+    Sqor.Data = Data;
 })(Sqor);
