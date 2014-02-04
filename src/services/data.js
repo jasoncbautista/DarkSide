@@ -13,6 +13,7 @@
     };
 
     Data.getFeedForCurrentUser = function() {
+    	// More comments to test watcher
     	return [];
     };
 
