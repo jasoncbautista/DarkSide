@@ -6,7 +6,6 @@
 
     var Data = {};
 
-
     Data.getAllPlayersCount = function() {
         // Testing unit testing..
         return 0;
