@@ -32,6 +32,63 @@
      * var table = new DynamicTable(options);
      * --------------------
      *
+     ***************************
+     *  Example: Dynamic Table of a dynamic size... "inifnite" on both ends.
+     ***************************
+     *  A bit more dynamic table that can dynamically adjust itself to
+     *  grow as our Collection/Model changes. Supporting append and prepend
+     ***************************
+     *
+     * +--------------------+
+     * |                    |
+     * |     ......         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 1         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 2         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 3         |
+     * +--------------------+
+     * |                    |
+     * |     ......         |
+     * +--------------------+
+     *
+     * // Event: dataChanged("append", 2);
+     * // Transforms our table (without reloading)
+     *
+     * +--------------------+
+     * |                    |
+     * |     ......         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 1         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 2         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 3         |
+     * +--------------------+
+     * +--------------------+
+     * |                    |
+     * |     Cell 3         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 4         |
+     * +--------------------+
+     * |                    |
+     * |     ......         |
+     * +--------------------+
+     *
+     ***************************
+     * Note: We will be able to be notified when datChanged, just
+     * the same way we can with a SimpleTable, but this time we get notified
+     * if this is a "append" or "prepend". We will not reload the entire
+     * table and only add more tables to the head / tail of the existing rows.
+     *
      * @constructor
      * @param {type} options,
      * @return {null}

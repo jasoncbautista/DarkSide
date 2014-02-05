@@ -32,7 +32,7 @@
      * -------------
      *
      ***************************
-     *  Example: Simple Table
+     *  Example: Simple Table of a Fixed size N
      ***************************
      *  An extremely simple table of fixed size N.
      ***************************
