@@ -27,7 +27,6 @@
      *  b.addDelegate(d2);
      *
      *  // Some more stuff happens here, eventually we call  a delegate:
-     *
      *  b._notifyDelegates("dataChanged", {"diff": "some diff" });
      *
      * ------------------

@@ -10,9 +10,8 @@
      *  in a pretty similar manner with the difference that it supports
      *  appending and prepending of new items without refreshing everything
      *
-     *
      *  Usage:
-     *
+     *  --------------------
      ** var someObject = {
      *  getNumberOfCells: function(){ return 2; },
      *
@@ -31,9 +30,7 @@
      * };
      *
      * var table = new DynamicTable(options);
-     *
-     *  // TODO(Jason):  demonstrate example of appending
-     *
+     * --------------------
      *
      * @constructor
      * @param {type} options,
