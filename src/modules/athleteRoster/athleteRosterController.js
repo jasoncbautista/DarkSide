@@ -18,7 +18,7 @@
 
     _.extend(AthleteRosterControler.prototype, {
 
-/**
+        /**
          * A simple rendering function that attaches our grid to our main
          * holding element
          * @return {Null}
@@ -30,6 +30,11 @@
                          "<div class='roster'></div> </div");
             self._el.find(".roster").append(self._gridView.getDomElement());
         },
+
+        /**
+         * Adds our roster sorting widget view.
+         * @return {Null}
+         */
         _addSortingWidget: function(){
             var self = this;
             var sortingWidget = new Carrousel({
