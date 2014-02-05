@@ -14,10 +14,10 @@
      * @return {null}
      */
     var WidgetBase = function(options) {
-        // The default values this widget can take:
-        var defaults = {};
+        var self = this;
         self._templateName = "widgetBase";
-        this.create(newOptions, defaults);
+        // var defaults = {};
+        // self.create(options, defaults);
     };
 
     // Extending our widgets prototype to add basic functionality:
