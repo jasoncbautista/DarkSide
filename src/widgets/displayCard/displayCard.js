@@ -6,9 +6,20 @@
     var _ = Sqor._;
 
     /**
-     * This is a very simple widget that takes in an image, a title,
+     * DisplayCard is a very simple widget that takes in an image, a title,
      * a subtitle, and a set of links associated with each element in the form
      * of callbacks.
+     *
+     *   +---------------------------------------------------+
+     *   |                                                   |
+     *   | +-----------+                                     |
+     *   | |           | Title: Some Sample Title            |
+     *   | |           |                                     |
+     *   | |    IMG    | Subtitle Label: Some Subtitle       |
+     *   | |           |                                     |
+     *   | +-----------+                                     |
+     *   |                                                   |
+     *   +---------------------------------------------------+
      *
      * Usage:
      * ----------
