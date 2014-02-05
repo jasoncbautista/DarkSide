@@ -78,7 +78,7 @@
          * Simple rendering function for our carts
          * @return {Null}
          */
-        render: function(){
+        _render: function(){
             var self = this;
             // Render each cart:
             _.each(self._options.carts, function(cartData){
