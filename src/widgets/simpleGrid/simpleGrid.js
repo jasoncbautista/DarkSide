@@ -16,8 +16,9 @@
     // TODO(Jason): test edge cases for maxColumn: 0, 1,
     // TODO(Jason): what are valid default values?
     //   --- some type of error handling library would be super cool
+
     /**
-     * A simple grid that can be used to graph anything from a simple one
+     * A simple grid that can be used to display anything from a simple one
      * column table to a multi-dimensional.
      *
      ******************************************
@@ -62,11 +63,16 @@
      * |                    |                    |                    |
      * +--------------------+--------------------+--------------------+
      *
+     ********************************
+     *
      * Note: since displayDelegate is a function, we can update the
      * layout of the table on the fly by telling this SimpleGrid to rerender
      * itself.
      *
-     ********************************
+     * Cell Rendering:
+     *
+     *   Each of these cells is delegated to be rendered by a dataDelegate
+     *   which we will call into to ask for every cell. We are just a container
      *
      * @constructor
      * @param {object} options,
