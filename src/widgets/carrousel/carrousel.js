@@ -6,11 +6,12 @@
     var _ = Sqor._;
 
     /*
-     * TODO: change name to carrousel widget
+     * A simple Carrousel is just a bunch of divs next to each other
+     * that can each be clicked on vertically like so:
      *
      * +-----------+------------+-----------+
      * |           |            |           |
-     * |    abc    |    zxy     |    loc    |
+     * |    ABC    |    ZXY     |    LOC    |
      * +-----------+------------+-----------+
      *
      * Usage:
@@ -19,6 +20,7 @@
      *      "carts": [
      *              {"key": "abc", value: "ABC"}
      *          ,   {"key": "zxy", value: "ZXY"}
+     *          ,   {"key": "location", value: "LOC"}
      *      ]
      *
      *  };
