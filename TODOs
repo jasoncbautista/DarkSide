@@ -10,7 +10,7 @@ Tues 2/4/2014
  [ ] - footer
  [ ] - simpleTable
  [ ] - dynamicTable
- [ ] - displayCard
+ [x] - displayCard
 
 [ ] set team for roster dynamically - 30 minutes
 [ ] fix old delgate methods - 30 minutes
