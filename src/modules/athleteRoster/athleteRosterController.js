@@ -78,7 +78,8 @@
             // return displayCard.getDomElement();
             var options = {
                   "athleteNumber": model.number
-                , "athleteFullName": model.first_name + " " + model.last_name
+                , "athleteFirstName": model.first_name
+                , "athleteLastName": model.last_name
                 , "athletePosition": model.position
                 // TODO(Jason): make this an actual url
                 //  Shold probably be an external call from a library

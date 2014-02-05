@@ -19,7 +19,8 @@
         self._templateName = "athleteCard";
         var defaults = {
                 "athleteNumber": "0"
-            ,   "athleteFullName": "Sample Name"
+            ,   "athleteFirstName": "Sample "
+            ,   "athleteLastName": "Name"
             ,   "athletePosition": "Sample Position"
         };
         self.create(options, defaults);
