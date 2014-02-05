@@ -78,5 +78,5 @@
     });
 
     // Export our widget
-    Sqor.Widgets.WidgetBase = WidgetBase;
+    Sqor.Core.WidgetBase = WidgetBase;
 })(Sqor);
