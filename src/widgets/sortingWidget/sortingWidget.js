@@ -5,9 +5,18 @@
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    /*
+     * TODO: change name to carrousel widget
+     * +-------------+------------+-----------+
+     * |             |            |           |
+     * |   abc       |    zxy     |    loc    |
+     * +-------------+------------+-----------+
+     *
+     */
 
     var SortingWidget = function(options){
-
+        var self = this;
+        self.create(options);
     };
 
     // Extending our widgets prototype to add basic functionality:
