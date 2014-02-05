@@ -37,7 +37,6 @@
 
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
-
     });
 
 })(Sqor);

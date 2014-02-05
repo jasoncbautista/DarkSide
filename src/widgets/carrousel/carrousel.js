@@ -40,6 +40,7 @@
         self.create(newOptions);
     };
 
+    Carrousel.prototype = new Sqor.Core.DelegatorBase();
     // Extending our widgets prototype to add basic functionality:
     _.extend(Carrousel.prototype, {
 
