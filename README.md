@@ -33,4 +33,10 @@ Some key services include our Messenger service which is a wrapper
 to contact our rest endpoints.
 
 
+### Sqor.Widgets
+Very simple reusable UI classes that implement things like:
+ - simple tables
+ - dyanamic tables
+ - simple grids
+
 
