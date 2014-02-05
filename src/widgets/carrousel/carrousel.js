@@ -16,7 +16,7 @@
      * Usage:
      * ---------------------
      *  var options = {
-     *      "cart": [
+     *      "carts": [
          *          {"key": "abc", value: "ABC"}
      *          ,   {"key": "zxy", value: "ZXY"}
      *      ]
@@ -32,7 +32,11 @@
      */
     var Carrousel= function(options){
         var self = this;
-        self.create(options);
+        var defaults = {
+            "carts":  []
+        };
+        var newOptions = _.extend({}, defaults, options);
+        self.create(newOptions);
     };
 
     // Extending our widgets prototype to add basic functionality:
@@ -55,8 +59,10 @@
             });
         },
 
-        self.
 
+        render: function(){
+            var self = this;
+        },
         /**
          * Returns the dom element associated with this widget
          * @return {Object}, DOM representation of widget.
