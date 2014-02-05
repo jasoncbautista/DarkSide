@@ -1,4 +1,4 @@
-// sortingWidget.js
+// carrouseljs
 (function(Sqor) {
     // Dependencies
     var HTML = Sqor.Services.HTML;
@@ -14,7 +14,7 @@
      *
      */
 
-    var SortingWidget = function(options){
+    var Carrousel= function(options){
         var self = this;
         self.create(options);
     };
@@ -51,9 +51,8 @@
         sdfsd3423452349249239493234: null
     });
 
-
-
     // Export our widget
+    Sqor.Widgets.Carrousel = Carrousel;
 })(Sqor);
 
 
