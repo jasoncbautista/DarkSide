@@ -36,6 +36,7 @@
             "carts":  []
         };
         var newOptions = _.extend({}, defaults, options);
+        self._delegates = [];
         self.create(newOptions);
     };
 
