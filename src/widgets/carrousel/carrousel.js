@@ -22,7 +22,6 @@
      *          ,   {"key": "zxy", value: "ZXY"}
      *          ,   {"key": "location", value: "LOC"}
      *      ]
-     *
      *  };
      *  var carrousel = new Sqor.Widgets.Carrousel(options);
      *
