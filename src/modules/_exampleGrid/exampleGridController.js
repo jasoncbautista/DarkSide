@@ -54,6 +54,11 @@
             self._gridView = new Sqor.Widgets.SimpleGrid(gridViewOptions);
             self._models.addDelegate(self._gridView);
 
+            self._prerender();
+        },
+
+        _prerender: function(){
+            var self = this;
             // TODO(Jason): fix this, use actual template:
             self._el = $("<div></div");
             self._el.append(self._gridView.getDomElement());
