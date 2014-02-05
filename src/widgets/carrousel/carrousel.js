@@ -41,6 +41,7 @@
     };
 
     Carrousel.prototype = new Sqor.Core.DelegatorBase();
+    debugger
     // Extending our widgets prototype to add basic functionality:
     _.extend(Carrousel.prototype, {
 
