@@ -23,7 +23,7 @@
             ,   "athleteFullName": "Sample Name"
             ,   "athletePosition": "Sample Position"
         };
-        self.create({}, defaults);
+        self.create(options, defaults);
     };
 
     /** We ineherit from WidgetBase. **/

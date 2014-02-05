@@ -84,8 +84,9 @@
                 , externalURI: ""
             };
 
-            var displayCard  = new Sqor.Widgets.DisplayCard(options);
-            return displayCard.getDomElement();
+            var athleteCard = new AthleteCard(options);
+            // TODO(Jason): add to array to save for destroy calls..
+            return athleteCard.getDomElement();
         },
 
         // Workaround for annoying last comma rule.
