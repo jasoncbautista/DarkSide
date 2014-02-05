@@ -2,12 +2,12 @@
 A very simple widget based framework with example live feed implementations.
 
 ### Dependencies:
-node
-npm
-jquery
-underscore.js -
-underscorePlus - useful extension to underscore
-jshint - a simple linter
+- node
+- npm
+- jquery
+- underscore.js -
+- underscorePlus - useful extension to underscore
+- jshint - a simple linter
 
 sudo apt-get install notify-tools
 inotifywait
