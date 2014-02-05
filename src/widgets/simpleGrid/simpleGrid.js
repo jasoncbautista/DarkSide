@@ -15,15 +15,43 @@
     var CONSTANTS = Sqor.CONSTANTS.SimpleGrid;
 
     // TODO(Jason):  document usage
-    /**
-     * A simple grid that can be used to graph anything from a simple one
-     * column table to a multi-dimensional.
-     * @param {object} options,
-     * @return {null}
-     */
     // TODO(Jason): test edge cases for maxColumn: 0, 1,
     // TODO(Jason): what are valid default values?
     //          --- some type of error handling library would be super cool
+    /**
+     * A simple grid that can be used to graph anything from a simple one
+     * column table to a multi-dimensional.
+     *
+     * Example: Simple One Column
+     * -------------
+     *
+     *   Here is a verion where our displayDelegate returns max columns
+     *   of one.
+     *
+     * +--------------------+
+     * |                    |
+     * |     Cell 1         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 2         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 3         |
+     * +--------------------+
+     * |                    |
+     * |     Cell N         |
+     * |                    |
+     * +--------------------+
+     *
+     * -----------------------------------
+     *  Example:  Multi Column Example
+     *
+     *
+     *
+     * @constructor
+     * @param {object} options,
+     * @return {null}
+     */
     var SimpleGrid = function(options){
         var self = this;
         var defaults = {
