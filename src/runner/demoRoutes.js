@@ -76,7 +76,7 @@ Sqor.demoRoutes = function(Sqor){
                     path: "/sports/players"
                 ,   fetchAll: true
                 ,   urlParams: {
-                        team_id: 32043
+                        team_id: 32048 //32043
                     ,   limit: 30000
                 }
         };

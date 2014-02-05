@@ -26,7 +26,7 @@ var initialize = function(window, document){
 // settings.js
 var setupSettings = function(Sqor){
     Sqor.CONSTANTS  = {};
-    Sqor.Settings.Server = "http://sqor.com";
+    Sqor.Settings.Server = "http://dev.sqor.com";
     Sqor.Settings.RestAPI = "/rest";
     Sqor.Settings.FeedAPI = "/rest/feed/api";
 };
