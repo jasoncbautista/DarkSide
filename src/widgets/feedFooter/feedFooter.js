@@ -9,6 +9,20 @@
      * This widget will reflect the state of the feed list. Similar to how
      * Facebook and a few big sites do it.
      *
+     ***************************
+     *  Example: A very basic spinner iamge
+     ***************************
+     * TODO(Jason):
+     *  For now it's just a spinner image, but it should be able to
+     *  rerender itself based on a delegate
+     *
+     * +-----------------------------+
+     * |                             |
+     * |     Spinner Image           |
+     * |                             |
+     * +-----------------------------+
+     ***************************
+     *
      * @param {type} options,
      * @return {null}
      */
