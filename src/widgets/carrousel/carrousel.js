@@ -1,4 +1,4 @@
-// carrouseljs
+// carrousel.js
 (function(Sqor) {
     // Dependencies
     var HTML = Sqor.Services.HTML;
@@ -7,13 +7,29 @@
 
     /*
      * TODO: change name to carrousel widget
-     * +-------------+------------+-----------+
-     * |             |            |           |
-     * |   abc       |    zxy     |    loc    |
-     * +-------------+------------+-----------+
      *
+     * +-----------+------------+-----------+
+     * |           |            |           |
+     * |    abc    |    zxy     |    loc    |
+     * +-----------+------------+-----------+
+     *
+     * Usage:
+     * ---------------------
+     *  var options = {
+     *      "cart": [
+         *          {"key": "abc", value: "ABC"}
+     *          ,   {"key": "zxy", value: "ZXY"}
+     *      ]
+     *
+     *  };
+     *  var carrousel = new Sqor.Widgets.Carrousel(options);
+     *
+     * ---------------------
+     *
+     * @constructor
+     * @param {type} options,
+     * @return {Null}
      */
-
     var Carrousel= function(options){
         var self = this;
         self.create(options);
@@ -23,7 +39,7 @@
     _.extend(DisplayCard.prototype, {
 
         /**
-         * Creates the basic DOM element representing our Display Card.
+         * Creates the basic DOM element representing our Widget.
          * @param {Object} options,
          * @return {null}
          */
@@ -35,8 +51,11 @@
             HTML.get("displayCard", self._options, function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
+                self._render();
             });
         },
+
+        self.
 
         /**
          * Returns the dom element associated with this widget
