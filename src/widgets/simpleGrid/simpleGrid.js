@@ -11,9 +11,7 @@
         ,   COLUMNS_FIRST: "columns_first"
     };
 
-    // TODO(Jason): displayDelegate
     var CONSTANTS = Sqor.CONSTANTS.SimpleGrid;
-
     // TODO(Jason):  document usage
     // TODO(Jason): test edge cases for maxColumn: 0, 1,
     // TODO(Jason): what are valid default values?
