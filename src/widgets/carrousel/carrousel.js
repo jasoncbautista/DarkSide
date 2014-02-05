@@ -40,7 +40,7 @@
     };
 
     // Extending our widgets prototype to add basic functionality:
-    _.extend(DisplayCard.prototype, {
+    _.extend(Carrousel.prototype, {
 
         /**
          * Creates the basic DOM element representing our Widget.
@@ -59,6 +59,13 @@
             });
         },
 
+        /**
+         * Render a simple card, one at at time. Uses the data object
+         * and appends the DOM element to our parentDom.
+         * @param {type} parentDom, holding dom for the carts
+         * @param {type} cartData, data representation of the cart
+         * @return {Null}
+         */
         _renderCart: function(parentDom, cartData) {
             var self = this;
             //TODO(Jason): get template
