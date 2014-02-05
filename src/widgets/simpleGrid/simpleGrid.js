@@ -22,9 +22,9 @@
      * A simple grid that can be used to graph anything from a simple one
      * column table to a multi-dimensional.
      *
+     ******************************************
      * Example: Simple One Column
-     * -------------
-     *
+     ******************************************
      *   Here is a verion where our displayDelegate returns max columns
      *   of one.
      *
@@ -43,9 +43,9 @@
      * |                    |
      * +--------------------+
      *
-     * -----------------------------------
+     ******************************************
      *  Example:  Multi Column Example
-     *  --------------
+     ******************************************
      *    Here is an exmaple where we set our displayDelegate to have
      *    3 columns and ordered with row first.
      *
@@ -63,7 +63,9 @@
      * |     Cell 10        |     Cell 11        |                    |
      * |                    |                    |                    |
      * +--------------------+--------------------+--------------------+
-     *  ------
+     *
+     ********************************
+     *
      *
      * @constructor
      * @param {object} options,
