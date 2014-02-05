@@ -6,7 +6,6 @@
     var _ = Sqor._;
     var WidgetBase = Sqor.Core.WidgetBase;
 
-
     /**
      * Athlete card is super simple, it is just a a way to show
      * an individual athlete inside of something like a roster view.

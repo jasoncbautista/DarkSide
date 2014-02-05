@@ -54,6 +54,7 @@
                 carts: [
                         {"key": "abc", "value": "ABC"}
                     ,   {"key": "zxy", "value": "ZXY"}
+                    ,   {"key": "position", "value": "POS"}
                 ]
             });
             self._sortingWidgets = sortingWidget;
