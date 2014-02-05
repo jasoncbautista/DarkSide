@@ -6,12 +6,25 @@
     var _ = Sqor._;
     var ExampleGridController = Sqor.Modules.ExampleGridController;
     var Carrousel = Sqor.Widgets.Carrousel  ;
+    var AthleteCard = Sqor.Widgets.AthleteCard;
+
+    /**
+     * This widget displays a team roster in teable format:
+     *
+     * Example:
+     *  TODO(Jason): draw example
+     *
+     * @constructor
+     * @param {type} options,
+     * @return {Null}
+     */
     var AthleteRosterControler = function(options){
         var self = this;
         self.create(options);
         self._addSortingWidget();
     };
 
+    /** Subclass off example grid **/
     AthleteRosterControler.prototype = new ExampleGridController({
         _subclass: true
     });
@@ -46,6 +59,33 @@
             self._sortingWidgets = sortingWidget;
             self._el.find(".sortingHolder").append(
                 self._sortingWidgets.getDomElement());
+        },
+
+        /**********************************************************************
+         *  Delegate API Methods Implemented
+         *********************************************************************/
+
+        /**
+         * Simple function to return a DOM element for a given cell position.
+         * @param {number} index, number in model
+         * @return {Object} jquery Object
+         */
+        getCellAtIndex: function(index) {
+            var self = this;
+            var model = self._models.getItem(index);
+            // var displayCard = self._getWidgeForType(model);
+            // return displayCard.getDomElement();
+            var options = {
+                  "athleteNumber": model.number
+                , "athleteFullName": model.first_name + " " + model.last_name
+                , "athletePosition": model.position
+                // TODO(Jason): make this an actual url
+                //  Shold probably be an external call from a library
+                , externalURI: ""
+            };
+
+            var displayCard  = new Sqor.Widgets.DisplayCard(options);
+            return displayCard.getDomElement();
         },
 
         // Workaround for annoying last comma rule.
