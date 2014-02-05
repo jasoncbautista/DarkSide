@@ -4,6 +4,12 @@
     var _ = Sqor._;
     var Messenger =  Sqor.Services.Messenger;
 
+    /**
+     * A static logging class that will hit our REST loggin endpoint .
+     *
+     * @param {type} options,
+     * @return {Null}
+     */
     var Logger = function(options){
         var self = this;
         var defaults = {

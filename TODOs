@@ -12,7 +12,6 @@ Tues 2/4/2014
  [x] - dynamicTable
  [x] - footer
  [x] - displayCard
-
 [ ] set team for roster dynamically - 30 minutes
 [ ] fix old delgate methods - 30 minutes
 [ ] destroy method (especially obvious for infinite scroll - 30 mins
