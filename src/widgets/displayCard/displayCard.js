@@ -15,6 +15,7 @@
      *      var c = new Sqor.Widgets.DisplayCard({title: "Simple Name"});
      *      $('body').append(c.getDomElement());
      *      c.reloadData({"name": "NewName"});
+     *
      * ----------
      *
      * @constructor

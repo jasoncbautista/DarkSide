@@ -16,6 +16,7 @@
      *
      * Usage:
      * ---------------------
+     *
      *  var options = {
      *      "carts": [
      *              {"key": "abc", value: "ABC"}
@@ -27,7 +28,6 @@
      *  var carrousel = new Sqor.Widgets.Carrousel(options);
      *
      * ---------------------
-     *
      * @constructor
      * @param {type} options,
      * @return {Null}
