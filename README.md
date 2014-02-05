@@ -40,3 +40,9 @@ Very simple reusable UI classes that implement things like:
  - simple grids
 
 
+### SqorModules
+Modules for the most part are at a level above Widgets, and should leverage
+widgets when possible. They are a bit more aware of data and some even their
+"sorroundings". They can be used to do things like render a specific part
+of a site. One example is a nav bar, a side bar, etc.
+
