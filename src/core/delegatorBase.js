@@ -39,4 +39,6 @@
         sdfsd3423452349249239493234: null
     });
 
+    // Exporting Class
+    Sqor.Core.DelegatorBase = DelegatorBase;
 })(Sqor);
