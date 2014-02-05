@@ -5,7 +5,11 @@ Tues 2/4/2014
 [ ] set team for roster dynamically - 30 minutes
 [ ] fix old delgate methods - 30 minutes
 [ ] destroy method (especially obvious for infinite scroll - 30 mins
+[ ] start adding unit tests
 
+
+Monday 2/3/2014
+[x] create unit testing library 
 
 Saturday  2/1/2014
 [ ] Create logger class - 10 minutes
@@ -54,7 +58,6 @@ Thursday 1/30/2014
 
 [ ] code painter - setup
 
-[ ] create unit testing library (imports compiled js, then tests...)
 [ ] setup selenium
 
 [ ] watch jswiz  - 30 minute 
