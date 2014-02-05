@@ -1,25 +1,27 @@
 # Darkside
 A very simple widget based framework with example live feed implementations.
 
-
-# Key Features
-- Data driven
-- fast loading
-- mobile support
-
-# Overview
-
-Modules and widgets using a style similar to OSX with delegates. 
-
 ### Dependencies:
 node
 npm
 jquery
-underscore
-
+underscore.js -
+underscorePlus - useful extension to underscore
+jshint - a simple linter
 
 sudo apt-get install notify-tools
 inotifywait
+
+
+
+## Key Features
+- Data driven
+- fast loading
+- mobile support
+
+## Overview
+
+Modules and widgets using a style similar to OSX with delegates. 
 
 
 
@@ -47,6 +49,6 @@ of a site. One example is a nav bar, a side bar, etc.
 
 
 
-### Soqr bootstrap
+### Sqor bootstrap
 A simple set of classes to get the library loaded. It initializes all the 
 holding objects for a lot of the above.
