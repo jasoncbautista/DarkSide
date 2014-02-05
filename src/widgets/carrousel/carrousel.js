@@ -17,7 +17,7 @@
      * ---------------------
      *  var options = {
      *      "carts": [
-         *          {"key": "abc", value: "ABC"}
+     *              {"key": "abc", value: "ABC"}
      *          ,   {"key": "zxy", value: "ZXY"}
      *      ]
      *
