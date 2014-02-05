@@ -7,6 +7,13 @@
     /**
      * A static logging class that will hit our REST loggin endpoint .
      *
+     * Usage
+     * ----------------------
+     *  var o = {"eventName": "testEvent", action: "loadedSimpleGrid"};
+     *  Sqor.Services.Logger.log(o);
+     * ----------------------
+     *
+     * @constructor
      * @param {type} options,
      * @return {Null}
      */
@@ -24,6 +31,7 @@
         log: function(eventName, options){
             var self  = this;
             // TODO(Jason): stringify options??
+            //  we need to flatten this options object
             Messenger.request("POST"
                 , self._options.loggingEndpoint
                 , options);
