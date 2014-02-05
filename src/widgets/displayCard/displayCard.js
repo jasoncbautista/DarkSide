@@ -11,9 +11,11 @@
      * of callbacks.
      *
      * Usage:
+     * ----------
      *      var c = new Sqor.Widgets.DisplayCard({title: "Simple Name"});
      *      $('body').append(c.getDomElement());
      *      c.reloadData({"name": "NewName"});
+     * ----------
      *
      * @constructor
      * @param {object} options, simple ways to configure our DisplayCard
