@@ -6,9 +6,21 @@
     var _ = Sqor._;
     var SimpleCollection = Sqor.Core.SimpleCollection;
 
+    /**
+     *  A base example for how to create a siple grid and all the boiler
+     *  plate that goes with it.
+     *
+     *  Should subclass and overwrite getCellAtIndex.
+     *
+     * @controller
+     * @param {type} options,
+     * @return {Null}
+     */
     var ExampleGridController = function(options){
-        var self = this;
-        self.create(options);
+        if (!_.isReal(options._subclass)){
+            var self = this;
+            self.create(options);
+        }
     };
 
     _.extend(ExampleGridController.prototype, {
