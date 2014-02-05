@@ -30,7 +30,7 @@
      * @param {type} options,
      * @return {Null}
      */
-    var Carrousel= function(options){
+    var Carrousel = function(options){
         var self = this;
         var defaults = {
             "carts":  []
@@ -41,7 +41,6 @@
     };
 
     Carrousel.prototype = new Sqor.Core.DelegatorBase();
-    debugger
     // Extending our widgets prototype to add basic functionality:
     _.extend(Carrousel.prototype, {
 

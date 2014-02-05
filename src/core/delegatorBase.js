@@ -9,7 +9,7 @@
         self._delegates = [];
     };
 
-    _.extend(DelegatorBase, {
+    _.extend(DelegatorBase.prototype, {
         /**
          * Adds a delegate to our list of delegates
          * @param {object} delegate,
