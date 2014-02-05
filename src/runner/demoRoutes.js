@@ -84,7 +84,7 @@ Sqor.demoRoutes = function(Sqor){
             playerModelOptions = {};
          }
 
-        var c = new Sqor.Modules.ExampleGridController({modelOptions: playerModelOptions});
+        var c = new Sqor.Modules.AthleteRosterControler({modelOptions: playerModelOptions});
         $("body").append(c.getDomElement());
         //append to Model
         // c._model.appendItems(10);

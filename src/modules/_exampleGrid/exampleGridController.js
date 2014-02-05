@@ -57,6 +57,11 @@
             self._prerender();
         },
 
+        /**
+         * A simple rendering function that attaches our grid to our main
+         * holding element
+         * @return {Null}
+         */
         _prerender: function(){
             var self = this;
             // TODO(Jason): fix this, use actual template:
