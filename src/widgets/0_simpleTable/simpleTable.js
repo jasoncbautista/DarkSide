@@ -9,7 +9,7 @@
      * A simple table that renders cells in a list form.
      *
      * Usage:
-     *
+     * -------------
      * var someObject = {
      *  getNumberOfCells: function(){ return 2; },
      *
@@ -28,6 +28,33 @@
      * };
      *
      * var table = new SimpleTable(options);
+     *
+     * -------------
+     *
+     ***************************
+     *  Example: Simple Table
+     ***************************
+     *  An extremely simple table of fixed size N.
+     ***************************
+     *
+     * +--------------------+
+     * |                    |
+     * |     Cell 1         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 2         |
+     * +--------------------+
+     * |                    |
+     * |     Cell 3         |
+     * +--------------------+
+     * |                    |
+     * |     Cell N         |
+     * |                    |
+     * +--------------------+
+     *
+     ***************************
+     * Hopefully it is clear that the rendering of the actual cells is done
+     * by a delegate. This means that this is just a container.
      *
      * @consructor
      * @param {type} options,
