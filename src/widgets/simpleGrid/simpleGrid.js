@@ -66,7 +66,6 @@
      *
      ********************************
      *
-     *
      * @constructor
      * @param {object} options,
      * @return {null}

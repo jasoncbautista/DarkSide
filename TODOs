@@ -6,10 +6,10 @@ Tues 2/4/2014
 [x] create delegator inheritance class - 15 minutes
 [x] start carrousel widget - 20 minutes
 [x] update some comments with awesome diagrams and usage example
- [ ] - simpleGrid
- [ ] - footer
+ [x] - simpleGrid
  [ ] - simpleTable
  [ ] - dynamicTable
+ [ ] - footer
  [x] - displayCard
 
 [ ] set team for roster dynamically - 30 minutes
