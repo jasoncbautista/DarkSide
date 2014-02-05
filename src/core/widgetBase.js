@@ -56,7 +56,7 @@
          * @param {object} data, data pertaining to how to render
          * @return {null}
          */
-        reloadData: function(data){
+        reloadData: function(data, doneRenderingCallback){
             var self = this;
             self._data = data;
             // First we must indicate new data is being loaded:
@@ -66,6 +66,9 @@
             HTML.get(self._templateName, self._data, function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
+                if (_.isReal(doneRenderingCallback)){
+                    doneRenderingCallback();
+                }
             });
         },
 
