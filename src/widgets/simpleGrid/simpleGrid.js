@@ -15,7 +15,7 @@
     // TODO(Jason):  document usage
     // TODO(Jason): test edge cases for maxColumn: 0, 1,
     // TODO(Jason): what are valid default values?
-    //          --- some type of error handling library would be super cool
+    //   --- some type of error handling library would be super cool
     /**
      * A simple grid that can be used to graph anything from a simple one
      * column table to a multi-dimensional.
@@ -61,6 +61,10 @@
      * |     Cell 10        |     Cell 11        |                    |
      * |                    |                    |                    |
      * +--------------------+--------------------+--------------------+
+     *
+     * Note: since displayDelegate is a function, we can update the
+     * layout of the table on the fly by telling this SimpleGrid to rerender
+     * itself.
      *
      ********************************
      *
