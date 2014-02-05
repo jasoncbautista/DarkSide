@@ -9,6 +9,11 @@ A very simple widget based framework with example live feed implementations.
 - underscorePlus - useful extension to underscore
 - jshint - a simple linter
 
+Soft Dependencies:
+- testosterone.js
+- plato
+- socrates
+
 sudo apt-get install notify-tools
 inotifywait
 
