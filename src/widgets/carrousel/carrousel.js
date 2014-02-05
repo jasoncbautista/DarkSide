@@ -59,9 +59,12 @@
             });
         },
 
-
-        _renderCart: function(parent, cartData) {
+        _renderCart: function(parentDom, cartData) {
             var self = this;
+            //TODO(Jason): get template
+            var card = $("<span></span>");
+            card.text(cartData.value);
+            parentDom.append(card);
         },
 
         /**
