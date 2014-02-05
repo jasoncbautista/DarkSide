@@ -52,7 +52,7 @@
             self._options = options;
             // Create the DOM element
             self._el = HTML.createSpinnerHolder();
-            HTML.get("displayCard", self._options, function(domElement){
+            HTML.get("carrousel", self._options, function(domElement){
                 self._el.empty();
                 self._el.append(domElement);
                 self._render();
@@ -60,9 +60,22 @@
         },
 
 
-        render: function(){
+        _renderCart: function(parent, cartData) {
             var self = this;
         },
+
+        /**
+         * Simple rendering function for our carts
+         * @return {Null}
+         */
+        render: function(){
+            var self = this;
+            // Render each cart:
+            _.each(self._options.carts, function(cartData){
+                self._renderCart(self._el, cartData);
+            });
+        },
+
         /**
          * Returns the dom element associated with this widget
          * @return {Object}, DOM representation of widget.
