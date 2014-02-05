@@ -10,7 +10,7 @@
      * Usage
      * ----------------------
      *  var o = {"eventName": "testEvent", action: "loadedSimpleGrid"};
-     *  Sqor.Services.Logger.log(o);
+     *  Sqor.Services.Logger.log(o);t
      * ----------------------
      *
      * @constructor

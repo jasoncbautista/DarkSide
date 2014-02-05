@@ -16,7 +16,6 @@
      *
      * Usage:
      * ---------------------
-     *
      *  var options = {
      *      "carts": [
      *              {"key": "abc", value: "ABC"}
