@@ -6,6 +6,7 @@
     var _ = Sqor._;
 
     /**
+     * WidgetBase implements bare minimum for widgets core functionality.
      * ----------
      *
      * @constructor
