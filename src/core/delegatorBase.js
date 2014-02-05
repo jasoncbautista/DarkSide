@@ -4,15 +4,46 @@
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    /**
+     * A simple base class to implement simple functions for the delegate
+     * pattern.
+     *
+     * Usage:
+     * ------------------
+     *
+     *  var b = new Sqor.Core.Debugger();
+     *  var d = {
+     *      dataChanged: function(diff){
+     *          console.log("do something here");
+     *      }
+     *  };
+     *
+     *  var d2 = {
+     *      dataChanged: function(diff){
+     *          console.log("do something else here: d2");
+     *      }
+     *  };
+     *  b.addDelegate(d);
+     *  b.addDelegate(d2);
+     *
+     *  // Some more stuff happens here, eventually we call  a delegate:
+     *
+     *  b._notifyDelegates("dataChanged", {"diff": "some diff" });
+     *
+     * ------------------
+     *
+     * @constructor
+     * @return {Null}
+     */
     var DelegatorBase = function(){
         var self = this;
         self._delegates = [];
     };
-
     _.extend(DelegatorBase.prototype, {
         /**
          * Adds a delegate to our list of delegates
-         * @param {object} delegate,
+         * @param {object} delegate, a simple object that implements a few
+         *   delegate methods.
          * @return {null}
          */
         addDelegate: function(delegate){
