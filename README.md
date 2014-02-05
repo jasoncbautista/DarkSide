@@ -39,10 +39,14 @@ Very simple reusable UI classes that implement things like:
  - dyanamic tables
  - simple grids
 
-
-### SqorModules
+### Sqor.Modules
 Modules for the most part are at a level above Widgets, and should leverage
 widgets when possible. They are a bit more aware of data and some even their
 "sorroundings". They can be used to do things like render a specific part
 of a site. One example is a nav bar, a side bar, etc.
 
+
+
+### Soqr bootstrap
+A simple set of classes to get the library loaded. It initializes all the 
+holding objects for a lot of the above.
