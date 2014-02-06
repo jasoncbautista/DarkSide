@@ -71,12 +71,12 @@ Sqor.demoRoutes = function(Sqor){
         $("body").append(grid.getDomElement());
     };
 
-    var runDataGrid = function(showTeams){
+    var runDataGrid = function(teamId, clickHandler,  showTeams){
         var playerModelOptions = {
                     path: "/sports/players"
                 ,   fetchAll: true
                 ,   urlParams: {
-                        team_id: 32048 //32043
+                        team_id: teamId //32043
                     ,   limit: 30000
                 }
         };
@@ -84,7 +84,7 @@ Sqor.demoRoutes = function(Sqor){
             playerModelOptions = {};
          }
 
-        var c = new Sqor.Modules.AthleteRosterControler({modelOptions: playerModelOptions});
+        var c = new Sqor.Modules.AthleteRosterControler({modelOptions: playerModelOptions, clickHandler: clickHandler});
         $("body").append(c.getDomElement());
         //append to Model
         // c._model.appendItems(10);
@@ -103,7 +103,7 @@ Sqor.demoRoutes = function(Sqor){
     Router.subscribe("runDataGrid", function(){
         console.log("runDataGrid");
         Sqor.$("body").empty();
-        runDataGrid();
+        runDataGrid(32048 );
     });
     Router.subscribe("runComplexTable", function(){
         console.log("runComplexTable");

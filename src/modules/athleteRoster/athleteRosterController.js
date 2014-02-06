@@ -101,6 +101,8 @@
             athleteCard.getDomElement().click(function(){
                 console.log(model);
                 console.log(model.id);
+                window.location = "/athlete/" + model.id +"/" +
+                 encodeURIComponent(model.first_name);
             });
         },
 
