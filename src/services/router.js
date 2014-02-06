@@ -111,23 +111,43 @@
             return arrs;
         },
 
-        _addRouteHelper: function(key, pathArray){
+        _addRouteHelper: function(mapHolder, key, pathArray){
             var self = this;
+            var currentMap = mapHolder.map;
             if (pathArray.length === 0){
                  // TODO(Jason): throw error
                 throw "router ended without adding route";
                 return;
             }
+
+            // Real edge case
+            var firstEntry = pathArray[0];
+            var existingMap = currentMap[firstEntry];
+            if(!_.isReal(existingMap)){
+                currentMap[firstEntry]  = {};
+                existingMap = self._routesMap[firstEntry];
+            }
+            if (pathArray.length === 1) {
+                existingMap["!key!"] = key;
+                return;
+            } else {
+                return self._addRouteHelper({map: existingMap}
+                        , key
+                        , self._getSubArray(pathArray));
+            }
         },
 
         _addRoute: function(key, routePathPattern){
             var self = this;
+            // TODO(Jason): make function called _getPathAsArray();
+            //
             // We clean up our path and conver to array
             var routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            /*
             if (routePathPattern.length === 1 && routePathPattern === "/") {
                 self._rootPath = key;
                 return;
-            }
+            }*/
 
             var lastChar = routePathPattern.substr(
                        routePathPattern.length  - 1
@@ -146,7 +166,7 @@
                 pathParts = self._getSubArray(pathParts);
             }
 
-            self._addRouteHelper(key, pathParts);
+            self._addRouteHelper({map: self._routesMap}, key, pathParts);
         },
 
         /**
