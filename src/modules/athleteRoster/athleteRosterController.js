@@ -86,12 +86,23 @@
                 , "athletePosition": model.position
                 // TODO(Jason): make this an actual url
                 //  Shold probably be an external call from a library
-                , externalURI: ""
+                , clickHandler: $.noop
+                , mouseoverHandler: $noop
             };
 
             var athleteCard = new AthleteCard(options);
             // TODO(Jason): add to array to save for destroy calls..
+            self._addListenersForAthleteCard(athleteCard, model);
             return athleteCard.getDomElement();
+        },
+
+        // Should probably be done as a delegate
+        _addListenersForAthleteCard: function(athleteCard, model){
+            athleteCard.getDomElement().click(function(){
+                console.log(model);
+                console.log(model.id);
+            });
+
         },
 
 
