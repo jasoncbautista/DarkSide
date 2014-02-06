@@ -50,6 +50,7 @@
         if (_.isReal(cachedTemplate)) {
             HTML._serveTemplate(cachedTemplate, options, callback);
         } else {
+            // TODO(Jason): maybe still fetch to refresh?
             $.get("/html/" +  templateName + ".html", function(htmlString) {
                 // We cache the template:
                 HTML._cached[templateName] = htmlString;
