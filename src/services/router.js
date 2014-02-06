@@ -98,7 +98,7 @@
         addRoute: function(key, routePathPattern){
             var self = this;
             // Lowercase all:
-            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            var routePathPattern =  self._cleanUpUrlPath(routePathPattern);
             self._routes.push({
                     "key": key
                 ,   "pathPattern": routePathPattern
@@ -111,10 +111,42 @@
             return arrs;
         },
 
+        _addRouteHelper: function(key, pathArray){
+            var self = this;
+            if (pathArray.length === 0){
+                 // TODO(Jason): throw error
+                throw "router ended without adding route";
+                return;
+            }
+        },
+
         _addRoute: function(key, routePathPattern){
             var self = this;
-            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            // We clean up our path and conver to array
+            var routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            if (routePathPattern.length === 1 && routePathPattern === "/") {
+                self._rootPath = key;
+                return;
+            }
+
+            var lastChar = routePathPattern.substr(
+                       routePathPattern.length  - 1
+                    ,   routePathPattern.length - 1
+            );
+
+            // Removing the trailing
+            if ( lastChar === "/"){
+                routePathPattern = routePathPattern.substr(0,
+                        routePathPattern.length -1
+            }
+
             var pathParts = routePathPattern.split("/");
+            // Remove the firs entry if it's empty
+            if (pathParts[0] === ""){
+                pathParts = self._getSubArray(pathParts);
+            }
+
+            self._addRouteHelper(key, pathParts);
         },
 
         /**
