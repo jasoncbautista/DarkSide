@@ -136,13 +136,39 @@
             }
         },
 
+        _getCleanPathParts = function(routePathPattern){
+            var self = this;
+            // We clean up our path and conver to array
+            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            // TODO(Jason): create trim(str, charToTrim);
+            // Removing first /
+            if (routePathPattern === "/") {
+                routePathPattern = routePathPattern.substr(1);
+            }
+
+            // Get our last char
+            var lastChar = routePathPattern.substr(
+                       routePathPattern.length  - 1
+                    ,   routePathPattern.length - 1
+            );
+
+            // Removing the trailing
+            if ( lastChar === "/"){
+                routePathPattern = routePathPattern.substr(0,
+                        routePathPattern.length -1);
+            }
+
+            var pathParts = routePathPattern.split("/");
+            // Remove the first entry if it's empty
+            return pathParts;
+        },
+
         _triggerRouteForPath2: function(urlPath) {
         },
 
+
         _addRoute: function(key, routePathPattern){
             var self = this;
-            // TODO(Jason): make function called _getPathAsArray();
-            //
             // We clean up our path and conver to array
             routePathPattern =  self._cleanUpUrlPath(routePathPattern);
             /*
