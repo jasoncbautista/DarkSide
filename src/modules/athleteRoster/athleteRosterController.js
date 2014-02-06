@@ -58,8 +58,10 @@
                 ]
             });
             self._sortingWidgets = sortingWidget;
+            self._sortingWidgets.addDelegate(self);
             self._el.find(".sortingHolder").append(
                 self._sortingWidgets.getDomElement());
+
         },
 
         /**********************************************************************
@@ -91,6 +93,11 @@
             return athleteCard.getDomElement();
         },
 
+
+        mouseOver: function(sortObject, ee){
+            // console.log(ee);
+            console.log(sortObject);
+        },
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null
     });

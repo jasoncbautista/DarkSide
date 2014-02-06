@@ -74,6 +74,9 @@
             var card = $("<span></span>");
             card.text(cartData.value);
             parentDom.append(card);
+            card.mouseover(function(ee){
+                self._notifyDelegates("mouseOver", [cartData, ee]);
+            });
         },
 
         /**
