@@ -163,37 +163,54 @@
             return pathParts;
         },
 
-        _triggerRouteForPath2: function(urlPath) {
-        },
+        _extractKeyFromMap: function(mapHolder, pathParts, valueAndKeyMap){
+            //TODO(Jason): consider backtracing and using dfs /bfs
+            var map = mapHolder.map;
+            //TODO(Jason): isReal for map and innerMap
+            var innerMap = map[pathParts[0];
 
+            // We check if we didn't find an EXACT MATCH (even case)
+            // TODO(Jason): lowercase everything on INPUT and OUTPUT
+            if (!_.isReal(innerMap)){
+                // Iterate over map and see if any is a : or *
+                var matchVariable = null;
+                _.each(map, function(value, key) {
+                    if(key[0] === ":"){
+                        matchVariable = key;
+                    }
+                });
+                if (_.isReal(matchVariable)){
+                    innerMap = map[matchVariable];
+                    // Saving our little map variables
+                    valueAndKeyMap[key] = pathParts[0];
+                } else {
+                    //matchVariable =
+
+                }
+            }
+            // We should have it:
+            if (pathParts.length === 1){
+
+            }
+
+        },
+        _triggerRouteForPath2: function(urlPath) {
+            var self = this;
+            var pathParts = self._getCleanPathParts(routePathPattern);
+            var matchInfo = {};
+            var key = self._extractKeyFromMap({map: self._routesMap}
+                    , pathParts
+                    , matchInfo
+                );
+
+            self.trigger(key, matchInfo);
+            self.trigger("onUrlPathChanged");
+
+        },
 
         _addRoute: function(key, routePathPattern){
             var self = this;
-            // We clean up our path and conver to array
-            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
-            /*
-            if (routePathPattern.length === 1 && routePathPattern === "/") {
-                self._rootPath = key;
-                return;
-            }*/
-
-            var lastChar = routePathPattern.substr(
-                       routePathPattern.length  - 1
-                    ,   routePathPattern.length - 1
-            );
-
-            // Removing the trailing
-            if ( lastChar === "/"){
-                routePathPattern = routePathPattern.substr(0,
-                        routePathPattern.length -1);
-            }
-
-            var pathParts = routePathPattern.split("/");
-            // Remove the firs entry if it's empty
-            if (pathParts[0] === ""){
-                pathParts = self._getSubArray(pathParts);
-            }
-
+            var pathParts = self._getCleanPathParts(routePathPattern);
             self._addRouteHelper({map: self._routesMap}, key, pathParts);
         },
 
