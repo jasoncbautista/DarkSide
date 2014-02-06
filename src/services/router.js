@@ -98,15 +98,15 @@
         addRoute: function(key, routePathPattern){
             var self = this;
             // Lowercase all:
-            var routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
             self._routes.push({
                     "key": key
                 ,   "pathPattern": routePathPattern
             });
         },
 
-        _getSubArray: function(arrs){
-            var arrs = arrs.reverse();
+        _getSubArray: function(arrs) {
+            arrs = arrs.reverse();
             arrs.pop();
             return arrs;
         },
@@ -117,7 +117,6 @@
             if (pathArray.length === 0){
                  // TODO(Jason): throw error
                 throw "router ended without adding route";
-                return;
             }
 
             // Real edge case
@@ -137,12 +136,15 @@
             }
         },
 
+        _triggerRouteForPath2: function(urlPath) {
+        },
+
         _addRoute: function(key, routePathPattern){
             var self = this;
             // TODO(Jason): make function called _getPathAsArray();
             //
             // We clean up our path and conver to array
-            var routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
             /*
             if (routePathPattern.length === 1 && routePathPattern === "/") {
                 self._rootPath = key;
@@ -157,7 +159,7 @@
             // Removing the trailing
             if ( lastChar === "/"){
                 routePathPattern = routePathPattern.substr(0,
-                        routePathPattern.length -1
+                        routePathPattern.length -1);
             }
 
             var pathParts = routePathPattern.split("/");
