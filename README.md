@@ -8,6 +8,7 @@ A very simple widget based framework with example live feed implementations.
 - underscore.js -
 - underscorePlus - useful extension to underscore
 - jshint - a simple linter
+- jsdoc - documentation 
 
 #### Soft Dependencies:
 - testosterone.js
