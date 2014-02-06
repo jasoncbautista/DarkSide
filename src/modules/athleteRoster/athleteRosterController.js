@@ -102,9 +102,7 @@
                 console.log(model);
                 console.log(model.id);
             });
-
         },
-
 
         mouseOver: function(sortObject, ee){
             // TODO(Jason): better pattern than if...
@@ -126,8 +124,6 @@
             if (key === "position"){
                 self._models.sortBy("position");
             }
-
-
         },
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null

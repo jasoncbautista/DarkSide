@@ -90,6 +90,7 @@ Sqor.demoRoutes = function(Sqor){
         // c._model.appendItems(10);
         // c._model.prepend(10);
         window._c = c;
+        return c;
     };
 
     // Now we bind to our router...
@@ -117,4 +118,6 @@ Sqor.demoRoutes = function(Sqor){
     });
 
 
+    // XXX:
+    Sqor.runDataGrid = runDataGrid;
 };

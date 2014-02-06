@@ -30,3 +30,5 @@ $(document).ready(function(){
     Sqor.onReady(Sqor);
 });
 
+//XXX
+window.Sqor = Sqor;
