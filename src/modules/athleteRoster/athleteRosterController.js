@@ -95,8 +95,23 @@
 
 
         mouseOver: function(sortObject, ee){
+            var self = this;
             // console.log(ee);
             console.log(sortObject);
+            var key = sortObject.key;
+            if (key === "abc"){
+                self._models.sortBy("last_name");
+            }
+            if (key === "zxy"){
+                self._models.sortBy("last_name", true);
+            }
+
+
+            if (key === "position"){
+                self._models.sortBy("position");
+            }
+
+
         },
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null

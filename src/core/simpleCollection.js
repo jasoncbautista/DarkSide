@@ -92,11 +92,27 @@
             self._delegates.push(delegate);
         },
 
-        _resort: function(keyToSortOn){
+        /**
+         * Publc  method to resort and notify delegates.
+         * @param {type} key,
+         * @return {Null}
+         */
+        sortBy: function(key, isReverse){
+            var self = this;
+            self._resort(key, isReverse);
+            self._notifyDelegates("dataChanged");
+        },
+
+        _resort: function(keyToSortOn, isReverse){
             var self = this;
             self._sortedData = _.sortBy(self._rawData, function(item){
                 return item[keyToSortOn];
             });
+
+            // Reverse in case we have a reverse flag.
+            if (_.isReal(isReverse)){
+                self._sortedData = self._sortedData.reverse();
+            }
         },
 
         getSorted: function(keyToSortOn, dontTriggerDataChange){

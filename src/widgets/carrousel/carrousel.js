@@ -71,7 +71,7 @@
         _renderCart: function(parentDom, cartData) {
             var self = this;
             //TODO(Jason): get template
-            var card = $("<span></span>");
+            var card = $("<span style='margin:10px'></span>");
             card.text(cartData.value);
             parentDom.append(card);
             card.mouseover(function(ee){
