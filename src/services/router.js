@@ -10,6 +10,7 @@
     var Router = function(){
         var self = this;
         self._routes = []; // TODO(Jason): {}
+        self._routesMap = {};
         //self._bindToHashChanges();
     };
 
@@ -102,6 +103,18 @@
                     "key": key
                 ,   "pathPattern": routePathPattern
             });
+        },
+
+        _getSubArray: function(arrs){
+            var arrs = arrs.reverse();
+            arrs.pop();
+            return arrs;
+        },
+
+        _addRoute: function(key, routePathPattern){
+            var self = this;
+            routePathPattern =  self._cleanUpUrlPath(routePathPattern);
+            var pathParts = routePathPattern.split("/");
         },
 
         /**

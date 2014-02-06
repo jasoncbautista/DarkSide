@@ -58,3 +58,11 @@ of a site. One example is a nav bar, a side bar, etc.
 ### Sqor bootstrap
 A simple set of classes to get the library loaded. It initializes all the 
 holding objects for a lot of the above.
+
+
+
+## Install
+
+npm install -g jsdoc
+npm install -g plato
+
