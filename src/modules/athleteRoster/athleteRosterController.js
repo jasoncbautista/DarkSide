@@ -54,7 +54,8 @@
                 carts: [
                         {"key": "abc", "value": "ABC"}
                     ,   {"key": "zxy", "value": "ZXY"}
-                    ,   {"key": "position", "value": "POS"}
+                    ,   {"key": "number", "value": "Jersey"}
+                    ,   {"key": "position", "value": "Pos"}
                 ]
             });
             self._sortingWidgets = sortingWidget;
@@ -95,6 +96,8 @@
 
 
         mouseOver: function(sortObject, ee){
+            // TODO(Jason): better pattern than if...
+            // ... also nested sorts..
             var self = this;
             // console.log(ee);
             console.log(sortObject);
@@ -102,10 +105,14 @@
             if (key === "abc"){
                 self._models.sortBy("last_name");
             }
+
             if (key === "zxy"){
                 self._models.sortBy("last_name", true);
             }
 
+            if (key === "number"){
+                self._models.sortBy("number", false, true);
+            }
 
             if (key === "position"){
                 self._models.sortBy("position");

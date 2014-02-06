@@ -97,20 +97,24 @@
          * @param {type} key,
          * @return {Null}
          */
-        sortBy: function(key, isReverse){
+        sortBy: function(key, isReverse, isNumber){
             var self = this;
-            self._resort(key, isReverse);
+            self._resort(key, isReverse, isNumber);
             self._notifyDelegates("dataChanged");
         },
 
-        _resort: function(keyToSortOn, isReverse){
+        _resort: function(keyToSortOn, isReverse, isNumber){
             var self = this;
             self._sortedData = _.sortBy(self._rawData, function(item){
-                return item[keyToSortOn];
+                var value = item[keyToSortOn];
+                if (isNumber){
+                   value = Number(value);
+                }
+                return  value;
             });
 
             // Reverse in case we have a reverse flag.
-            if (_.isReal(isReverse)){
+            if (isReverse){
                 self._sortedData = self._sortedData.reverse();
             }
         },
