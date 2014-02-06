@@ -87,7 +87,7 @@
                 // TODO(Jason): make this an actual url
                 //  Shold probably be an external call from a library
                 , clickHandler: $.noop
-                , mouseoverHandler: $noop
+                , mouseoverHandler: $.noop
             };
 
             var athleteCard = new AthleteCard(options);
