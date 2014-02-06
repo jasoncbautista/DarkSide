@@ -5,6 +5,7 @@
     var $ = Sqor.$;
     var _ = Sqor._;
 
+    var DelegatorBase = Sqor.Core.DelegatorBase;
     /**
      * WidgetBase implements bare minimum for widgets core functionality.
      * ----------
@@ -19,6 +20,8 @@
         // var defaults = {};
         // self.create(options, defaults);
     };
+
+    WidgetBase.prototype  = new DelegatorBase();
 
     // Extending our widgets prototype to add basic functionality:
     _.extend(WidgetBase.prototype, {
