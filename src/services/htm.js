@@ -49,12 +49,13 @@
         var cachedTemplate =  HTML._cached[templateName];
         if (_.isReal(cachedTemplate)) {
             HTML._serveTemplate(cachedTemplate, options, callback);
+        } else {
+            $.get("/html/" +  templateName + ".html", function(htmlString) {
+                // We cache the template:
+                HTML._cached[templateName] = htmlString;
+                HTML._serveTemplate(htmlString, options, callback);
+            });
         }
-        $.get("/html/" +  templateName + ".html", function(htmlString) {
-            // We cache the template:
-            HTML._cached[templateName] = htmlString;
-            HTML._serveTemplate(htmlString, options, callback);
-        });
     };
 
     /**

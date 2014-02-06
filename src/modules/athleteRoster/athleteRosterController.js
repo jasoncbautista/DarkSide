@@ -99,8 +99,6 @@
             // TODO(Jason): better pattern than if...
             // ... also nested sorts..
             var self = this;
-            // console.log(ee);
-            console.log(sortObject);
             var key = sortObject.key;
             if (key === "abc"){
                 self._models.sortBy("last_name");
