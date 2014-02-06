@@ -136,7 +136,7 @@
             }
         },
 
-        _getCleanPathParts = function(routePathPattern){
+        _getCleanPathParts: function(routePathPattern){
             var self = this;
             // We clean up our path and conver to array
             routePathPattern =  self._cleanUpUrlPath(routePathPattern);
@@ -167,7 +167,7 @@
             //TODO(Jason): consider backtracing and using dfs /bfs
             var map = mapHolder.map;
             //TODO(Jason): isReal for map and innerMap
-            var innerMap = map[pathParts[0];
+            var innerMap = map[pathParts[0]];
 
             // We check if we didn't find an EXACT MATCH (even case)
             // TODO(Jason): lowercase everything on INPUT and OUTPUT
