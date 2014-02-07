@@ -3,7 +3,7 @@ Friday
  [ ] mouseover of card - handler - 10 - 15 minutes
  [ ] if sqor athlete add little logo
  [ ] team 
- [ ] namespace css: add SQOR_ to classes
+ [x] namespace css: add SQOR_ to classes
  [ ] mv .sh scripts to scripts/ dir
  [ ] research routing
  [ ] research grunt replacement
