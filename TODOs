@@ -1,6 +1,13 @@
-Wed 2/3/2014
-[ ] look up jsdocs  - 20 minutes
-[ ] wire up carrousel widget into roster
+Thurs 2/6/2014
+ [x] hook up roster widget into sqor web
+ [ ] mouse over  on roster
+ [ ] mouseover on links 
+ [ ] write differ
+ [ ] if sqor athlete add little logo
+ [ ] styling roster
+Wed 2/5/2014
+[x] look up jsdocs  - 20 minutes
+[x] wire up carrousel widget into roster
 [ ] update old delegate methods with subclass
 [ ] rename delegateBase to Base
 
