@@ -18,6 +18,8 @@ A very simple widget based framework with example live feed implementations.
 sudo apt-get install notify-tools
 inotifywait
 
+### Building
+``` ./build ```
 
 
 ## Key Features

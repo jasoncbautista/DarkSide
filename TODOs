@@ -1,9 +1,18 @@
+Friday 
+ [ ] paintJS
+ [ ] mouseover of card - handler - 10 - 15 minutes
+ [ ] if sqor athlete add little logo
+ [ ] team 
+ [ ] namespace css: add SQOR_ to classes
+ [ ] mv .sh scripts to scripts/ dir
+ [ ] research routing
+ [ ] research grunt replacement
+
+
 Thurs 2/6/2014
  [x] hook up roster widget into sqor web
  [ ] mouse over  on roster
- [ ] mouseover on links 
  [ ] write differ
- [ ] if sqor athlete add little logo
  [ ] styling roster
 Wed 2/5/2014
 [x] look up jsdocs  - 20 minutes
