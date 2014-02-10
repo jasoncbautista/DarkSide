@@ -98,7 +98,6 @@
             if(_options.unselectAll){
                 self._unselectAllCarts();
             }
-
             cardEl.addClass("SQOR_carrousel_card_selected");
         },
 

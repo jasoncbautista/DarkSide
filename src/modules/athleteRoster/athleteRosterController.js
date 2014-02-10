@@ -53,9 +53,9 @@
             var sortingWidget = new Carrousel({
                 carts: [
                         {"key": "abc", "value": "ABC"}
-                    ,   {"key": "zxy", "value": "ZXY"}
+                    ,   {"key": "zxy", "value": "ZYX"}
                     ,   {"key": "number", "value": "Jersey"}
-                    ,   {"key": "position", "value": "Pos"}
+                    ,   {"key": "position", "value": "Position"}
                 ]
             });
             self._sortingWidgets = sortingWidget;
