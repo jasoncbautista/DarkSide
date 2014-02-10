@@ -1,4 +1,8 @@
 Monday 2/10/2014
+[ ] HTML class needs cache buster with ?randomString 
+    - all the time in dev, or every time we compile it should happen..
+    - caches in prod, but ot in dev
+
 [ ] style widget
 [ ] Sqor.Data.currentData  for debugging... 
 Friday 

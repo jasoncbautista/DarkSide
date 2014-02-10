@@ -12,6 +12,9 @@ stylesOnMouseOver
 
 
 
+SQOR_carrousel_card_selected should look good by default
+but we should be able to overwrite these with options
+
 
 =====================
 
