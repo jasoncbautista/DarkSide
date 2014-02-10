@@ -22,6 +22,9 @@
             ,   "athleteFirstName": "Sample "
             ,   "athleteLastName": "Name"
             ,   "athletePosition": "Sample Position"
+            ,   "clickHandler": $.noop
+            ,   "mouseoverHandler": $.noop
+            ,   "mouseoutHandler": $.noop
         };
         self.create(options, defaults);
     };

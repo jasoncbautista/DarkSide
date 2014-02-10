@@ -86,24 +86,41 @@
                 , "athletePosition": model.position
                 // TODO(Jason): make this an actual url
                 //  Shold probably be an external call from a library
-                , clickHandler: $.noop
-                , mouseoverHandler: $.noop
+                , clickHandler: self._generateClickHandler(model)
+                , mouseoverHandler: self._generateMouseoverHandler()
+                , mouseoutHandler: self._generateMouseoutHandler()
             };
 
             var athleteCard = new AthleteCard(options);
             // TODO(Jason): add to array to save for destroy calls..
-            self._addListenersForAthleteCard(athleteCard, model);
             return athleteCard.getDomElement();
         },
 
+        _generateMouseoutHandler: function(){
+            return function(widget, ee){
+                widget.getDomElement().css({
+                    "background": "black"
+                });
+            };
+        },
+
+
+        _generateMouseoverHandler: function(){
+            return function(widget, ee){
+                widget.getDomElement().css({
+                    "background": "white"
+                });
+            };
+        },
+
         // Should probably be done as a delegate
-        _addListenersForAthleteCard: function(athleteCard, model){
-            athleteCard.getDomElement().click(function(){
+        _generateClickHandler: function(model){
+            return function(){
                 console.log(model);
                 console.log(model.id);
                 window.location = "/athlete/" + model.id +"/" +
                  encodeURIComponent(model.first_name);
-            });
+            };
         },
 
         mouseOver: function(sortObject, ee){

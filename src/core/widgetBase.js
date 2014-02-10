@@ -17,7 +17,12 @@
     var WidgetBase = function(options) {
         var self = this;
         self._templateName = "widgetBase";
-        // var defaults = {};
+        var defaults = {
+                "mouseoverHandler": $.noop
+            ,   "clickHandler": $.noop
+            ,   "mouseoutHandler": $.noop
+            // TODO: mouseoverClass (remove and add style
+        };
         // self.create(options, defaults);
     };
 
@@ -44,6 +49,26 @@
                         doneRenderingCallback();
                     }
             });
+            self._addMouseEventsToWidget();
+        },
+
+        /**
+         * Binds event handlers to our DOM element.
+         * @return {Null}
+         */
+        _addMouseEventsToWidget: function(){
+            var self = this;
+            var clickHandler = self._options.clickHandler;
+            var mouseoverHandler = self._options.mouseoverHandler;
+            var mouseoutHandler = self._options.mouseoutHandler;
+
+            self._el.mouseout(function(ee){
+                mouseoutHandler(self, ee);
+            });
+            self._el.mouseover(function(ee){
+                mouseoverHandler(self, ee);
+            });
+            self._el.click(clickHandler);
         },
 
         /**
