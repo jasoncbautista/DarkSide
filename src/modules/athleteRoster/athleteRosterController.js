@@ -61,8 +61,8 @@
             self._sortingWidgets = sortingWidget;
             self._sortingWidgets.addDelegate(self);
             self._el.find(".sortingHolder").append(
-                self._sortingWidgets.getDomElement());
-
+                self._sortingWidgets.getDomElement()
+            );
         },
 
         /**********************************************************************
@@ -103,7 +103,6 @@
                 });
             };
         },
-
 
         _generateMouseoverHandler: function(){
             return function(widget, ee){
