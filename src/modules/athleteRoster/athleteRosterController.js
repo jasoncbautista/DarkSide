@@ -122,7 +122,7 @@
             };
         },
 
-        mouseOver: function(sortObject, ee){
+        mouseoverCard: function(carrousel, sortObject, cardEl, ee){
             // TODO(Jason): better pattern than if...
             // ... also nested sorts..
             var self = this;
@@ -142,6 +142,9 @@
             if (key === "position"){
                 self._models.sortBy("position");
             }
+
+           carrousel.markAsSelected(cardEl);
+
         },
         // Workaround for annoying last comma rule.
         sdfsd3423452349249239493234: null

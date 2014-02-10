@@ -37,6 +37,7 @@
         };
         var newOptions = _.extend({}, defaults, options);
         self._delegates = [];
+        self._cardElements = [];
         self.create(newOptions);
     };
 
@@ -71,11 +72,40 @@
         _renderCart: function(parentDom, cartData) {
             var self = this;
             //TODO(Jason): get template
-            var card = $("<span style='margin:10px'></span>");
-            card.text(cartData.value);
-            parentDom.append(card);
-            card.mouseover(function(ee){
-                self._notifyDelegates("mouseOver", [cartData, ee]);
+            var domString = "<span class='SQOR_card' style='margin:10px'>" +
+                "</span>";
+            var cardEl = $(domString);
+            cardEl.text(cartData.value);
+            parentDom.append(cardEl);
+            cardEl.mouseover(function(ee){
+                var options = [self, cartData, cardEl, ee];
+                self._notifyDelegates("mouseoverCard", options);
+            });
+            cardEl.click(function(ee){
+                var options = [self, cartData, cardEl, ee];
+                self._notifyDelegates("mouseoverCard", options);
+            });
+            self._cardElements.push(cardEl);
+        },
+
+        markAsSelected: function(cardEl, ee, options){
+            var self = this;
+            var defaults = {
+                    "unselectAll": true
+                ,   "doneCallback": $.noop
+            };
+            var _options = _.extend({}, defaults, options);
+            if(_options.unselectAll){
+                self._unselectAllCarts();
+            }
+
+            cardEl.addClass("SQOR_carrousel_card_selected");
+        },
+
+        _unselectAllCarts: function(){
+            var self = this;
+            _.each(self._cardElements, function(cardEl){
+                cardEl.removeClass("SQOR_carrousel_card_selected");
             });
         },
 
