@@ -21,6 +21,7 @@
                 "mouseoverHandler": $.noop
             ,   "clickHandler": $.noop
             ,   "mouseoutHandler": $.noop
+            ,   "mouseoverClass": ""
             // TODO: mouseoverClass (remove and add style
         };
         // self.create(options, defaults);
@@ -63,12 +64,16 @@
             var mouseoutHandler = self._options.mouseoutHandler;
 
             self._el.mouseout(function(ee){
+                self._el.removeClass(self._options.mouseoverClass);
                 mouseoutHandler(self, ee);
             });
             self._el.mouseover(function(ee){
+
+                self._el.addClass(self._options.mouseoverClass);
                 mouseoverHandler(self, ee);
             });
             self._el.click(clickHandler);
+
         },
 
         /**

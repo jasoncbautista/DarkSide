@@ -25,6 +25,7 @@
             ,   "clickHandler": $.noop
             ,   "mouseoverHandler": $.noop
             ,   "mouseoutHandler": $.noop
+            ,   "mouseoverClass": "SQOR_athleteCard_mouseover"
         };
         self.create(options, defaults);
     };
