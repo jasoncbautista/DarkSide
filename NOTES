@@ -1,4 +1,20 @@
 
+Common Patterns:
+
+
+marksAsSelected and unselect others
+
+clickHandlers
+mouseHandlers
+
+
+stylesOnMouseOver
+
+
+
+
+=====================
+
 Investigate Limitations of Ininite Scroll
 
 - window.scrollTo(x,y) will let us scroll the user to a specific
