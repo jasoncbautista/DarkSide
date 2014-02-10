@@ -84,6 +84,9 @@
                 , "athleteFirstName": model.first_name
                 , "athleteLastName": model.last_name
                 , "athletePosition": model.position
+
+                // XXX / TODO remove
+                , "hiddenClass": (model.number % 10  === 0)? "": "SQOR_hidden"
                 // TODO(Jason): make this an actual url
                 //  Shold probably be an external call from a library
                 , clickHandler: self._generateClickHandler(model)
