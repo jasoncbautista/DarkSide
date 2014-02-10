@@ -21,6 +21,7 @@
      */
     var HTML = {};
     HTML._cached = {};
+    HTML._randomToken = ("" + Math.random()).replace(".", "");
 
     /**
      * Serves our template given  a template string
@@ -51,7 +52,9 @@
             HTML._serveTemplate(cachedTemplate, options, callback);
         } else {
             // TODO(Jason): maybe still fetch to refresh?
-            $.get("/html/" +  templateName + ".html", function(htmlString) {
+            var urlString = "/html/" +  templateName +
+                ".html?randomToken=" + HTML._randomToken;
+            $.get(urlString , function(htmlString) {
                 // We cache the template:
                 HTML._cached[templateName] = htmlString;
                 HTML._serveTemplate(htmlString, options, callback);
