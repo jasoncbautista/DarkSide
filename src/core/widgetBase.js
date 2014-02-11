@@ -73,7 +73,6 @@
                 mouseoverHandler(self, ee);
             });
             self._el.click(clickHandler);
-
         },
 
         /**
