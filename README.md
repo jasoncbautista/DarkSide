@@ -68,3 +68,8 @@ holding objects for a lot of the above.
 npm install -g jsdoc
 npm install -g plato
 
+
+## License
+MIT License 
+
+Copyright 2014
